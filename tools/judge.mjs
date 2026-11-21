@@ -6,7 +6,7 @@ import {decisionRequest,decisionResult} from './decisions.mjs';
 export async function callJudge(state,questions,options={}){
   const provider=process.env.JUDGE_PROVIDER??'openai_decisions';
   if(!process.env.COHORT_URL&&provider==='openai_decisions'){
-    if(!process.env.OPENAI_API_KEY)throw new Error('Use your instructor invitation or configure OPENAI_API_KEY locally');
+    if(!process.env.OPENAI_API_KEY)throw new Error('Use the shared student API key or configure OPENAI_API_KEY locally');
     const body=decisionRequest(state,questions,process.env.DECISIONS_MODEL??'gpt-6-luna');
     const response=await fetch('https://api.openai.com/v1/decisions',{method:'POST',headers:{Authorization:'Bearer '+process.env.OPENAI_API_KEY,'Content-Type':'application/json'},body:JSON.stringify(body),redirect:'error',signal:AbortSignal.timeout(options.timeoutMs??60000)});
     if(!response.ok)throw new Error('OpenAI Decisions HTTP '+response.status);

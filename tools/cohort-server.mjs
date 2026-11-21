@@ -12,13 +12,14 @@ const hash=s=>createHash('sha256').update(s).digest('hex');
 const fail=(status,message)=>Object.assign(new Error(message),{status});
 function integer(value,fallback){const n=Number(value??fallback);if(!Number.isSafeInteger(n)||n<1)throw new Error('Limits must be positive integers');return n;}
 export function configuration(env=process.env){
+  if(env.STUDENT_API_KEY&&!/^[A-Za-z0-9_-]{24,200}$/.test(env.STUDENT_API_KEY))throw new Error('STUDENT_API_KEY must contain 24–200 letters, digits, underscores or hyphens');
   const judgeProvider=env.JUDGE_PROVIDER??'openai_decisions';
   if(!['openai_decisions','jev'].includes(judgeProvider))throw new Error('Unsupported JUDGE_PROVIDER');
   const required=judgeProvider==='jev'?['OPENAI_API_KEY','TYPESAFE_API_KEY','JEV_MODEL']:['OPENAI_API_KEY'];
   for(const key of required)if(!env[key])throw new Error(`Instructor must configure ${key}`);
   const openaiModel=env.OPENAI_MODEL||'gpt-6-luna',judgeModel=judgeProvider==='jev'?env.JEV_MODEL:env.DECISIONS_MODEL||'gpt-6-luna';
   if(/latest/i.test(openaiModel+' '+judgeModel))throw new Error('Avoid moving latest aliases; record resolved versions');
-  return {openaiKey:env.OPENAI_API_KEY,jevKey:env.TYPESAFE_API_KEY,openaiModel,judgeProvider,judgeModel,maxCalls:integer(env.COHORT_MAX_CALLS,20000),studentCalls:integer(env.COHORT_STUDENT_MAX_CALLS,5000),maxInputBytes:integer(env.COHORT_MAX_INPUT_BYTES,24000),maxOutput:integer(env.COHORT_MAX_OUTPUT_TOKENS,1200),concurrency:integer(env.COHORT_CONCURRENCY,4),perMinute:integer(env.COHORT_CALLS_PER_MINUTE,120),inputPrice:env.OPENAI_INPUT_USD_PER_MILLION||undefined,outputPrice:env.OPENAI_OUTPUT_USD_PER_MILLION||undefined};
+  return {studentKey:env.STUDENT_API_KEY||null,openaiKey:env.OPENAI_API_KEY,jevKey:env.TYPESAFE_API_KEY,openaiModel,judgeProvider,judgeModel,maxCalls:integer(env.COHORT_MAX_CALLS,20000),studentCalls:integer(env.COHORT_STUDENT_MAX_CALLS,5000),maxInputBytes:integer(env.COHORT_MAX_INPUT_BYTES,24000),maxOutput:integer(env.COHORT_MAX_OUTPUT_TOKENS,1200),concurrency:integer(env.COHORT_CONCURRENCY,4),perMinute:integer(env.COHORT_CALLS_PER_MINUTE,120),inputPrice:env.OPENAI_INPUT_USD_PER_MILLION||undefined,outputPrice:env.OPENAI_OUTPUT_USD_PER_MILLION||undefined};
 }
 export class Ledger{
   constructor(dir){
@@ -52,12 +53,17 @@ function validateJudge(body,cfg){
 }
 function outputText(result){return (result.output??[]).filter(o=>o.type==='message').flatMap(o=>o.content??[]).filter(c=>c.type==='output_text').map(c=>c.text).join('\n');}
 export function createGateway({config,ledger,fetchImpl=fetch,cards,prompt,html}){
+  if(config.studentKey){
+    const id=hash(config.studentKey);
+    ledger.state.students[id]={id:'shared-student-access',expiresAt:'9999-12-31T23:59:59Z',maxCalls:config.maxCalls,calls:ledger.state.students[id]?.calls??0,revoked:false};ledger.save();
+  }
+  const quotaConfig=config.studentKey?{...config,studentCalls:config.maxCalls}:config;
   let active=0;const windows=new Map();
   const upstream=async(token,url,key,body)=>{
     const minute=Math.floor(Date.now()/60000),id=hash(token),w=windows.get(id);
     if(w?.minute===minute&&w.count>=config.perMinute)throw fail(429,'Classroom rate limit reached');
     if(active>=config.concurrency)throw fail(429,'Classroom busy; retry later');
-    ledger.reserve(token,config);windows.set(id,{minute,count:w?.minute===minute?w.count+1:1});active++;
+    ledger.reserve(token,quotaConfig);windows.set(id,{minute,count:w?.minute===minute?w.count+1:1});active++;
     try{
       const response=await fetchImpl(url,{method:'POST',headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},body:JSON.stringify(body),redirect:'error',signal:AbortSignal.timeout(90000)});
       if(!response.ok)throw fail(502,`Provider returned HTTP ${response.status}; instructor should check billing and models`);
@@ -81,8 +87,10 @@ export function createGateway({config,ledger,fetchImpl=fetch,cards,prompt,html})
         res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'"});res.end(html);return;
       }
       if(!['/api/info','/api/generate','/api/judge','/api/bot'].includes(route))throw fail(404,'Not found');
-      const token=req.headers.authorization?.match(/^Bearer ([A-Za-z0-9_-]+)$/)?.[1];const student=ledger.student(token);
-      if(req.method==='GET'&&route==='/api/info'){send(res,200,{student:student.id,expires_at:student.expiresAt,calls:student.calls,max_calls:Math.min(student.maxCalls,config.studentCalls),openai_model:config.openaiModel,judge_provider:config.judgeProvider,judge_model:config.judgeModel});return;}
+      const token=req.headers.authorization?.match(/^Bearer ([A-Za-z0-9_-]+)$/)?.[1];
+      if(config.studentKey&&(!token||hash(token)!==hash(config.studentKey)))throw fail(401,'Enter the shared student API key');
+      const student=ledger.student(token);
+      if(req.method==='GET'&&route==='/api/info'){send(res,200,{access_mode:config.studentKey?'shared_student_key':'individual_invite',student:student.id,expires_at:config.studentKey?null:student.expiresAt,calls:config.studentKey?ledger.state.total:student.calls,max_calls:Math.min(student.maxCalls,quotaConfig.studentCalls),openai_model:config.openaiModel,judge_provider:config.judgeProvider,judge_model:config.judgeModel});return;}
       if(req.method!=='POST'||route==='/api/info')throw fail(405,'Method not allowed');
       const chunks=[];let bytes=0;
       for await(const chunk of req){bytes+=chunk.length;if(bytes>config.maxInputBytes+16000)throw fail(413,'Request too large');chunks.push(chunk);}
@@ -115,6 +123,7 @@ export function createGateway({config,ledger,fetchImpl=fetch,cards,prompt,html})
 }
 export function start(){
   const config=configuration();const dir=path.resolve(process.env.COHORT_STATE_DIR??'private-data/cohort-state');
+  if(!config.studentKey&&process.env.COHORT_INDIVIDUAL_INVITES!=='true')throw new Error('Set STUDENT_API_KEY to the shared student key. Individual invitations are optional and require COHORT_INDIVIDUAL_INVITES=true.');
   const manifest=JSON.parse(fs.readFileSync(path.join(root,'config/v0-manifest.json'),'utf8'));
   for(const [file,expected]of Object.entries(manifest.frozen_inputs))if(hash(fs.readFileSync(path.join(root,file),'utf8').replace(/\r\n/g,'\n'))!==expected)throw new Error('Packaged v0 input changed; restore it and use a separate improved prompt for v1');
   fs.mkdirSync(dir,{recursive:true});

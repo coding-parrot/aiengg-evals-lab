@@ -22,13 +22,13 @@ The **Starting bot** is called **v0** in experiment files. The **Improved bot** 
 
 ## Start here
 
-1. Open your instructor’s private invitation link for the browser demo—no install or provider keys. For the full IDE lab, clone this repo, click “Connect my IDE” on the invitation page, and have your assistant put the downloaded private `.env` in the repo root. See [shared cohort setup](references/cohort-hosting.md).
+1. Open the public lab URL and enter the **shared student API key** used by everyone. No individual invitation, login, OpenAI key or provider account is needed. For the full IDE lab, clone this repo, click “Connect my IDE” in the lab, and have your assistant put the downloaded `.env` in the repo root. See [operator setup](references/cohort-hosting.md).
 2. Open [intake.html](intake.html) locally to select profiles, goals and data sources. It can export `intake.json`. The default is **20 seeds + 200 synthetic cases = 220 cases**.
 3. Paste this prompt into your assistant:
 
-> Read README.md, START-HERE.md and references/tool-contract.md. Begin checkpoint 0. Use the packaged v0 bot through the instructor invitation; do not create a replacement bot or modify its prompt/retrieval. If working locally as the instructor, start tools/cohort-server.mjs using the configured private environment. Show the existing bot and let me try three questions. Save the actual answers, retrieved sources, prompt/model identifiers and source snapshot. Stop before creating or running the eval suite. We will create v1 from observed failures later.
+> Read README.md, START-HERE.md and references/tool-contract.md. Begin checkpoint 0. Use the packaged v0 bot at the public lab URL with the shared student API key; do not create a replacement bot or modify its prompt/retrieval. If working locally as the instructor, start tools/cohort-server.mjs using the configured private environment. Show the existing bot and let me try three questions. Save the actual answers, retrieved sources, prompt/model identifiers and source snapshot. Stop before creating or running the eval suite. We will create v1 from observed failures later.
 
-The instructor configures **one existing OpenAI key** on the shared backend for both the bot and OpenAI Decisions judge. Students need no provider accounts, keys or billing setup. The browser demo needs no install; the full IDE workflow needs a repo checkout, Node 22+ and its downloaded classroom connection file. LangSmith credentials are instructor-only and added at the monitoring checkpoint. Sanitized data is included. Hosting and live credentials must be supplied before invitations work; this repository does not include a running service.
+The instructor configures **one existing OpenAI key** on the shared backend for both the bot and OpenAI Decisions judge. Students need no provider accounts, keys or billing setup. The browser demo needs no install; the full IDE workflow needs a repo checkout, Node 22+ and its downloaded classroom connection file. LangSmith credentials are instructor-only and added at the monitoring checkpoint. Sanitized data is included. The operator must supply hosting and live credentials before the public URL works; this repository does not include a running service.
 
 If your assistant does not support installed skills, tell it to read each `SKILL.md` directly. The file-based prompts work without a particular slash-command convention.
 
@@ -48,7 +48,7 @@ This is a realistic basic prompt. Keep it unchanged until the starting benchmark
 
 | Step | Tell your assistant | Open the result |
 |---|---|---|
-| 0. Try packaged v0 | Open the invitation and use the start prompt above. | Bot UI, three answers, saved prompt/configuration |
+| 0. Try packaged v0 | Open the public lab with the shared student key and use the start prompt above. | Bot UI, three answers, saved prompt/configuration |
 | 1. Golden set | Read `skills/build-golden-set/SKILL.md` and create our golden set using the intake. | Query CSV, source provenance, coverage, SME edits |
 | 2. Judge calibration | Read `skills/calibrate-judges/SKILL.md`. Run the seed queries and prepare actual answers for SME ratings, then calibrate the judges. | SME labels, disagreement examples, confusion tables |
 | 3. Synthetic data | Read `skills/expand-eval-data/SKILL.md` and generate 200 additional cases from the 20 approved seeds. | Product matrix, variants, changed expectations |
@@ -101,7 +101,7 @@ Follow [the complete comparison protocol](references/before-after.md).
 | [samples/sanitized-source-cards.json](samples/sanitized-source-cards.json) | Classroom evidence without private source links or customer contact details |
 | [references/tool-contract.md](references/tool-contract.md) | Runnable helpers and the endpoint contract your assistant implements |
 | [references/facilitator-guide.md](references/facilitator-guide.md) | Instructor timing, reveal sequence and discussion questions |
-| [references/cohort-hosting.md](references/cohort-hosting.md) | One instructor key, private student invitations, hosting and usage limits |
+| [references/cohort-hosting.md](references/cohort-hosting.md) | One operator OpenAI key, shared student API key, hosting and usage limits |
 | [references/langsmith-runbook.md](references/langsmith-runbook.md) | Decisions integration, tracing, optional Jev/Laya and monitoring |
 
 ## Data and execution status

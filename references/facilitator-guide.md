@@ -6,7 +6,7 @@ Students already know how to build agents and RAG systems. Today's question is: 
 
 | Time | Instructor action | What students should notice |
 |---|---|---|
-| 0–10 min | Open the packaged v0 bot using the instructor invitation. Try three easy questions. Ask the class to vote whether it is ready. | Fluency and three successful examples are weak evidence. |
+| 0–10 min | Open the packaged v0 bot using the public URL and shared student API key. Try three easy questions. Ask the class to vote whether it is ready. | Fluency and three successful examples are weak evidence. |
 | 10–25 min | Trigger golden-set creation; open the intake form and source-linked CSV. SME edits two references live. | The test set encodes user goals and business-specific expectations, not generic chatbot quality. |
 | 25–45 min | Run seed queries; rate good, bad and borderline answers; trigger judge calibration. Open disagreements. | Judges need evaluation too. Faithful-but-irrelevant, polite-but-wrong and long-but-impressive are different failures. |
 | 45–60 min | Trigger 200 synthetic variants. Filter by parent and transformation; inspect a changed-evidence case. | More rows improve coverage only when transformations are meaningful. Changed scenarios may change correct behavior. |

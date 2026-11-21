@@ -35,3 +35,9 @@ The learner runs the lab through their coding assistant. The initial v0 bot is i
 - Fourteen local tests pass: the original six, four database-preparation tests and four Slack-builder tests. Coverage includes precise timestamps, preserved AI replies, fictional identities, ambiguous routing overrides, spreadsheet formula neutralization, programming comparisons and small numeric tables.
 - Routes and non-AI message kinds have honest per-row review flags; many remain rule-assigned/heuristic. Expected responses are null, with zero SME-approved rows. Review candidates before constructing a benchmark.
 - Database schema discovery, read-only export, count reconciliation and review of database-only records remain pending the connection file. The importer now preserves exact database timestamps and explicit timezone rather than only month buckets.
+
+## Shared student API key
+
+- Default documented access is one public URL plus one shared student API key, with no individual invites or student provider keys. Browser and IDE helpers use the same backend.
+- All 21 local tests pass, including shared-key bot/judge access, rejection of legacy invites in shared mode, and a shared persisted call ceiling. These use mocked provider transport; live deployment is not claimed.
+- A generated student key is in the operator’s ignored local environment and separate private handoff file. Provider keys and the generated student key are excluded from Git.

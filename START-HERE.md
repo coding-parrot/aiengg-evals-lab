@@ -4,7 +4,7 @@ This is a prompt-driven lab for your coding assistant. Open this folder in your 
 
 ## Start the lab
 
-> Read README.md, START-HERE.md and references/tool-contract.md. Begin checkpoint 0. Use the packaged v0 bot through the instructor invitation; do not create a replacement bot or modify its prompt/retrieval. If working locally as the instructor, start tools/cohort-server.mjs using the configured private environment. Show the existing bot and let me try three questions. Save the actual answers, retrieved sources, prompt/model identifiers and source snapshot. Stop before creating or running the eval suite. We will create v1 from observed failures later.
+> Read README.md, START-HERE.md and references/tool-contract.md. Begin checkpoint 0. Use the packaged v0 bot at the public lab URL with the shared student API key; do not create a replacement bot or modify its prompt/retrieval. If working locally as the instructor, start tools/cohort-server.mjs using the configured private environment. Show the existing bot and let me try three questions. Save the actual answers, retrieved sources, prompt/model identifiers and source snapshot. Stop before creating or running the eval suite. We will create v1 from observed failures later.
 
 **Starting bot (`v0`)** means this saved initial application. **Improved bot (`v1`)** means a later application version changed in response to observed eval failures. Evals measure improvement; they do not improve the model on their own. Follow `references/before-after.md` for the paired experiment.
 

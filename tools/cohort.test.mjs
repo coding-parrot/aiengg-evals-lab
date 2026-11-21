@@ -68,6 +68,19 @@ test('rate limit and custom prompt apply without changing retrieved context',asy
   assert.deepEqual(a.retrieved_context,b.retrieved_context);assert.notEqual(a.prompt_hash,b.prompt_hash);
   assert.equal((await f.req('/api/bot',{query:'access'})).status,429);assert.equal(f.calls.length,2);
 });
+test('one shared student key opens v0 and judging without an invitation; limits remain global',async t=>{
+  const key='test_student_shared_access_123456';
+  const f=await fixture(t,{studentKey:key,maxCalls:2});
+  assert.equal((await f.req('/api/info')).status,401,'old individual invitation must not bypass shared-key mode');
+  const info=await (await f.req('/api/info',undefined,key)).json();
+  assert.equal(info.access_mode,'shared_student_key');assert.equal(info.max_calls,2);
+  assert.ok(!JSON.stringify(info).includes(key));
+  assert.equal((await f.req('/api/bot',{query:'access'},key)).status,200);
+  const judge=await f.req('/api/judge',{state:'Actual answer',questions:{quality:{type:'noul',instructions:'Helpful?'}}},key);
+  assert.equal((await judge.json()).answers.quality.noul,0.9);
+  assert.equal((await f.req('/api/bot',{query:'access'},key)).status,429);
+  assert.equal(f.calls.length,2);assert.equal(new Ledger(f.dir).state.total,2);
+});
 test('benchmark smoke path works with classroom access only and actual adapter shapes',async t=>{
   const f=await fixture(t);const output=path.join(f.dir,'results');
   const env={...process.env,COHORT_URL:f.url,COHORT_ACCESS_TOKEN:f.token};

@@ -6,7 +6,7 @@ The coding assistant runs these; students do not need to write or type code. Req
 |---|---|---|
 | `tools/checks.mjs` | Response JSON | Citation validity, sentence count and available cost/latency checks |
 | `tools/judge.mjs` | Response JSON + classroom connection or instructor OpenAI key | Real OpenAI Decisions judgments saved to JSON |
-| `tools/cohort-server.mjs` | Instructor OpenAI key and persisted invitation ledger | Shared browser demo, bot endpoint and typed judge gateway |
+| `tools/cohort-server.mjs` | Operator OpenAI key, shared student key and persisted quota ledger | Shared browser demo, bot endpoint and typed judge gateway |
 | `tools/calibrate.mjs` | SME labels joined to judge probabilities as CSV | Before/after confusion metrics and per-metric thresholds |
 | `tools/benchmark.mjs` | Dataset JSON + classroom connection (or built endpoint + instructor judge key) | Incremental raw runs, long-form CSV and execution manifest |
 
@@ -36,7 +36,7 @@ Return JSON:
 
 Extract all material claims with a separate checked extraction step; ensure quoted claims map to actual answer text. A single convenient claim does not establish whole-answer faithfulness. The supplied helper scores listed claims, records missing extraction and leaves coverage checking to the harness. The assistant must add that coverage check before producing a complete faithfulness score. Null cost/TTFT stays unavailable; instrument it before presenting a measured cost or streaming result.
 
-Shared mode: the invitation page downloads a private `.env` with `COHORT_URL` and `COHORT_ACCESS_TOKEN`; helpers load it automatically. No student provider keys are required. Direct instructor mode: `BOT_ENDPOINT`, optional `BOT_API_KEY`, and `OPENAI_API_KEY`; `DECISIONS_MODEL` defaults to `gpt-6-luna`. Both modes use `JUDGE_CONFIG` for calibrated thresholds. Explicit Jev mode uses `JUDGE_PROVIDER=jev`, `TYPESAFE_API_KEY` and `JEV_MODEL`. No secrets go in committed files or chat. `--draft` explicitly allows a teaching run on unapproved data and raw probabilities; it does not make the results validated. `--smoke` runs only three rows.
+Shared mode: the public lab page accepts the shared student API key and downloads a private `.env` with `COHORT_URL` and `COHORT_ACCESS_TOKEN`; helpers load it automatically. No student provider keys are required. Direct instructor mode: `BOT_ENDPOINT`, optional `BOT_API_KEY`, and `OPENAI_API_KEY`; `DECISIONS_MODEL` defaults to `gpt-6-luna`. Both modes use `JUDGE_CONFIG` for calibrated thresholds. Explicit Jev mode uses `JUDGE_PROVIDER=jev`, `TYPESAFE_API_KEY` and `JEV_MODEL`. No secrets go in committed files or chat. `--draft` explicitly allows a teaching run on unapproved data and raw probabilities; it does not make the results validated. `--smoke` runs only three rows.
 
 `node tools/checks.mjs response.json`
 
