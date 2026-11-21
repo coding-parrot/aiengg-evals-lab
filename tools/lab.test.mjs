@@ -1,0 +1,28 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import http from 'node:http';
+import {spawn} from 'node:child_process';
+test('fresh student checkout connects, persists only lab access, and saves a real endpoint trace without a browser',async t=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'aiengg-cli-'));
+ const key='test_student_key_not_a_provider_key';let calls=0;
+ const server=http.createServer((req,res)=>{calls++;res.setHeader('Content-Type','application/json');if(req.headers.authorization!=='Bearer '+key){res.writeHead(401);res.end('{}');return;}res.end(JSON.stringify(req.url==='/api/info'?{access_mode:'shared_student_key'}:{answer:'Fixture endpoint response',agent_version:'v0',prompt_hash:'fixture'}));});
+ await new Promise(r=>server.listen(0,'127.0.0.1',r));
+ t.after(async()=>{server.closeAllConnections();await new Promise(r=>server.close(r));assert.ok(path.resolve(root).startsWith(path.resolve(os.tmpdir())+path.sep+'aiengg-cli-'));await fs.rm(root,{recursive:true});});
+ await fs.mkdir(path.join(root,'tools'));await fs.mkdir(path.join(root,'config'));
+ for(const file of ['lab.mjs','env.mjs'])await fs.copyFile(new URL(file,import.meta.url),path.join(root,'tools',file));
+ await fs.writeFile(path.join(root,'config/classroom.json'),JSON.stringify({url:'http://127.0.0.1:'+server.address().port}));
+ await fs.writeFile(path.join(root,'key.private.txt'),key);
+ const env={...process.env};for(const name of ['COHORT_URL','COHORT_ACCESS_TOKEN','STUDENT_API_KEY','OPENAI_API_KEY','BOT_ENDPOINT'])delete env[name];
+ const run=(args,extra={})=>new Promise(resolve=>{let output='';const child=spawn(process.execPath,['tools/lab.mjs',...args],{cwd:root,env:{...env,...extra},windowsHide:true});child.stdout.on('data',x=>output+=x);child.stderr.on('data',x=>output+=x);child.on('close',code=>resolve({code,output}));});
+ const connect=await run(['connect','--key-file','key.private.txt']);assert.equal(connect.code,0,connect.output);assert.ok(!connect.output.includes(key));
+ const saved=JSON.parse(await fs.readFile(path.join(root,'config/student.connection.local.json')));assert.equal(saved.token,key);
+ const ask=await run(['ask','A classroom question']);assert.equal(ask.code,0,ask.output);assert.ok(ask.output.includes('Fixture endpoint response'));assert.ok(!ask.output.includes(key));
+ const files=await fs.readdir(path.join(root,'artifacts/checkpoint-0'));assert.equal(files.length,1);
+ assert.equal(JSON.parse(await fs.readFile(path.join(root,'artifacts/checkpoint-0',files[0]))).agent_version,'v0');
+ const before=calls;const unsafe=await run(['ask','Test'],{COHORT_URL:'http://example.com'});assert.equal(unsafe.code,1);assert.equal(calls,before);
+ await fs.writeFile(path.join(root,'wrong.private.txt'),'wrong_student_key_test');
+ const invalid=await run(['connect','--key-file','wrong.private.txt']);assert.equal(invalid.code,1);assert.equal(JSON.parse(await fs.readFile(path.join(root,'config/student.connection.local.json'))).token,key);
+});

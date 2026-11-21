@@ -22,13 +22,15 @@ The **Starting bot** is called **v0** in experiment files. The **Improved bot** 
 
 ## Start here
 
-1. Open the public lab URL and enter the **shared student API key** used by everyone. No individual invitation, login, OpenAI key or provider account is needed. For the full IDE lab, clone this repo, click “Connect my IDE” in the lab, and have your assistant put the downloaded `.env` in the repo root. See [operator setup](references/cohort-hosting.md).
-2. Open [intake.html](intake.html) locally to select profiles, goals and data sources. It can export `intake.json`. The default is **20 seeds + 200 synthetic cases = 220 cases**.
+**Public lab API: [https://aiengg-evals-lab.gkcs.chatgpt.site](https://aiengg-evals-lab.gkcs.chatgpt.site)**. It is already configured in [config/classroom.json](config/classroom.json). No browser is required.
+
+1. Clone this repo and open it in Codex, Claude, or your favorite IDE. Node 22+ is required; no npm install is needed. Run `node tools/lab.mjs connect` and enter the shared student API key once in the hidden terminal prompt. Your assistant can also use `connect --key-file PATH` with a private file. The connection stays in a Git-ignored local file.
+2. Run `node tools/lab.mjs doctor`, then `node tools/lab.mjs ask "Where can I find my course recordings?"`. Ask the assistant to collect profiles, goals and data-source choices in chat using the skill defaults: **20 seeds + 200 synthetic cases**. The HTML intake is optional.
 3. Paste this prompt into your assistant:
 
-> Read README.md, START-HERE.md and references/tool-contract.md. Begin checkpoint 0. Use the packaged v0 bot at the public lab URL with the shared student API key; do not create a replacement bot or modify its prompt/retrieval. If working locally as the instructor, start tools/cohort-server.mjs using the configured private environment. Show the existing bot and let me try three questions. Save the actual answers, retrieved sources, prompt/model identifiers and source snapshot. Stop before creating or running the eval suite. We will create v1 from observed failures later.
+> Read AGENTS.md, START-HERE.md and references/tool-contract.md. Begin checkpoint 0 entirely in this repo. Run node tools/lab.mjs doctor. If the shared student key is missing, help me use node tools/lab.mjs connect with hidden terminal input or a private key file. Use the URL already in config/classroom.json. Run the packaged v0 bot for three questions using node tools/lab.mjs ask and show the actual saved traces. Do not create or change the bot, open a browser, ask for an OpenAI key, or run evals yet. We will create v1 from observed failures later.
 
-The instructor configures **one existing OpenAI key** on the shared backend for both the bot and OpenAI Decisions judge. Students need no provider accounts, keys or billing setup. The browser demo needs no install; the full IDE workflow needs a repo checkout, Node 22+ and its downloaded classroom connection file. LangSmith credentials are instructor-only and added at the monitoring checkpoint. Sanitized data is included. The operator must supply hosting and live credentials before the public URL works; this repository does not include a running service.
+The shared backend uses the instructor’s existing OpenAI key. Students supply only the shared lab key, with no provider account or billing setup. CLI helpers save actual responses and traces under `artifacts/`. LangSmith credentials are instructor-only and added at the monitoring checkpoint. See [service status](references/live-service.md) for the latest verified checks.
 
 If your assistant does not support installed skills, tell it to read each `SKILL.md` directly. The file-based prompts work without a particular slash-command convention.
 
@@ -48,7 +50,7 @@ This is a realistic basic prompt. Keep it unchanged until the starting benchmark
 
 | Step | Tell your assistant | Open the result |
 |---|---|---|
-| 0. Try packaged v0 | Open the public lab with the shared student key and use the start prompt above. | Bot UI, three answers, saved prompt/configuration |
+| 0. Try packaged v0 | Use the repo commands and start prompt above. | Three actual answers and saved JSON traces |
 | 1. Golden set | Read `skills/build-golden-set/SKILL.md` and create our golden set using the intake. | Query CSV, source provenance, coverage, SME edits |
 | 2. Judge calibration | Read `skills/calibrate-judges/SKILL.md`. Run the seed queries and prepare actual answers for SME ratings, then calibrate the judges. | SME labels, disagreement examples, confusion tables |
 | 3. Synthetic data | Read `skills/expand-eval-data/SKILL.md` and generate 200 additional cases from the 20 approved seeds. | Product matrix, variants, changed expectations |

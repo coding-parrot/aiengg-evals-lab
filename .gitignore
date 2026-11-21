@@ -10,5 +10,6 @@ instructor-source-register*
 .DS_Store
 Thumbs.db
 config/database.connection.local.json
+config/student.connection.local.json
 *.private.json
 instructor-discussion-source-register*

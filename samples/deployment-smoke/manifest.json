@@ -1,0 +1,14 @@
+{
+  "experimentId": "2026-11-21T21-49-13.407Z",
+  "datasetHash": "738b03f990acd1e4af2b2749c28fc80f41091a14723b8fa434ec9cfcfb8c0f3b",
+  "rowCount": 3,
+  "status": "REAL_EXECUTION_UNVALIDATED_DATA_OR_THRESHOLDS",
+  "judgeProvider": "openai_decisions",
+  "judgeModel": "gpt-6-luna",
+  "connection": "instructor_cohort",
+  "agentModel": "gpt-6-luna",
+  "promptHash": null,
+  "judgeConfigPresent": false,
+  "servingCost": "from_bot_usage",
+  "judgeCost": "usage_saved_in_raw_runs_price_separately"
+}

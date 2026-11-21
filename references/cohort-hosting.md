@@ -8,7 +8,7 @@ The [Decisions API](https://developers.openai.com/api/docs/guides/decisions) ret
 
 **Browser:** open the public lab URL and enter the same shared student API key used by everyone. The hosted page can call the actual starting bot, show sources/usage/latency, call the judge when triggered, and download the trace. No install, provider signup or provider-key entry. It is the initial demonstration, not a complete web implementation of every SME, calibration, chart and monitoring checkpoint.
 
-**Full IDE lab:** clone/open this repo and use “Connect my IDE” on the public lab page. Have the coding assistant place the downloaded `.env` in the repo root. It contains only `COHORT_URL` and the student's restricted `COHORT_ACCESS_TOKEN`. Helpers load it automatically on Node 22+. The assistant can then run the skills and generate the CSVs/charts without student OpenAI/Jev credentials. A local Node runtime and repo checkout are still required for this path; the browser path needs neither.
+**Full IDE lab (default):** clone/open this repo in Claude, Codex or your IDE. The public URL https://aiengg-evals-lab.gkcs.chatgpt.site is preconfigured. Run `node tools/lab.mjs connect` with the shared student key, then `doctor` and `ask "QUESTION"`. The ignored local connection file is loaded automatically. No browser, provider keys or npm install is required; use Node 22+.
 
 The operator shares the public URL and one common student key with everyone. The provider key remains server-side. Browser access persists in tab session storage; re-enter the common key to reconnect. The connection file contains only this lab key. Keep provider credentials separate.
 
@@ -20,7 +20,7 @@ The operator shares the public URL and one common student key with everyone. The
 4. Share the public URL and the same `STUDENT_API_KEY` with everyone. No invitation-generation command or student enrollment is needed. Shared mode uses one global allowance/rate limit across all users, not separate per-student quotas. Rotate the shared key in the server environment and restart to revoke the previous key.
 5. Start `node tools/cohort-server.mjs`. Run a real three-case smoke test after credentials are available. Verify the account can access both Responses and Decisions; an API key alone does not prove credit balance or model access.
 
-The coding assistant can perform these steps. Students do not repeat them. This repository does not include a deployed service, working keys or a prepaid account.
+The coding assistant can perform these steps. Students do not repeat them. The deployed endpoint and verification status are recorded in [live-service.md](live-service.md). The instructions below also support self-hosting the Node gateway; students do not repeat operator setup.
 
 ### Container deployment
 
@@ -41,7 +41,7 @@ If the optional input/output price environment values are absent, `cost_usd` is 
 
 ## How the full lab connects
 
-`tools/benchmark.mjs` detects the classroom `.env`, calls `/api/bot` and scores responses through `/api/judge`. `tools/judge.mjs` uses the same connection for calibration. No `BOT_ENDPOINT`, OpenAI key or TypeSafe key is needed on the learner machine. Direct instructor mode remains supported.
+`tools/benchmark.mjs` detects the saved classroom connection, calls `/api/bot` and scores responses through `/api/judge`. `tools/judge.mjs` uses the same connection for calibration. No `BOT_ENDPOINT`, OpenAI key or TypeSafe key is needed on the learner machine. Direct instructor mode remains supported.
 
 The shared starting bot uses the default system prompt verbatim and simple lexical retrieval over sanitized source cards. It never receives golden answers or eval labels. To test an improved prompt, save it to a separate file and set `COHORT_PROMPT_FILE` locally; both versions use the same endpoint and retrieval. Custom agents can call `/api/generate` with `{input, instructions}` through `cohortCall` in `tools/env.mjs`. Record prompt/model/source hashes and preserve the baseline.
 

@@ -13,7 +13,9 @@
   },
   "implementation_sha256": "62d36e0f48ec1b4a19e8563bfe56c71b4baec7adb31ca6e90395d692cdfc973c",
   "model_version_note": "Record returned model IDs for each run; configured aliases alone do not prove snapshot pinning.",
-  "live_execution_status": "NOT_EXECUTED_WITH_PROVIDER_CREDENTIALS",
+  "live_execution_status": "LIVE_THREE_CASE_DRAFT_SMOKE_VERIFIED",
   "initial_eval_status": "UNMEASURED",
-  "hash_normalization": "UTF-8 text with CRLF normalized to LF"
+  "hash_normalization": "UTF-8 text with CRLF normalized to LF",
+  "live_service": "https://aiengg-evals-lab.gkcs.chatgpt.site",
+  "live_smoke": "samples/deployment-smoke/manifest.json"
 }

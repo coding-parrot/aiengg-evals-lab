@@ -4,7 +4,9 @@ This is a prompt-driven lab for your coding assistant. Open this folder in your 
 
 ## Start the lab
 
-> Read README.md, START-HERE.md and references/tool-contract.md. Begin checkpoint 0. Use the packaged v0 bot at the public lab URL with the shared student API key; do not create a replacement bot or modify its prompt/retrieval. If working locally as the instructor, start tools/cohort-server.mjs using the configured private environment. Show the existing bot and let me try three questions. Save the actual answers, retrieved sources, prompt/model identifiers and source snapshot. Stop before creating or running the eval suite. We will create v1 from observed failures later.
+The public endpoint is **https://aiengg-evals-lab.gkcs.chatgpt.site**, already set in `config/classroom.json`. Use the terminal through your coding assistant; no browser is required. `node tools/lab.mjs connect` accepts the shared student key once. `doctor` checks connectivity; `ask "QUESTION"` runs the packaged v0 and saves its trace.
+
+> Read AGENTS.md, START-HERE.md and references/tool-contract.md. Begin checkpoint 0 entirely in this repo. Run node tools/lab.mjs doctor. If the shared student key is missing, help me use node tools/lab.mjs connect with hidden terminal input or a private key file. Use the URL already in config/classroom.json. Run the packaged v0 bot for three questions using node tools/lab.mjs ask and show the actual saved traces. Do not create or change the bot, open a browser, ask for an OpenAI key, or run evals yet. We will create v1 from observed failures later.
 
 **Starting bot (`v0`)** means this saved initial application. **Improved bot (`v1`)** means a later application version changed in response to observed eval failures. Evals measure improvement; they do not improve the model on their own. Follow `references/before-after.md` for the paired experiment.
 
@@ -12,7 +14,7 @@ Then trigger each stage separately. You can mention the file by path even if you
 
 | Stage | Prompt to your assistant | File to show the class |
 |---|---|---|
-| 0 · Looks good? | Start prompt above | Bot UI; three actual responses |
+| 0 · Looks good? | Start prompt above | Three actual responses; saved JSON traces |
 | 1 · Define good | Read `skills/build-golden-set/SKILL.md` and create our golden set. Use the saved intake defaults. | `artifacts/golden-set.csv`; `artifacts/coverage.csv` |
 | 2 · Grade the grader | Read `skills/calibrate-judges/SKILL.md` and calibrate each judge against SME ratings of bot outputs. | `artifacts/judge-labels.csv`; `artifacts/judge-disagreements.csv`; `artifacts/calibration-report.html` |
 | 3 · Expand the test | Read `skills/expand-eval-data/SKILL.md` and generate 200 additional cases from our 20 approved seeds. | `artifacts/synthetic-queries.csv`; `artifacts/product-matrix.csv` |
@@ -43,7 +45,7 @@ Do not run every stage at once. The pauses are the lesson: the instructor opens 
 
 ## What is ready and what is intentionally still a human decision
 
-The lesson pack, draft data and deterministic checks are ready to review. No bot has been deployed, no real AI judge has scored these cases, and no SME has approved the references. Your assistant produces those artifacts as you run the lab with your model credentials and approved knowledge sources.
+The lesson pack, packaged v0, draft data and deterministic checks are prepared. The service’s verified status is recorded in `references/live-service.md`. SME approval, calibrated thresholds, full benchmark scores and measured v1 improvements are produced during the checkpoints; they are not prefilled.
 
 The sample searched the requested two-year window, 22 November 2024–22 November 2026. Its selected evidence is from 2025–2026. It is a curated teaching set, not an exhaustive or statistically representative export of all support traffic. GitHub remains an available source adapter; the connected repository searched for this sample returned no matching issues in this window.
 
