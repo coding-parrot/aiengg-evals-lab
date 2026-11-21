@@ -1,0 +1,222 @@
+[
+  {
+    "id": "S01",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-11-02",
+    "brand": "InterviewReady",
+    "text": "A customer reported that an old USD purchase appeared with an INR amount and a later invoice date. Staff treated it as a possible invoice defect and investigated; the invoice display alone did not establish a new charge.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S01",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S02",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-10-29",
+    "brand": "InterviewReady",
+    "text": "Staff reported customers unable to download certificates. The retrieved report does not establish a cause or resolution.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S02",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S03",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-10-22",
+    "brand": "AIEngg",
+    "text": "Staff reported that some users with customized certificates could not see their certificates on the website.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S03",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S04",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-10-19",
+    "brand": "InterviewReady",
+    "text": "After a subscription-model change, customers reported System Design redirecting to LLD. A staff estimate suggested 24 hours, but a fix was reported on October 21. The historical estimate is not a standing SLA.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S04",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S05",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-09-19",
+    "brand": "InterviewReady",
+    "text": "Staff reported a Shopify/YouTube purchase without course access and an administrative login problem. A receipt was mentioned; no completed fix was established in the retrieved message.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S05",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S06",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-09-09",
+    "brand": "AIEngg",
+    "text": "Staff reported people paying through Razorpay without receiving access or email. The integration issue needed investigation.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S06",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S07",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-09-09",
+    "brand": "InterviewReady",
+    "text": "Staff reported received PayPal payments without access. In those historical cases, access was granted manually after payment verification.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S07",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S08",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-08-31",
+    "brand": "AIEngg",
+    "text": "Staff reported a Razorpay checkout failure on AIEngg and requested urgent investigation. The report did not provide a verified workaround.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S08",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S09",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-09-18",
+    "brand": "AIEngg",
+    "text": "An internal report said the Saturday recording could not be played. A reply noted a video-ID format difference. This is a reported observation, not a confirmed universal root cause.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S09",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S10",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-09-13",
+    "brand": "AIEngg",
+    "text": "An instructor reported that cohort recordings were not automatically being added to the website. The message did not establish that every missing recording had been uploaded.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S10",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S11",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-09-13",
+    "brand": "AIEngg",
+    "text": "Staff reported frustrated enrolled learners experiencing session-joining problems and discussed checking links, emailing learners and staffing live support.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S11",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S12",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-08-24",
+    "brand": "InterviewReady",
+    "text": "A user was reported as having 100% completion in the AI course but unable to view the certificate. The available thread also discussed certificate visibility on LinkedIn.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S12",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S13",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-08-27",
+    "brand": "InterviewReady",
+    "text": "In the same certificate incident, a public LinkedIn certificate link failed to load. A later staff reply said it was fixed and asked the user to re-add the certificate link.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S13",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S14",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-06-19",
+    "brand": "AIEngg",
+    "text": "Support requested a way for learners to access certificates with corrected names and mentioned backend name updates. The report was a request, not proof of a completed update for a new user.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S14",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S15",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-06-19",
+    "brand": "AIEngg",
+    "text": "The same support request asked whether invoices could be added for backend enrollments so learners could access them in their profiles. Availability was not confirmed.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S15",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S16",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-07-06",
+    "brand": "InterviewReady",
+    "text": "A learner had video problems on Wi-Fi but not hotspot. The thread initially discussed troubleshooting without the OS; later Mac-specific network steps were reported to work for that user. This is not a diagnosis for every network.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S16",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S17",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2026-07-22",
+    "brand": "InterviewReady",
+    "text": "An internal report said videos were not loading on InterviewReady. It did not establish the affected population, outage duration or restoration ETA.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S17",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S18",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2025-11-06",
+    "brand": "InterviewReady",
+    "text": "Staff reported that a follow-up email mentioning lifetime validity confused users about System Design. The team requested a template change; the message did not establish current purchase terms.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S18",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S19",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2025-08-16",
+    "brand": "InterviewReady",
+    "text": "Support reported learner confusion because an MCP chapter remained visible before its lessons were released, and asked whether it could be hidden until release.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S19",
+    "authority": "historical_incident_evidence_not_current_policy"
+  },
+  {
+    "id": "S20",
+    "source_type": "sanitized_support_report",
+    "observed_at": "2025-12-15",
+    "brand": "InterviewReady",
+    "text": "A user screenshot prompted a report that the blog homepage might not be responsive. The report did not contain a verified fix.",
+    "citation_allowed": true,
+    "visibility": "classroom_only",
+    "url": "source://S20",
+    "authority": "historical_incident_evidence_not_current_policy"
+  }
+]

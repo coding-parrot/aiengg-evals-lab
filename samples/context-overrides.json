@@ -1,0 +1,382 @@
+[
+  {
+    "case_id": "G01-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G02-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G03-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G04-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G05-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G06-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G07-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G08-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G09-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G10-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G11-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G12-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G13-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G14-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G15-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G16-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G17-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G18-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G19-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  },
+  {
+    "case_id": "G20-S08",
+    "documents": [
+      {
+        "id": "S901",
+        "text": "Synthetic scenario fixture A: support states this specific issue is resolved. No effective date or account scope is provided.",
+        "url": "source://S901",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      },
+      {
+        "id": "S902",
+        "text": "Synthetic scenario fixture B: support states the same specific issue is unresolved. No effective date or account scope is provided.",
+        "url": "source://S902",
+        "citation_allowed": true,
+        "visibility": "classroom_only"
+      }
+    ]
+  }
+]

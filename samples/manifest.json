@@ -1,0 +1,18 @@
+{
+  "status": "DRAFT_NOT_EVALUATED",
+  "seed_rows": 20,
+  "synthetic_rows": 200,
+  "total": 220,
+  "independent_incident_families": 18,
+  "window_start": "2024-11-22",
+  "as_of": "2026-11-22",
+  "evidence_min_date": "2025-08-16",
+  "evidence_max_date": "2026-11-02",
+  "selection": "Curated recent-priority teaching sample; not probability sampled",
+  "recency_half_life_days": 180,
+  "semantic_change_rows": 120,
+  "source_citation_scope": "classroom_only",
+  "sme_approved_rows": 0,
+  "actual_judge_runs": 0,
+  "dataset_sha256": "e5a2c8bda79d73deca85052273d84c0ab119b020571a6d601186c3f9bb0c6571"
+}

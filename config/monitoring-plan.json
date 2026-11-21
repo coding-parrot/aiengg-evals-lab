@@ -1,0 +1,25 @@
+{
+  "status": "proposed_not_installed",
+  "project": "aiengg-support-staging",
+  "notification_destination": null,
+  "routine_sample_rate": 0.1,
+  "high_impact_sample_rate": 1,
+  "native_alerts": [
+    {"feedback_key":"faithfulness_pass","aggregation":"average","below":0.95,"window_minutes":15},
+    {"feedback_key":"citation_validity","aggregation":"average","below":0.99,"window_minutes":15},
+    {"metric":"error_rate","above":0.02,"window_minutes":15},
+    {"metric":"average_latency_seconds","above":8,"window_minutes":15}
+  ],
+  "external_aggregation_requirements": {
+    "minimum_scored_responses":30,
+    "consecutive_failing_windows":2,
+    "cooldown_minutes":30,
+    "p95_latency_seconds":12,
+    "judge_feedback_lag_seconds":300,
+    "judge_error_rate":0.01,
+    "D7_retention_drop_percentage_points":5,
+    "retention_window":"weekly_mature_cohort"
+  },
+  "retention_is_per_query_eval":false,
+  "threshold_status":"illustrative_requires_traffic_validation"
+}
