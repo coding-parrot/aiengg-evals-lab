@@ -8,9 +8,17 @@ Checked on 22 November 2026.
 - Browser test passes for intake defaults, custom-query entry, JSON download and mobile layout width. The intake and SME review workbook were visually inspected.
 - Sources are sanitized and references remain explicitly unreviewed. The shared pack excludes the private source register.
 
-Not executed: paid bot/model calls, live Jev scoring, Laya inference, vision scoring, LangSmith publishing, alert delivery or cloud deployment. The helper APIs follow reviewed official documentation, but live integration must be smoke-tested with the selected versions and credentials. See the tool contract for implemented versus assistant-built integration paths.
+Not executed: paid bot/model calls, live OpenAI Decisions or Jev scoring, Laya inference, vision scoring, LangSmith publishing, alert delivery or cloud deployment. The helper APIs follow reviewed official documentation, but live integration must be smoke-tested with the selected versions and credentials. See the tool contract for implemented versus assistant-built integration paths.
 
-The learner runs the lab through their coding assistant. The assistant builds the initial bot and remaining integrations, while these skills define the stages and the files to inspect.
+The learner runs the lab through their coding assistant. The initial v0 bot is implemented and packaged; the assistant runs it, creates v1 from observed failures, and completes later integrations guided by the skills.
+
+## Packaged v0 and shared OpenAI access
+
+- Implemented the v0 support bot, lexical retrieval, browser UI, Responses generation and Decisions judge gateway. Students do not build v0. Startup checks frozen prompt/source hashes; improved prompts are separate overrides marked `v1_candidate`.
+- The default backend needs one instructor OpenAI key. No TypeSafe key is needed for Decisions. Invitation tokens, quotas and server keys stay out of Git; container build exclusions protect local secrets.
+- Twenty local tests pass, including access control, expiry/revocation, durable call limits, pause/rate limits, fixed upstream endpoints, default prompt preservation, typed probability/refusal mapping, and the three-case benchmark path using only classroom access.
+- Provider transport in tests is deliberately mocked: these checks validate the implementation, not live model outputs or paid account access. Live Responses/Decisions smoke testing, hosted deployment and LangSmith integration await instructor configuration. No service URL is claimed.
+- The starter endpoint reports missing full-claim extraction, streaming TTFT and unconfigured cost rates as unavailable. It does not silently manufacture complete quality scores. Image generation and production monitoring remain later checkpoints.
 
 ## Error-coding checkpoint
 

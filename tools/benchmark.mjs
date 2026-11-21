@@ -1,13 +1,19 @@
-// Real HTTP bot + real Jev. The IDE assistant builds the bot endpoint contract.
+// Real bot + typed judge, through the cohort gateway or instructor credentials.
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {readJson,saveJson,toCsv} from './io.mjs';
 import {checkResponse} from './checks.mjs';
-import {scoreRun} from './jev.mjs';
+import {scoreRun} from './judge.mjs';
+import {cohortCall} from './env.mjs';
 const [datasetPath,outputDir,...flags]=process.argv.slice(2);
 if(!datasetPath||!outputDir)throw new Error('Usage: node tools/benchmark.mjs dataset.json output-dir [--draft] [--smoke]');
-if(!process.env.BOT_ENDPOINT)throw new Error('BOT_ENDPOINT must identify the actual built support agent');
-if(!process.env.TYPESAFE_API_KEY||!process.env.JEV_MODEL)throw new Error('Set TYPESAFE_API_KEY and pinned JEV_MODEL');
+const shared=!!process.env.COHORT_URL;
+if(!shared&&!process.env.BOT_ENDPOINT)throw new Error('Use the instructor invitation or set BOT_ENDPOINT');
+const provider=process.env.JUDGE_PROVIDER??'openai_decisions';
+if(!shared&&provider==='jev'&&(!process.env.TYPESAFE_API_KEY||!process.env.JEV_MODEL))throw new Error('Set TYPESAFE_API_KEY and JEV_MODEL');
+if(!shared&&provider==='openai_decisions'&&!process.env.OPENAI_API_KEY)throw new Error('Set OPENAI_API_KEY or use the instructor invitation');
+const cohortInfo=shared?await cohortCall('/api/info'):null;
+const customPrompt=shared&&process.env.COHORT_PROMPT_FILE?await fs.readFile(process.env.COHORT_PROMPT_FILE,'utf8'):null;
 const all=await readJson(datasetPath);const rows=flags.includes('--smoke')?all.slice(0,3):all;
 if(!flags.includes('--draft')&&rows.some(r=>r.sme_status!=='approved'))throw new Error('Approve dataset first or explicitly use --draft for an unvalidated classroom run');
 const definitions=await readJson(new URL('../config/judge-questions.json',import.meta.url));
@@ -23,9 +29,13 @@ for(const row of rows){
     // No expected answer, SME label, source answer key or case ID enters the bot.
     const payload={query:row.query,brand:row.brand,scenario:{context_mode:row.context_mode??'snapshot'}};
     if(row.context_mode==='conflicting_fixture')payload.scenario.documents=fixtures.find(f=>f.case_id===row.case_id)?.documents??[];
-    const response=await fetch(process.env.BOT_ENDPOINT,{method:'POST',headers,body:JSON.stringify(payload),signal:AbortSignal.timeout(60000)});
-    if(!response.ok)throw new Error(`Bot HTTP ${response.status}`);
-    const run=await response.json();
+    let run;
+    if(shared){if(customPrompt!==null)payload.system_prompt=customPrompt;run=await cohortCall('/api/bot',payload);}
+    else{
+      const response=await fetch(process.env.BOT_ENDPOINT,{method:'POST',headers,body:JSON.stringify(payload),signal:AbortSignal.timeout(60000)});
+      if(!response.ok)throw new Error(`Bot HTTP ${response.status}`);
+      run=await response.json();
+    }
     run.query=row.query;run.total_latency_ms=performance.now()-started;
     const code=checkResponse(run);
     run.reference_criteria={expected_response:row.expected_response,required_behaviors:row.required_behaviors};
@@ -34,6 +44,7 @@ for(const row of rows){
     const add=(metric,value,verdict,status)=>scores.push({experiment_id:experimentId,case_id:row.case_id,family_id:row.family_id,origin:row.origin,split:row.split,metric,value,verdict,status});
     for(const [key,value]of Object.entries(code))add(key,value.value,value.pass===null?'unavailable':value.pass?'pass':'fail',value.status);
     for(const record of judged.records)for(const [metric,answer]of Object.entries(record.result.answers)){
+      if(answer.unavailable){add(metric,null,'unavailable',answer.reason);continue;}
       const p=typeof answer.noul==='number'?answer.noul:null;
       const t=thresholds?.metrics?.[metric]?.threshold;
       add(metric,p??answer.choice,p!==null&&Number.isFinite(t)?(p>=t?'pass':'fail'):'unthresholded',`${record.scope}:${record.source_id??record.claim_id??'answer'}`);
@@ -49,5 +60,5 @@ for(const row of rows){
   console.log(`${row.case_id}: recorded (${scores.filter(s=>s.case_id===row.case_id&&s.verdict==='fail').length} failures)`);
 }
 await saveJson(`${outputDir}/manifest.json`,{experimentId,datasetHash:createHash('sha256').update(JSON.stringify(rows)).digest('hex'),rowCount:rows.length,
-  status:flags.includes('--draft')?'REAL_EXECUTION_UNVALIDATED_DATA_OR_THRESHOLDS':'REAL_EXECUTION',judgeModel:process.env.JEV_MODEL,judgeConfigPresent:!!thresholds,servingCost:'from_bot_usage',judgeCost:'usage_saved_in_raw_runs_price_separately'});
-console.log('Saved actual bot and Jev outputs. Ask the assistant to generate the scorecard with applicability and family-balanced aggregation.');
+  status:flags.includes('--draft')?'REAL_EXECUTION_UNVALIDATED_DATA_OR_THRESHOLDS':'REAL_EXECUTION',judgeProvider:cohortInfo?.judge_provider??provider,judgeModel:cohortInfo?.judge_model??(provider==='jev'?process.env.JEV_MODEL:process.env.DECISIONS_MODEL??'gpt-6-luna'),connection:shared?'instructor_cohort':'direct_provider',agentModel:cohortInfo?.openai_model??null,promptHash:customPrompt?createHash('sha256').update(customPrompt).digest('hex'):null,judgeConfigPresent:!!thresholds,servingCost:'from_bot_usage',judgeCost:'usage_saved_in_raw_runs_price_separately'});
+console.log('Saved actual bot and typed judge outputs. Ask the assistant to generate the scorecard with applicability and family-balanced aggregation.');

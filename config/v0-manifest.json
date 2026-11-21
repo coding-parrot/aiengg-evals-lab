@@ -1,0 +1,19 @@
+{
+  "agent_version": "v0",
+  "packaged_at": "2026-11-22",
+  "generation_model_default": "gpt-6-luna",
+  "judge_provider": "openai_decisions",
+  "judge_model_default": "gpt-6-luna",
+  "retrieval": "lexical_overlap_top_3",
+  "entrypoint": "tools/cohort-server.mjs",
+  "ui": "cohort.html",
+  "frozen_inputs": {
+    "prompts/support-starting-system.txt": "f7202407710e6d4db0253d1712caeecb2e5b192cce258b40269082377d421a5a",
+    "samples/sanitized-source-cards.json": "173927a5cbac31ccdd36ef27908789128dab7637718238db4415e880c9dd058a"
+  },
+  "implementation_sha256": "7f8117ddec8a2541229e33839f4e44f6095aa90a9da496a3120134a166bf678c",
+  "model_version_note": "Record returned model IDs for each run; configured aliases alone do not prove snapshot pinning.",
+  "live_execution_status": "NOT_EXECUTED_WITH_PROVIDER_CREDENTIALS",
+  "initial_eval_status": "UNMEASURED",
+  "hash_normalization": "UTF-8 text with CRLF normalized to LF"
+}

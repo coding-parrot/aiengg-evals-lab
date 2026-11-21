@@ -6,7 +6,7 @@ The bot may retrieve support knowledge, research papers, search results and less
 
 | Metric | Inputs to evaluator | Method and output | Passing behavior |
 |---|---|---|---|
-| Answer relevance | Query, conversational goal, answer, SME criteria | Jev/Laya binary judgment plus probability | Addresses the actual request; resolves it or asks the necessary clarifying question without unrelated material |
+| Answer relevance | Query, conversational goal, answer, SME criteria | OpenAI Decisions predicate probability (or explicitly selected alternative) | Addresses the actual request; resolves it or asks the necessary clarifying question without unrelated material |
 | Context relevance | Query and each retrieved chunk, including source type | Atomic binary judge per chunk | Chunk materially helps answer this query; report relevant chunks / retrieved chunks and source-type slices |
 | Faithfulness | Answer claims, retrieved evidence, tool results | Atomic supported/unsupported judgment per factual claim | Every material factual claim is supported; uncertainty stays uncertainty; no invented policy, link, action or ETA |
 | Citation presence and validity | Rendered answer, structured citations, retrieved source IDs and allowed URLs | Deterministic check | Every response includes at least one visible valid source citation; every cited ID/URL resolves to a permitted retrieved source |

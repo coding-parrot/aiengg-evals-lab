@@ -1,6 +1,6 @@
 # Cohort lab instructions
 
-Read `START-HERE.md` and follow the user's current stage. This is an agent-driven lesson: implement and run the requested work, then show its files and observed output. Do not ask students to write code manually. Use the existing stack or TypeScript for a new project.
+Read `START-HERE.md` and follow the user's current stage. The v0 bot is already packaged in tools/cohort-server.mjs with cohort.html and config/v0-manifest.json. Start with that implementation; do not ask learners to build a baseline or replace it. Create v1 only after inspecting actual evaluation failures. This is an agent-driven lesson: implement and run the requested work, then show its files and observed output. Do not ask students to write code manually. Use the existing stack or TypeScript for a new project.
 
 Use the skills by reading their `SKILL.md` files directly. Do not assume they are installed globally or that an IDE supports a particular slash command. Explicit file mentions are the portable entry point.
 

@@ -1,0 +1,8 @@
+.git
+.env
+.env.*
+private-data
+artifacts
+live-results
+**/*.private.json
+config/database.connection.local.json

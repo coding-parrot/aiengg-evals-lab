@@ -7,7 +7,7 @@
 - Sources: Slack and GitHub, with an optional custom read-only data adapter.
 - Seed count: 20. Expansion: **200 additional**, so 220 total.
 - Recent queries receive greater priority. Default half-life: 180 days, editable by SME.
-- Text judge: Jev through LangSmith by default; explicitly named Laya encoder as the local alternative.
+- Text judge: OpenAI Decisions by default, using the same instructor OpenAI key as the bot. Jev and explicitly named Laya are optional alternatives. Decisions is a typed judge; encoder-only architecture is not established by its docs.
 - Per-query evals: answer relevance, context relevance, faithfulness, citations, politeness, maximum 20 sentences, latency and cost. Storyflow and generated-image scores are separate applicable dimensions.
 - Business monitoring: user retention in production, never a per-query judge score.
 

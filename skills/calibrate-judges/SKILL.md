@@ -1,6 +1,6 @@
 ---
 name: calibrate-judges
-description: Align focused Jev or Laya text judges and optional vision judges with SME ratings of actual support-bot outputs, using family-separated calibration and validation.
+description: Align focused OpenAI Decisions text judges (or selected Jev/Laya alternatives) and optional vision judges with SME ratings of actual support-bot outputs, using family-separated calibration and validation.
 ---
 
 # Calibrate the judges
@@ -13,7 +13,7 @@ Create a blind SME rating sheet in long form: one candidate × metric per row. H
 
 Split by original conversation/incident family, about 60/40 for this small lab. Keep candidates and paraphrases for the same family together. The golden set has only 20 queries; 60 candidate answers do not become 60 independent customer situations.
 
-Default to Jev via the native LangSmith decision-model evaluator. Laya alternative: use an explicitly specified encoder checkpoint and pinned revision, not an unqualified package default. Record selected model, version/revision, runtime and context limit. Long evidence must be split into atomic claim/chunk evaluations; record truncation and fail the evaluation if necessary evidence was lost. Never treat truncated evidence as complete.
+Default to OpenAI Decisions through the shared cohort gateway or tools/judge.mjs, using the instructor OpenAI key. Read ../../references/cohort-hosting.md. Treat it as a typed decision judge; do not claim encoder-only architecture. Jev is an optional provider switch, not required. Record configured and returned model IDs; if an alias cannot be pinned, disclose this reproducibility limit and do not silently mix changed resolved versions. Laya alternative: use an explicitly specified encoder checkpoint and pinned revision, not an unqualified package default. Record selected model, version/revision, runtime and context limit. Long evidence must be split into atomic claim/chunk evaluations; record truncation and fail the evaluation if necessary evidence was lost. Never treat truncated evidence as complete.
 
 Create atomic judges for answer relevance, context relevance, claim support, citation support and polite tone. Storyflow uses the ordinal rubric. Code handles citation mechanics and the sentence cap. Image quality requires image bytes and a validated vision-capable judge or SME. Do not ask a text encoder to judge pixels.
 

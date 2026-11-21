@@ -1,10 +1,10 @@
 # AIEngg: from a convincing demo to a measured support agent
 
-This is a prompt-driven lab for your coding assistant. Open this folder in your preferred IDE, Codex or Claude and give the prompts below. The assistant builds and runs the implementation; learners inspect the evidence and make product decisions. No notebook or manual coding exercise is required.
+This is a prompt-driven lab for your coding assistant. Open this folder in your preferred IDE, Codex or Claude and give the prompts below. The v0 bot is already implemented and packaged. The assistant runs the evaluation stages and creates v1; learners inspect evidence and make product decisions. No notebook or manual coding exercise is required.
 
 ## Start the lab
 
-> Read `START-HERE.md`, `references/lab-contract.md` and `references/tool-contract.md`. Act as my lab partner. Build the initial AIEngg customer support bot using the existing project's stack; use TypeScript if this is a new project. Load `prompts/support-starting-system.txt` verbatim as the system prompt, without extra evaluation rules. Use the available model connection. Ask only for missing credentials or source access, without asking me to paste secrets into chat. Start with a simple retrieval-and-answer flow and no eval suite. Keep instrumentation so we can later inspect retrieved context, tool calls, citations, latency and cost. Do not read reference answers into the bot. Save the starting prompt hash, model settings and source snapshot. Show me the bot and let me try three questions. Stop at checkpoint 0; wait for my next trigger.
+> Read README.md, START-HERE.md and references/tool-contract.md. Begin checkpoint 0. Use the packaged v0 bot through the instructor invitation; do not create a replacement bot or modify its prompt/retrieval. If working locally as the instructor, start tools/cohort-server.mjs using the configured private environment. Show the existing bot and let me try three questions. Save the actual answers, retrieved sources, prompt/model identifiers and source snapshot. Stop before creating or running the eval suite. We will create v1 from observed failures later.
 
 **Starting bot (`v0`)** means this saved initial application. **Improved bot (`v1`)** means a later application version changed in response to observed eval failures. Evals measure improvement; they do not improve the model on their own. Follow `references/before-after.md` for the paired experiment.
 
@@ -37,9 +37,9 @@ Do not run every stage at once. The pauses are the lesson: the instructor opens 
 - `samples/review.xlsx`: readable review copy of the draft seed set.
 - `references/eval-spec.md`: the exact metrics, rubrics, denominators and applicability rules.
 - `references/facilitator-guide.md`: timing, reveal sequence, questions and exercises.
-- `references/langsmith-runbook.md`: native Jev setup, tracing, feedback, monitoring and alerts.
+- `references/langsmith-runbook.md`: Decisions worker integration, optional Jev setup, tracing, feedback and alerts.
 - `tools/checks.mjs`: runnable deterministic citation, sentence, latency and cost checks; the assistant invokes these.
-- `references/tool-contract.md`: how the assistant runs real Jev calls, threshold calibration and an HTTP bot benchmark with the included helpers.
+- `references/tool-contract.md`: how the assistant runs typed OpenAI Decisions calls, threshold calibration and an HTTP bot benchmark with the included helpers.
 
 ## What is ready and what is intentionally still a human decision
 

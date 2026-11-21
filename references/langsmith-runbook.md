@@ -2,7 +2,11 @@
 
 Reviewed against official documentation on 22 November 2026. The coding assistant implements the integrations in the project stack; learners inspect the UI and generated artifacts.
 
-## Native Jev path
+## Default: OpenAI Decisions
+
+The shared cohort backend and tools/judge.mjs now use OpenAI Decisions with the instructor OpenAI key. See [the shared setup](cohort-hosting.md). Use an external evaluator worker to call the typed judge and attach results to LangSmith runs during the monitoring checkpoint; do not assume the legacy Jev UI provider maps to OpenAI Decisions. Preserve probabilities, refusals, model IDs and calibrated thresholds. LangSmith access is separately configured by the instructor. This integration still needs live validation.
+
+## Optional native Jev path
 
 LangChain documents Jev as a typed decision model and provides a native LangSmith evaluation path. Add the TypeSafe provider secret, create an evaluator from the tracing project's Evaluators tab, select TypeSafe/Jev, map the trace data into state, and define focused questions as feedback keys. Keep grading rules in the questions rather than in the state. Record the resolved model version for the frozen benchmark; a moving `latest` alias is insufficient for a repeatable comparison. See [LangChain's Jev integration post](https://www.langchain.com/blog/jev-is-now-available-in-langsmith-evals).
 
