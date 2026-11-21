@@ -1,0 +1,306 @@
+[
+  {
+    "profile_id": "DEMO-P001",
+    "display_name": "Mira Vale",
+    "email": "demo-p001@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P002",
+    "display_name": "Arun Vale",
+    "email": "demo-p002@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P003",
+    "display_name": "Nila Vale",
+    "email": "demo-p003@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P004",
+    "display_name": "Dev Vale",
+    "email": "demo-p004@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P005",
+    "display_name": "Tara Vale",
+    "email": "demo-p005@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P006",
+    "display_name": "Rohan Vale",
+    "email": "demo-p006@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P007",
+    "display_name": "Isha Vale",
+    "email": "demo-p007@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P008",
+    "display_name": "Kabir Vale",
+    "email": "demo-p008@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P009",
+    "display_name": "Leela Vale",
+    "email": "demo-p009@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P010",
+    "display_name": "Ayan Vale",
+    "email": "demo-p010@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P011",
+    "display_name": "Mira Brook",
+    "email": "demo-p011@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P012",
+    "display_name": "Arun Brook",
+    "email": "demo-p012@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P013",
+    "display_name": "Nila Brook",
+    "email": "demo-p013@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P014",
+    "display_name": "Dev Brook",
+    "email": "demo-p014@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P015",
+    "display_name": "Tara Brook",
+    "email": "demo-p015@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P016",
+    "display_name": "Rohan Brook",
+    "email": "demo-p016@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P017",
+    "display_name": "Isha Brook",
+    "email": "demo-p017@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P018",
+    "display_name": "Kabir Brook",
+    "email": "demo-p018@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P019",
+    "display_name": "Leela Brook",
+    "email": "demo-p019@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P020",
+    "display_name": "Ayan Brook",
+    "email": "demo-p020@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P021",
+    "display_name": "Mira Reed",
+    "email": "demo-p021@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P022",
+    "display_name": "Arun Reed",
+    "email": "demo-p022@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P023",
+    "display_name": "Nila Reed",
+    "email": "demo-p023@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P024",
+    "display_name": "Dev Reed",
+    "email": "demo-p024@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P025",
+    "display_name": "Tara Reed",
+    "email": "demo-p025@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P026",
+    "display_name": "Rohan Reed",
+    "email": "demo-p026@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P027",
+    "display_name": "Isha Reed",
+    "email": "demo-p027@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P028",
+    "display_name": "Kabir Reed",
+    "email": "demo-p028@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P029",
+    "display_name": "Leela Reed",
+    "email": "demo-p029@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P030",
+    "display_name": "Ayan Reed",
+    "email": "demo-p030@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P031",
+    "display_name": "Mira Lake",
+    "email": "demo-p031@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P032",
+    "display_name": "Arun Lake",
+    "email": "demo-p032@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P033",
+    "display_name": "Nila Lake",
+    "email": "demo-p033@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P034",
+    "display_name": "Dev Lake",
+    "email": "demo-p034@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P035",
+    "display_name": "Tara Lake",
+    "email": "demo-p035@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P036",
+    "display_name": "Rohan Lake",
+    "email": "demo-p036@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P037",
+    "display_name": "Isha Lake",
+    "email": "demo-p037@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  },
+  {
+    "profile_id": "DEMO-P038",
+    "display_name": "Kabir Lake",
+    "email": "demo-p038@example.invalid",
+    "is_fictional": true,
+    "role": "learner",
+    "profile_provenance": "invented_for_classroom_not_inferred_demographics"
+  }
+]

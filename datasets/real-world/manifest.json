@@ -1,0 +1,31 @@
+{
+  "status": "CURATED_REAL_DATA_SAMPLE_NOT_FULL_DATABASE_EXPORT",
+  "as_of": "2026-11-22",
+  "discussion_rows": 40,
+  "customer_support": 20,
+  "ai_tutor": 20,
+  "fictional_profiles": 38,
+  "staff_evidence_records": 20,
+  "source": "InterviewReady discussion notifications and staff support threads",
+  "slack_window_start": "2024-11-22",
+  "slack_window_end": "2026-11-22",
+  "slack_events_enumerated": 2949,
+  "slack_discussion_notifications": 2946,
+  "slack_ai_reply_notifications": 779,
+  "slack_non_discussion_events": 3,
+  "webhook_rate_limit_notice_observed": true,
+  "database_import_status": "PENDING_CONNECTION_FILE",
+  "database_export_scope_when_connected": "ALL_HISTORY_INCLUDING_HIDDEN",
+  "sample_visibility": "unknown",
+  "privacy_review": "assistant_reviewed_selected_text_and_source_identifier_scan",
+  "routing_review": "assistant_reviewed_not_SME",
+  "sme_approved_rows": 0,
+  "expected_answers_supplied": 0,
+  "hashes": {
+    "discussions.sample.json": "dcd9ef080a1f5c5b0414a15001903f4ae7318f0a801a7b72103f1573b06df2e4",
+    "discussions.sample.jsonl": "dfaf30e8b781ef7989aac584eba191264ad68b02be4ca339fb0283b5f714bffa",
+    "discussions.sample.csv": "ca8dd9aeacd92e954b1726f76324aa905c0c3a5d319753807b0fc82d5f7d5bf9",
+    "fictional-profiles.json": "c6c2c154440153183c6fe423209afd6193203596ddadd08e6e1fe489f9a0fe01",
+    "evidence.json": "30849b595e404d5b926e95a99ebbcd5e6107b39efdd752804adada1578c1bfe3"
+  }
+}

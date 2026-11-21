@@ -1,0 +1,14 @@
+{
+  "engine": "REPLACE_WITH_postgres_OR_mysql_OR_existing_connector",
+  "host": "",
+  "port": null,
+  "database": "",
+  "username": "",
+  "password_env": "IR_DATABASE_PASSWORD",
+  "tls": "verify-full",
+  "read_only": true,
+  "schema": null,
+  "discussions_table": null,
+  "export_scope": "all_history_including_hidden",
+  "output": "private-data/discussions.raw.json"
+}

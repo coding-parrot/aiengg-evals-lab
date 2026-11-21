@@ -11,3 +11,11 @@ Checked on 22 November 2026.
 Not executed: paid bot/model calls, live Jev scoring, Laya inference, vision scoring, LangSmith publishing, alert delivery or cloud deployment. The helper APIs follow reviewed official documentation, but live integration must be smoke-tested with the selected versions and credentials. See the tool contract for implemented versus assistant-built integration paths.
 
 The learner runs the lab through their coding assistant. The assistant builds the initial bot and remaining integrations, while these skills define the stages and the files to inspect.
+
+## Real discussion data and pending database import
+
+- Added 40 original discussion queries (20 support, 20 tutor), 38 fictional profiles and selected redacted staff excerpts for the original 20 seeds.
+- Reviewed the selected query text and excerpts for identifying details; removed author names, mentions, contact information and source locators. Public profiles use invented names and `example.invalid` addresses. Private provenance stays outside the repository.
+- Enumerated 2,949 Slack feed events in the two-year window: 2,946 discussion notifications, including 779 AI replies, and 3 non-discussion events. A webhook rate-limit notice means Slack coverage is not database completeness. Current hidden status remains unknown.
+- Ten local tests pass: the original six plus import visibility/lineage preservation, PII-pattern removal, incomplete-export rejection and distinct unknown authors.
+- Database schema discovery, read-only source export, source-count reconciliation, and full semantic PII/routing review remain pending the user's connection file. The preparation helper writes private review candidates, not automatically publishable data.

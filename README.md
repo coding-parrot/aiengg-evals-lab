@@ -4,6 +4,10 @@
 
 A hands-on cohort lab run through your favorite coding assistant: Codex, Claude, or an assistant in your IDE. You give the prompts; your assistant builds and runs the code. At each checkpoint, you inspect real queries, answers, judge decisions and experiment results.
 
+**Real discussion data is included:** [40 original learner queries with fictional profiles](datasets/real-world/README.md), split into 20 customer-support and 20 AI-tutor queries. Open the [CSV](datasets/real-world/discussions.sample.csv) to inspect them. These supplement the original support lesson below.
+
+**Full database import is ready to configure:** add your connection file locally as `config/database.connection.local.json`, following [the setup](references/discussion-import.md), then trigger [import-discussions](skills/import-discussions/SKILL.md). It includes hidden discussions without changing their production visibility. The database connection and full import are pending; Slack does not expose current hidden status.
+
 ## The lesson
 
 ```text
@@ -83,7 +87,8 @@ Follow [the complete comparison protocol](references/before-after.md).
 
 | File or folder | Purpose |
 |---|---|
-| [skills/](skills/) | Five reusable stage skills |
+| [skills/](skills/) | Five evaluation-stage skills plus the discussion-import skill |
+| [datasets/real-world/](datasets/real-world/) | Original discussion queries, fictional profiles, redacted staff evidence and coverage |
 | [prompts/](prompts/) | Fixed starting system prompt and prompt-version guidance |
 | [samples/golden-set.draft.csv](samples/golden-set.draft.csv) | 20 source-derived seed questions with draft expected responses |
 | [samples/synthetic-queries.draft.csv](samples/synthetic-queries.draft.csv) | 200 variants with parent links and review state |
@@ -108,6 +113,7 @@ Ask your assistant to run:
 
 ```sh
 node --test tools/checks.test.mjs
+node --test tools/prepare-discussions.test.mjs
 ```
 
 For real execution examples, open [the tool contract](references/tool-contract.md). Use the explicit draft mode only for a labeled preliminary classroom run. Keep credentials, raw production traces and private source exports out of Git.

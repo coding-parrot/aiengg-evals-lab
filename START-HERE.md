@@ -24,6 +24,8 @@ Do not run every stage at once. The pauses are the lesson: the instructor opens 
 
 ## Files already prepared
 
+- `datasets/real-world/`: 40 original discussion queries, split into customer support and AI tutor, with fictional profiles. These supplement the original support-only lesson.
+- `skills/import-discussions/SKILL.md`: read-only import of all database discussions, including hidden rows, once the private connection file is supplied. See `references/discussion-import.md` for setup.
 - `intake.html`: local SME intake form; profiles, goals, 20-seed default, eval choices, custom queries. Exports JSON for the assistant.
 - `prompts/support-starting-system.txt`: the exact default prompt for the starting bot. Preserve it until the baseline is measured.
 - `references/before-after.md`: how to demonstrate a measured improvement without changing the test or grader.

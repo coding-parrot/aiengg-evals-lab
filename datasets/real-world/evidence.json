@@ -1,0 +1,452 @@
+[
+  {
+    "source_id": "S01",
+    "source_month": "2026-11",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "now seeing INR  value in his Invoice",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "user is thinking that he is charged again",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "looking into it",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 4,
+        "text": "He iz d only one reached out to us",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S02",
+    "source_month": "2026-10",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "Some users are facing issue while downloading their certificates on InterviewReady.",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S03",
+    "source_month": "2026-10",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "Ppl who got customised their certificates: were not able to see their certificates on the website",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "Can we think about something to showcase the details ?",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S04",
+    "source_month": "2026-10",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "some users were reported that they were not able to see the content for SD for interviews it is redirecting them to LLD",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "I have got on a call with them to check - but this issue is not happening for any of my 2 accounts",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "pls tell them its gonna get sorted in 24 hours",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 4,
+        "text": "it’s fixed. Give me a call if anything breaks or if users report any issues.",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S05",
+    "source_month": "2026-09",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "This user has bought our ai course (from ir) via shopify - youtube",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "User yet to get the access",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "im now not able to login to admin portal as well",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 4,
+        "text": "Access granted by [support colleague] within then",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S06",
+    "source_month": "2026-09",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "Few people are making the payment, and not getting access or any emails.",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "I gave access from backend",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "Looking into the issue",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 4,
+        "text": "Fixed the issue,",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S07",
+    "source_month": "2026-09",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "Their payment got deducted, even we received the payment: but user didn't got the access.",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "Post verification of the payment received, we have given them access from backend",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S08",
+    "source_month": "2026-08",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "Payments not happening in aiengg.dev",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "At the checkout section when we initiated the payment it is directing to  razorpay and thiss",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "HAPPENING ONLY IN RAZORPAY",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S09",
+    "source_month": "2026-09",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "not able to play saturday class video",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "For some reason your video id is alphanumeric \"[video identifier removed]\" whereas all others so far were only a number",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "Need to make changes for this",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 4,
+        "text": "Yeah it updated now",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S10",
+    "source_month": "2026-09",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "the automation wasn't setup for my cohort videos to automatically get added to the website??",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "no you didn't update the cohort vimeo_folder_id\ni've updated it now",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S11",
+    "source_month": "2026-09",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "I need you all in standby for tomorrow zoom session to ensure everybody to join the session",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "please before the session lets all check the links and if possible lets send out another round of emails",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "TA's would be on standby for tomorrow's session anyways",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S12",
+    "source_month": "2026-08",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "But unable to view his certificate",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "User needs cert so that he can apply reimbursement",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "Just deployed the changes it's up and running.",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 4,
+        "text": "Cert issued date is showing Jan 1 1970",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 5,
+        "text": "Its fixed. Please ask the user to re-add the certificate to linkedin",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S13",
+    "source_month": "2026-08",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "Couldnt load the certificate",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S14",
+    "source_month": "2026-06",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "Can we make users to access their cohort completion certificate with updated name , Invoice with custom names",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "we can update the user name in certificate - from backend - they can access the certificate from their profile",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S15",
+    "source_month": "2026-06",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "There are some backend enrolments, for them, is there any chance can we update invoice in backend so that users too can access it from their profile",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S16",
+    "source_month": "2026-07",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "There is a user who is facing issue, with video loading- he can able to access from his mobile hotspot but not from his wifi.",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "Tried resetting DNS but he still facing the issue",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "I use MAC",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 4,
+        "text": "It is now Working fine",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S17",
+    "source_month": "2026-07",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "Videos are not loading in",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "Even after refreshing the page",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "content api is failing",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 4,
+        "text": "no change was made to content API, it's working fine for me",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 5,
+        "text": "can you check in incognito/other browsers",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S18",
+    "source_month": "2025-11",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "email template",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "Is shows lifetime validity- making users confused about system design course",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S19",
+    "source_month": "2025-08",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "Can we atleast make that MCP chapter invisible untill the chapters are released??",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "It still confusing most of the users .",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 3,
+        "text": "If there is a delay in the launch?",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  },
+  {
+    "source_id": "S20",
+    "source_month": "2025-12",
+    "source_type": "slack_staff_support_thread",
+    "scope": "selected_excerpts_not_complete_thread",
+    "excerpts": [
+      {
+        "sequence": 1,
+        "text": "Guys the blog home page isn't responsive I think. One user sent this screenshot",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      },
+      {
+        "sequence": 2,
+        "text": "fixed",
+        "provenance": "selected_original_staff_wording_with_redactions"
+      }
+    ]
+  }
+]

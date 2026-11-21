@@ -9,3 +9,6 @@ instructor-source-register*
 *.inspect.ndjson
 .DS_Store
 Thumbs.db
+config/database.connection.local.json
+*.private.json
+instructor-discussion-source-register*
