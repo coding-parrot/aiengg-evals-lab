@@ -53,6 +53,7 @@ This is a realistic basic prompt. Keep it unchanged until the starting benchmark
 | 2. Judge calibration | Read `skills/calibrate-judges/SKILL.md`. Run the seed queries and prepare actual answers for SME ratings, then calibrate the judges. | SME labels, disagreement examples, confusion tables |
 | 3. Synthetic data | Read `skills/expand-eval-data/SKILL.md` and generate 200 additional cases from the 20 approved seeds. | Product matrix, variants, changed expectations |
 | 4. Starting score | Read `skills/run-benchmark/SKILL.md` and benchmark the saved starting bot on all 220 cases. | Baseline scorecard, cost/latency, failing traces |
+| 4a. Error coding | Read `skills/analyze-errors/SKILL.md`. Code observed failures and show where to focus. | Coding CSV, taxonomy, ranked error chart, optional spider chart, proposed regression cases |
 | 5. Improved score | Read `references/before-after.md`. Fix an observed prompt-related failure, save the improved bot, and rerun the same benchmark with identical evidence and judges. | Prompt diff, paired answers, wins and regressions |
 | 6. Production loop | Read `skills/monitor-production/SKILL.md` and prepare the LangSmith deployment/monitoring checkpoint. | Traces, feedback, staging alert drill, retention event contract |
 
@@ -87,7 +88,8 @@ Follow [the complete comparison protocol](references/before-after.md).
 
 | File or folder | Purpose |
 |---|---|
-| [skills/](skills/) | Five evaluation-stage skills plus the discussion-import skill |
+| [skills/](skills/) | Seven skills covering the five evaluation stages, error coding and discussion import |
+| [references/error-coding.md](references/error-coding.md) | Error taxonomy, visual prioritization, SME review and regression-case workflow |
 | [datasets/real-world/](datasets/real-world/) | Original discussion queries, fictional profiles, redacted staff evidence and coverage |
 | [prompts/](prompts/) | Fixed starting system prompt and prompt-version guidance |
 | [samples/golden-set.draft.csv](samples/golden-set.draft.csv) | 20 source-derived seed questions with draft expected responses |

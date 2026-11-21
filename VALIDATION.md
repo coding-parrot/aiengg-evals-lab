@@ -12,6 +12,12 @@ Not executed: paid bot/model calls, live Jev scoring, Laya inference, vision sco
 
 The learner runs the lab through their coding assistant. The assistant builds the initial bot and remaining integrations, while these skills define the stages and the files to inspect.
 
+## Error-coding checkpoint
+
+- Added `analyze-errors` with open coding, versioned taxonomy, draft/SME review, evidence-linked prioritization and proposed regression cases. Connected it to benchmark review, before/after improvement and production monitoring.
+- The new skill and the two updated benchmark/monitoring skills pass the skill format validator. Chart instructions require ranked error-frequency bars, comparable optional radar axes, explicit denominators and honest empty states.
+- These are reusable instructions for the coding assistant to execute on real run artifacts. No error labels, priority rankings or rendered performance charts are claimed before those artifacts exist.
+
 ## Real discussion data and pending database import
 
 - Published all 2,946 collected discussion notifications: 439 support and 2,507 tutor records, including 779 source-labeled AI replies. No discussion records were excluded. The original 40-query preview and staff evidence remain available.

@@ -26,4 +26,6 @@ Produce `eval-results.csv` in long form, `baseline-scorecard.html` and per-case 
 
 The first score is a starting point, not an improvement claim. On the next requested trigger, prioritize a failure cluster by severity, frequency and fixability. Change a controllable component (retrieval, source routing, prompt, tool use or response rendering), save v1 and rerun the same frozen setup. Compare per-case changes and regressions. Do not retune the judge or change weights to make v1 look better. New prompts/sources require separate version metadata.
 
+For the error-analysis checkpoint before selecting a fix, use `../analyze-errors/SKILL.md`. It creates a reviewed/draft coding table, versioned taxonomy, ranked error-frequency chart and optional comparable-metric spider chart. Keep this separate from actually modifying the agent.
+
 If showing confidence intervals, resample original families, not individual synthetic siblings. Report that the small family count limits certainty. Save `comparison.html` and `release-decision.json` with the actual gates and remaining failures. Do not auto-deploy a failed candidate.

@@ -17,6 +17,7 @@ Then trigger each stage separately. You can mention the file by path even if you
 | 2 · Grade the grader | Read `skills/calibrate-judges/SKILL.md` and calibrate each judge against SME ratings of bot outputs. | `artifacts/judge-labels.csv`; `artifacts/judge-disagreements.csv`; `artifacts/calibration-report.html` |
 | 3 · Expand the test | Read `skills/expand-eval-data/SKILL.md` and generate 200 additional cases from our 20 approved seeds. | `artifacts/synthetic-queries.csv`; `artifacts/product-matrix.csv` |
 | 4 · Set the baseline | Read `skills/run-benchmark/SKILL.md` and benchmark the frozen v0 on all 220 cases. | `artifacts/baseline-scorecard.html`; `artifacts/eval-results.csv` |
+| 4a · Find the failure pattern | Read `skills/analyze-errors/SKILL.md`. Code our observed failures, group them into a taxonomy, and show a ranked error-frequency chart with severity and focus areas. Add a spider chart only for comparable metric scores. | `artifacts/error-analysis/<analysis_id>/error-coding.csv`; `error-taxonomy.json`; `error-analysis.html`; `regression-candidates.csv` |
 | 5 · Make a measured change | Read `references/before-after.md`. Fix an observed prompt-related failure, save the improved bot, and rerun with the same model, evidence fixtures and judges. | `artifacts/comparison.html`; prompt diff; paired answers; regressions |
 | 6 · Close the loop | Read `skills/monitor-production/SKILL.md` and prepare a LangSmith-instrumented staging deployment and alert drill. | `artifacts/monitoring-plan.json`; live traces when connected; alert evidence |
 

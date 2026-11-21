@@ -12,6 +12,8 @@ At checkpoint 0, load the starting prompt exactly. Save its hash, model ID, gene
 
 ## 2. Inspect the failure pattern
 
+Trigger `skills/analyze-errors/SKILL.md` to open-code actual failures, consolidate a taxonomy, and show the ranked error-frequency chart. Inspect severity, affected families and evidence before picking a fix. Its optional spider chart compares compatible metric scores; it does not establish root cause.
+
 Open the original answer, retrieved evidence, SME expectation and each evaluator result side by side. Group failures by controllable cause. For example, an unsupported claim, missing citation, wrong course context and a 21-sentence answer require different fixes.
 
 Choose one or two failure clusters with meaningful severity and coverage. Record the proposed change before measuring the improved version. Avoid adding instructions simply because they appear in the rubric when the bot has not demonstrated that problem.
