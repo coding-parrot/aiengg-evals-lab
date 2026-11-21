@@ -7,7 +7,7 @@ description: Expand an approved support golden set into a reviewable synthetic t
 
 Read `../../references/lab-contract.md` and `../../references/eval-spec.md`. Trigger only the requested expansion stage; do not run the benchmark yet.
 
-Use 20 approved seeds and produce 200 **additional** queries, 10 per seed. Read the saved intake. Keep family, source lineage, original timestamp and split. Synthetic creation time is a separate field; generated variants do not become recent customer traffic.
+Use 20 approved seeds and produce 200 **additional** queries, 10 per seed. Read the saved intake. Keep family, available source lineage, original timestamp and split. SME-created support seeds need no source: preserve blank source metadata on their descendants and link them to their actual parent seed. Never reject them or invent a source. Synthetic creation time is a separate field; generated variants do not become recent customer traffic.
 
 Build `product-matrix.csv` first. Useful axes: product; learner profile; goal/intent; account or entitlement state; source availability (present/missing/stale/conflicting); phrasing; tone; language; single/multi-turn; requested output (short explanation/procedure/image). Do not enumerate the whole Cartesian product blindly. Mark invalid combinations and choose cases for coverage and failure discovery.
 

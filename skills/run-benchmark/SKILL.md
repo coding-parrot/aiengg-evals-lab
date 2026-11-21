@@ -13,7 +13,7 @@ Freeze v0, dataset, retrieval source snapshots, model versions, judge versions, 
 
 Run all 220 queries with the actual agent. Default to 3 repetitions per query for 660 agent runs when budget permits; a one-pass 220-run teaching mode is acceptable if marked. Judge each actual response and retrieved context, not the query alone or a cached reference. Store generated images for vision evaluation where applicable. Measure streaming TTFT and total latency separately from judge duration. Meter all retries, tool calls and image generation; separate serving cost from evaluation cost.
 
-Use `../../tools/checks.mjs` or equivalent verified checks for visible citations, valid source references, sentence count and numeric budgets. A valid URL is not proof of faithfulness; retain semantic citation-support and claim-support judges. Report judge errors, abstentions and unscored dimensions visibly. Never substitute a keyword mock or illustrative score without labeling the entire run as simulated.
+Use `../../tools/checks.mjs` or equivalent verified checks for tutor-only source citations, sentence count and numeric budgets. Pass the trusted dataset route to the evaluator: support citation presence is not applicable; tutor citations must visibly link to approved resources using well-formed HTTP(S) URLs. Evaluate v0 without adding this guardrail to its runtime; implement it in v1 later. A valid URL is not proof of faithfulness; retain semantic citation-support and claim-support judges. Report judge errors, abstentions and unscored dimensions visibly. Never substitute a keyword mock or illustrative score without labeling the entire run as simulated.
 
 Produce `eval-results.csv` in long form, `baseline-scorecard.html` and per-case traces. Display:
 

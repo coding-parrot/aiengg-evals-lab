@@ -4,7 +4,7 @@ The coding assistant runs these; students do not need to write or type code. Req
 
 | Helper | Input | Actual output |
 |---|---|---|
-| `tools/checks.mjs` | Response JSON | Citation validity, sentence count and available cost/latency checks |
+| `tools/checks.mjs` | Response JSON | Tutor-only direct citation validity, sentence count and available cost/latency checks |
 | `tools/judge.mjs` | Response JSON + classroom connection or instructor OpenAI key | Real OpenAI Decisions judgments saved to JSON |
 | `tools/cohort-server.mjs` | Operator OpenAI key, shared student key and persisted quota ledger | Shared browser demo, bot endpoint and typed judge gateway |
 | `tools/calibrate.mjs` | SME labels joined to judge probabilities as CSV | Before/after confusion metrics and per-metric thresholds |
@@ -17,6 +17,8 @@ Natural-language trigger:
 ## Bot endpoint contract
 
 POST JSON: `query`, `brand`, `scenario.context_mode` and optional `scenario.documents` for classroom evidence fixtures. `snapshot` uses the packaged lexical retriever over `samples/sanitized-source-cards.json`; `empty` supplies no retrieved evidence; `conflicting_fixture` uses the deliberately contradictory classroom documents. The shipped v0 retriever never reads golden answer files. Change retrieval only in a separately versioned whole-agent experiment. Fixture overrides are available only in classroom/staging mode, not public production input.
+
+The evaluator also needs the trusted dataset `route` (`ai_tutor` or `customer_support`); keep it outside the bot input. Citation presence is required only for tutor responses, with well-formed direct resource links. Packaged v0 has no runtime guardrail; add it later in v1.
 
 Return JSON:
 

@@ -10,6 +10,10 @@ At checkpoint 0, load the starting prompt exactly. Save its hash, model ID, gene
 
 “No evals yet” means performance is **unmeasured**, not 0%. After the dataset and judges are ready, evaluate this saved starting version on the full 220 cases. That is the starting score. Do not compare three easy opening examples with 220 harder final tests.
 
+## Tutor-only guardrail exercise
+
+Keep v0 unchanged: it has no source-link enforcement. During eval creation, specify that only tutor queries need source material and direct, well-formed resource citations. Support cases need no source. Score unchanged v0 using those route-specific criteria. Later, implement the tutor-only source/citation guardrail in v1, verify direct resource links, and repeat the same measurements. If this changes retrieval or runtime control flow, label it a whole-agent experiment rather than a prompt-only improvement.
+
 ## 2. Inspect the failure pattern
 
 Trigger `skills/analyze-errors/SKILL.md` to open-code actual failures, consolidate a taxonomy, and show the ranked error-frequency chart. Inspect severity, affected families and evidence before picking a fix. Its optional spider chart compares compatible metric scores; it does not establish root cause.

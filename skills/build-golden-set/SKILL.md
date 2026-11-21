@@ -1,6 +1,6 @@
 ---
 name: build-golden-set
-description: Create an SME-reviewed customer-support golden set from Slack, GitHub or a custom data source, with recency weighting, provenance and reviewable references.
+description: Create an SME-reviewed customer-support golden set from SME-written queries or optional Slack, GitHub and custom data sources, with reviewable expected responses.
 ---
 
 # Build the golden set
@@ -16,11 +16,13 @@ Use an existing `intake.json` or `../../config/defaults.json`. Ask only unanswer
 3. Typical goals (multi-select): recover course access, solve payment/invoice problems, join classes, find recordings, obtain/correct certificates, choose a course, understand a concept, plan learning, resolve a technical issue, reach a human, custom. Default the first five + technical issue + human support.
 4. Sources: Slack channels, GitHub repos/issues/discussions, custom read-only query/export. Default connected AIEngg/InterviewReady Slack support reports and selected GitHub support repos. Discover scopes before asking for what is already connected.
 5. Business outcomes to monitor in production: retention (selected for this lab); suggest repeat contact, CSAT and verified resolution as optional additions. Keep these outside per-query evals. Use the already selected quality/latency/cost metrics in the eval spec.
-6. Custom cases: accept query, profile, goal, expected behavior, source and severity. Label SME-created cases separately from real customer history.
+6. Custom cases: accept query, profile, goal, expected behavior and severity. A source is optional for support queries. Label SME-created cases separately from real customer history; do not block intake or approval because a support query has no source.
 
 Provide the local intake form or equivalent fields. Do not force defaults that the SME changed.
 
 ## Source collection and selection
+
+Support queries may be written directly by the SME without a Slack message, GitHub issue, document, URL or source record. The SME can build the entire support golden set this way. Source collection is optional for this route; use connected or packaged customer history when selected. For unsourced SME-created queries, use `query_provenance=SME_created`, `source_type=none`, blank/null `source_ref` and `source_observed_at`, and blank/null `recency_weight`. Keep any answer-evidence IDs separately in `source_ids`, or leave that list empty when none are supplied. Do not invent provenance, customer timestamps or recency weights. Source absence alone is not a reason to reject a support seed or demand a connector. Only tutor queries require a source. For tutor cases, curate a well-formed HTTP(S) link that opens the cited paper, lesson/transcript or other resource directly; verify its content and learner access. Do not substitute a `source://` ID, search-result URL or placeholder. See the tutor-link contract in `../../references/eval-spec.md`. Define this as an evaluation requirement during the lesson; do not add the guardrail to packaged v0.
 
 For the expanded support + tutor lab, read `../../datasets/real-world/README.md` and use `../../datasets/real-world/slack/discussions.all.json` or the reviewed output of `../import-discussions/SKILL.md`. The 40-row sample is only an optional preview. Preserve original discussion wording, exact timestamps, timestamp meaning, fictional-profile status and unknown visibility. Select 20 seeds across the requested routes from the full corpus, rather than limiting ingestion to 20. Start with `query_or_request` candidates; inspect the heuristic message-kind and route labels before accepting them. Exclude known AI replies from learner queries and never use them as SME references. Add lesson transcripts/papers as evidence for tutor questions and obtain SME-written references; null expected answers are not labels. Keep known threads and repost groups together in splits; Slack parent relationships are unavailable, so inspect suspected related cases before claiming family independence. Report support and tutor coverage separately, and retain the original support-only lesson as a separately versioned benchmark.
 
@@ -38,8 +40,8 @@ Create `golden-set.draft.csv`. The assistant may draft expected answers and requ
 
 Version approved knowledge separately from support logs. Historical fixes and proposed policies require current-source confirmation. Preserve historical policy only for a clearly time-scoped scenario. Never copy operational gossip, passwords or internal URLs into the intended customer response.
 
-The instructor reviews the file, writes/approves the expected responses and names the relevant sources. Promote reviewed rows into `golden-set.csv`; preserve all declined or pending rows separately. For teaching before approval, display a conspicuous draft label and do not claim to have obtained SME judgment.
+The instructor reviews the file, writes/approves the expected responses and names relevant sources when available. Support queries without a source can be approved. Promote reviewed rows into `golden-set.csv`; preserve all declined or pending rows separately. For teaching before approval, display a conspicuous draft label and do not claim to have obtained SME judgment.
 
 ## Artifacts and completion
 
-Write source register JSON; golden-set CSV; coverage CSV by product, intent, profile, date bucket and provenance; and a manifest with window, selection method, recency rule, hashes and gaps. Assign family splits before later stages. All seed rows need source lineage and an honest review status. Show three diverse rows and the coverage result. Stop at checkpoint 1.
+Write source register JSON for sources actually used (an empty register is valid for an entirely SME-created support set); golden-set CSV; coverage CSV by product, intent, profile, date bucket and provenance; and a manifest with window, selection method, recency rule, hashes and gaps. Assign family splits before later stages. Preserve lineage for sourced rows; support rows without sources need honest authorship and review status, not invented lineage. Report undated SME-created cases separately from historical recency buckets. Show three diverse rows and the coverage result. Stop at checkpoint 1.

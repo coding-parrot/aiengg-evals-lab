@@ -4,10 +4,21 @@ import {checkResponse,sentenceCount} from './checks.mjs';
 import {calibrate} from './calibrate.mjs';
 import {toCsv,parseCsv} from './io.mjs';
 
-const response={answer:'Please check the course dashboard. [S01]',citations:[{source_id:'S01'}],retrieved_context:[{id:'S01',citation_allowed:true}],ttft_ms:100,total_latency_ms:1000,cost_usd:0.001};
+const response={route:'ai_tutor',answer:'Read the [Transformer paper](https://arxiv.org/abs/1706.03762).',citations:[{source_id:'S01',url:'https://arxiv.org/abs/1706.03762'}],retrieved_context:[{id:'S01',url:'https://arxiv.org/abs/1706.03762',citation_allowed:true}],ttft_ms:100,total_latency_ms:1000,cost_usd:0.001};
 test('valid rendered citation; missing, forged and hidden citations fail',()=>{
  assert.equal(checkResponse(response).citation_validity.pass,true);
  for(const change of [{answer:'No source.'},{citations:[]},{citations:[{source_id:'S99'}]},{retrieved_context:[{id:'S01',citation_allowed:false}]}])assert.equal(checkResponse({...response,...change}).citation_validity.pass,false);
+});
+
+test('only tutor requires citations; direct resource links must match approved evidence',()=>{
+ assert.equal(checkResponse({answer:'Please describe the error.',route:'customer_support'}).citation_validity.status,'not_applicable');
+ assert.equal(checkResponse({answer:'Hello'}).citation_validity.status,'route_required');
+ for(const url of ['source://S01','javascript:alert(1)','https://example.invalid/paper','https://user:password@arxiv.org/paper','https://arxiv.org/bad link','https://arxiv.org/%ZZ']){
+  assert.equal(checkResponse({...response,answer:`Read [paper](${url}).`,citations:[{source_id:'S01',url}],retrieved_context:[{id:'S01',url,citation_allowed:true}]}).citation_validity.pass,false);
+ }
+ assert.equal(checkResponse({...response,answer:'The result. [S01]'}).citation_validity.pass,false);
+ assert.equal(checkResponse({...response,answer:'`'+response.answer+'`'}).citation_validity.pass,false);
+ assert.equal(checkResponse({...response,answer:'[Paper](https://arxiv.org/abs/9999.99999)'}).citation_validity.pass,false);
 });
 test('20 sentences pass; 21 fail; bare bullet fragments count',()=>{
  assert.equal(checkResponse({...response,answer:'A useful answer. '.repeat(20)}).sentence_limit.pass,true);

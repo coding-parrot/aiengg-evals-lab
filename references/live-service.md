@@ -12,7 +12,7 @@ Verified on 22 November 2026 (Asia/Kolkata), with real network requests from the
 - The three-case draft benchmark completed with real OpenAI Decisions probabilities for answer relevance, tone and retrieved-context relevance.
 - The CLI accepted hidden key input, saved the connection locally, and saved actual answer traces.
 
-The three cases all failed the deterministic citation check. These are observed starting-bot failures, not a validated full benchmark or an improvement claim. Raw probabilities are uncalibrated; sample references still need SME approval. See [the saved smoke outputs](../samples/deployment-smoke/). The full 220-case benchmark and v1 comparison remain classroom checkpoints.
+The three cases all failed the original universal citation check. That smoke output predates the updated tutor-only rule: these support cases are now N/A for citation presence, and those old citation failures must not be counted in current scores. Preserve the raw evidence and rerun scoring under a versioned rubric. These are observed starting-bot failures, not a validated full benchmark or an improvement claim. Raw probabilities are uncalibrated; sample references still need SME approval. See [the saved smoke outputs](../samples/deployment-smoke/). The full 220-case benchmark and v1 comparison remain classroom checkpoints.
 
 Serving latency and token usage are recorded. Serving cost and TTFT remain unavailable in this non-streaming hosted adapter; they are not zero. Complete claim extraction is needed before reporting whole-answer faithfulness. Image quality and storyflow apply only when those outputs exist. LangSmith monitoring still requires instructor configuration at its checkpoint.
 

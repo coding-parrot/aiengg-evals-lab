@@ -61,6 +61,8 @@ This is a realistic basic prompt. Keep it unchanged until the starting benchmark
 
 Pause after each checkpoint so the class can inspect its output. The exact prompts and artifact names are in [START-HERE.md](START-HERE.md).
 
+**Support queries do not require a source.** The SME can write queries and expected responses directly, including an entirely SME-created support golden set. Slack/GitHub records are optional inputs; preserve their provenance when used. A missing source does not block support-query approval or synthetic expansion. **Only tutor queries require sources and direct, well-formed citation links.** Define and evaluate that requirement during the lesson, then add its guardrail to v1; v0 does not enforce it.
+
 ## What we evaluate
 
 | Per-query dimension | Evaluator |
@@ -68,7 +70,7 @@ Pause after each checkpoint so the class can inspect its output. The exact promp
 | Answer relevance | Focused OpenAI Decisions judge |
 | Retrieved-context relevance | Judge each source chunk; separate papers, search and transcripts |
 | Faithfulness and citation support | Claims checked against evidence and successful tool results |
-| Visible, valid citations | Deterministic code check |
+| Direct, valid resource citations (tutor only) | Deterministic code check; support is N/A |
 | Polite tone | Focused text judge |
 | Maximum 20 sentences | Deterministic code check |
 | Latency / TTFT and serving cost | Instrumented measurements, separate from judge overhead |

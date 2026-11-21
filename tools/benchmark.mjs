@@ -37,12 +37,14 @@ for(const row of rows){
       run=await response.json();
     }
     run.query=row.query;run.total_latency_ms=performance.now()-started;
+    // Trusted dataset route controls evaluator applicability, never bot generation.
+    run.route=row.route??'customer_support';
     const code=checkResponse(run);
     run.reference_criteria={expected_response:row.expected_response,required_behaviors:row.required_behaviors};
     const judged=await scoreRun(run,definitions);
     raw.push({case_id:row.case_id,family_id:row.family_id,run,judged});
     const add=(metric,value,verdict,status)=>scores.push({experiment_id:experimentId,case_id:row.case_id,family_id:row.family_id,origin:row.origin,split:row.split,metric,value,verdict,status});
-    for(const [key,value]of Object.entries(code))add(key,value.value,value.pass===null?'unavailable':value.pass?'pass':'fail',value.status);
+    for(const [key,value]of Object.entries(code))add(key,value.value,value.status==='not_applicable'?'not_applicable':value.pass===null?'unavailable':value.pass?'pass':'fail',value.status);
     for(const record of judged.records)for(const [metric,answer]of Object.entries(record.result.answers)){
       if(answer.unavailable){add(metric,null,'unavailable',answer.reason);continue;}
       const p=typeof answer.noul==='number'?answer.noul:null;

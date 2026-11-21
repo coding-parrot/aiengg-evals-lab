@@ -4,7 +4,8 @@
 
 - Experience: natural-language triggers in a coding assistant; the assistant writes and runs the code.
 - Use case: AIEngg support, informed by AIEngg and InterviewReady support history.
-- Sources: Slack and GitHub, with an optional custom read-only data adapter.
+- Only tutor queries require sources and direct, well-formed resource citation links. Introduce this guardrail during the lesson and add it to v1; packaged v0 remains unchanged.
+- Support query sources are optional: SMEs can write queries directly. Slack, GitHub and custom read-only data are available when historical examples are wanted.
 - Seed count: 20. Expansion: **200 additional**, so 220 total.
 - Recent queries receive greater priority. Default half-life: 180 days, editable by SME.
 - Text judge: OpenAI Decisions by default, using the same instructor OpenAI key as the bot. Jev and explicitly named Laya are optional alternatives. Decisions is a typed judge; encoder-only architecture is not established by its docs.
@@ -42,6 +43,8 @@ Do not call synthetic examples 10x more independent evidence. Use original-only 
 ## Data handoff
 
 `golden-set.csv` minimum columns: `case_id`, `family_id`, `source_type`, `source_ref`, `source_observed_at`, `query_provenance`, `brand`, `profile`, `goal`, `intent`, `query`, `expected_response`, `required_behaviors`, `forbidden_behaviors`, `source_ids`, `as_of`, `policy_version`, `split`, `recency_weight`, `sme_status`, `sme_reviewer`, `sme_reviewed_at`.
+
+These columns do not make a source mandatory for support queries. For SME-created support cases without a source, set `query_provenance=SME_created`, `source_type=none`, leave `source_ref`, `source_observed_at` and `recency_weight` blank/null, and use an empty `source_ids` list unless answer evidence is supplied. Approval depends on SME review, not the existence of a query-source link. Preserve real provenance and timestamps when available. Apply recency weighting only to dated historical cases; report SME-created cases separately. Synthetic descendants inherit any missing source metadata and retain their actual parent ID.
 
 Synthetic rows also need `parent_id`, `generation_method`, `matrix_cell`, `transformation`, `semantic_change`, `expected_changed`, `review_status`. Expected answers for changed scenarios must be separately written or verified.
 
