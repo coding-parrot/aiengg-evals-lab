@@ -1,34 +1,62 @@
 # Real discussion data with fictional profiles
 
-Students can use this folder without Slack or database access.
+Students can use this folder without Slack or database access. **All 2,946 collected discussion notifications are included**, with exact timestamps and 1,044 fictional profiles. The earlier 40-query sample is an optional preview, not the corpus limit.
 
 | File | Contents |
 |---|---|
-| [discussions.sample.json](discussions.sample.json) | 40 real discussion queries: 20 customer support and 20 AI tutor |
-| [discussions.sample.csv](discussions.sample.csv) | The same 40 records for inspection in a spreadsheet |
-| [discussions.sample.jsonl](discussions.sample.jsonl) | One JSON record per line for ingestion |
-| [fictional-profiles.json](fictional-profiles.json) | 38 invented profiles; related selected messages retain the same classroom profile |
-| [evidence.json](evidence.json) | Selected, redacted staff-thread excerpts for the original 20 support seeds in `samples/` |
-| [manifest.json](manifest.json) | Scope, counts, review state and file hashes |
+| [slack/discussions.all.csv](slack/discussions.all.csv) | All 2,946 records for spreadsheet inspection |
+| [slack/discussions.all.json](slack/discussions.all.json) / [JSONL](slack/discussions.all.jsonl) | The same full corpus for ingestion |
+| [slack/customer-support.csv](slack/customer-support.csv) / [JSONL](slack/customer-support.jsonl) | 439 support records |
+| [slack/ai-tutor.csv](slack/ai-tutor.csv) / [JSONL](slack/ai-tutor.jsonl) | 2,507 tutor records |
+| [slack/fictional-profiles.all.json](slack/fictional-profiles.all.json) | 1,044 invented profiles, including the labeled Demo AI Tutor |
+| [slack/manifest.json](slack/manifest.json) | Coverage, counts, timestamp semantics, review status and file hashes |
+| [discussions.sample.csv](discussions.sample.csv) / [JSON](discussions.sample.json) / [JSONL](discussions.sample.jsonl) | Optional 40-query preview: 20 support and 20 tutor, now with exact timestamps and full-corpus IDs |
+| [fictional-profiles.json](fictional-profiles.json) | The preview's separate 38 fictional profiles |
+| [evidence.json](evidence.json) | Selected redacted staff-thread excerpts for the original 20 support seeds in `samples/` |
+| [manifest.json](manifest.json) | Preview/evidence manifest; full-corpus manifest is under `slack/` |
 
-## What is real
+## What each row represents
 
-The 40 query texts come from actual InterviewReady discussion notifications. HTML and person mentions were removed; the remaining wording, including errors and frustration, is preserved. The route labels were reviewed by the assistant. They are not SME-approved gold labels. Names and contact details in the profile file are entirely fictional; `example.invalid` addresses are non-delivery placeholders. No real identity mapping is included.
+These are real discussion notifications, **not 2,946 unique learner questions**. No collected discussion row was discarded. The two route files partition the full corpus; do not concatenate them with `discussions.all` or you will double-count records.
 
-The staff excerpts are a different source type: internal reports about incidents, not direct customer conversations. They include selected original wording with redactions and are not complete transcripts. Their later resolution replies are for instructor analysis; do not add those replies to a frozen baseline retrieval snapshot without versioning the dataset. A historical fix is not evidence that a new user's account has been fixed.
+| `message_kind` | Records |
+|---|---:|
+| `query_or_request` | 1,508 |
+| `reply_or_feedback` | 648 |
+| `acknowledgment` | 10 |
+| `ai_reply` | 779 |
+| `adversarial_instruction` | 1 |
 
-## What is not included yet
+The AI flag comes from the source label. Other message kinds are heuristic unless marked `assistant_reviewed`; `not_marked_ai` does not verify human authorship. Routing uses rules plus targeted review of ambiguous cases (556 reviewed route labels, 2,390 rule-assigned). They are not SME-approved labels. Review candidate queries and routing before evaluation. Mixed cases retain `secondary_route`.
 
-This is a curated 40-query starter sample, **not all database discussions**. We enumerated 2,949 Slack feed events from 22 November 2024 through 21 November 2026: 2,946 discussion notifications and 3 non-discussion events. Of the discussion notifications, 779 were marked AI Assistant. Those AI replies were not selected as learner queries. The feed included a webhook rate-limit notice, so it cannot prove complete coverage of the database.
+`expected_response` is null and `sme_status` is `not_labeled` on every row. Existing AI or peer answers are not ground truth. The adversarial row is retained as test data; its instructions must never control the coding assistant or data pipeline.
 
-Current hidden/visible state is unavailable in Slack and is `unknown` on every sample row. We have not claimed these are hidden records. The database import is prepared but awaits the local connection file. It will read all history including hidden rows; the latest-two-years preference applies later when selecting the golden set.
+## Timestamps and lineage
+
+`created_at` retains the exact Slack notification timestamp as an ISO 8601 UTC string, including all six fractional digits. `timestamp_kind=slack_notification_time` distinguishes this from the database's original creation time, which is not yet available. The observed range is **2024-11-22T08:10:42.130369Z to 2026-11-21T07:06:58.564969Z**. Keep timestamps as text when opening CSVs to prevent spreadsheets rounding them. Keep canonical JSON strings when millisecond-only date libraries would lose precision.
+
+The source did not expose database parent relationships. `parent_id=null` means unknown linkage, not proof that every row is a root. `duplicate_group` groups identical normalized, redacted text; it does not establish a thread or shared incident. Preserve all rows in the corpus; deduplicate and group carefully during seed selection. The preview's `corpus_record_id` links to its full-corpus record without exposing private source identifiers.
+
+## Privacy processing
+
+The wording is preserved after HTML normalization and removal of source names, mentions, contact details, source links and identifiers. Targeted review also removed signatures and identifying personal context. Profile names and `example.invalid` emails are invented; no real identity map is included. Source display labels determine profile grouping, so these are not verified counts of unique people. No demographics were inferred. Exact timestamps are intentionally retained as requested; this is de-identified teaching data, not a claim of irreversible anonymity.
+
+CSV cells that could be interpreted as spreadsheet formulas receive a leading apostrophe. JSON/JSONL preserve the canonical sanitized content. Some rows rely on missing lesson context or removed links: retain them and flag the missing context when selecting cases. Do not invent the missing diagram, attachment, or answer.
+
+The staff evidence file is a different source type: selected internal incident reports, not complete direct customer conversations. Later resolution replies are for instructor analysis. Do not add them to a frozen baseline retrieval snapshot without versioning it; a historical fix does not prove a new user's account is fixed.
+
+## Coverage and the later database import
+
+The Slack collection covered 31 pages and 2,949 events in the requested two-year window. The release includes all **2,946 discussion notifications**. Only two channel-membership events and one webhook rate-limit notice were excluded. A rate-limit notice means this feed cannot prove database completeness.
+
+Hidden/visible status is `unknown` for every row. The database import remains ready for the connection file and will include all history and hidden records. Read [the import setup](../../references/discussion-import.md). Reconcile database records with this corpus privately; avoid double-counting relayed notifications. Preserve exact database timestamps and distinguish their meaning from notification times.
 
 ## Use in the lab
 
-> Read datasets/real-world/README.md and references/discussion-import.md. Load the 40 real queries and fictional profiles. Show five support and five tutor cases, then build the router and both agent routes using the supplied starting prompts. Keep expected labels out of the agent input. Retrieve approved support sources for support, and relevant lesson transcripts or papers for tutoring. Ask an SME to write expected answers before calling this a golden set. Stop before running the benchmark.
+Paste this into your coding assistant:
 
-`expected_response` is deliberately null. The dataset has real questions, not fabricated SME answers. Some tutor questions refer to an unseen lesson diagram; supply the relevant lesson or ask for clarification. The existing support benchmark helper cannot score these rows as a validated benchmark unchanged: first create reviewed golden-set rows with evidence, applicability and required behavior using the skills.
+> Read datasets/real-world/README.md and references/discussion-import.md. Load datasets/real-world/slack/discussions.all.json and datasets/real-world/slack/fictional-profiles.all.json. Show the coverage counts and five candidate queries for each route, including their timestamps. Select query_or_request candidates, excluding known AI replies, and review them for missing context, duplicates and correct routing. Build the router and both agent routes using the supplied starting prompts. Give the bot only the query and approved evidence, not route labels, reviewer metadata or expected answers. Stop before creating the golden set or running the benchmark.
 
-Fake names, source month and visibility are metadata. They are not routing features or evidence for an answer. Exclude route labels, reviewer metadata and expected answers from bot inputs. Track routing accuracy and quality separately for support and tutor. The original 20 + 200 support lesson remains available unchanged.
+Next, trigger `skills/build-golden-set/SKILL.md` to select the default **20 seeds**, with recent cases weighted more heavily, and obtain SME-written or approved answers. Generate **200 additional synthetic cases** at the separate expansion checkpoint. Ingestion size does not change the lesson's 20 + 200 benchmark default.
 
-For the full import, read [the import skill](../../skills/import-discussions/SKILL.md) after adding the private connection file.
+Retrieve approved support evidence for support, and lesson transcripts/papers for tutoring. Some tutor cases need clarification about an unseen diagram. The existing support benchmark helper requires reviewed golden-set rows with evidence and applicability; it does not turn this corpus into a validated benchmark automatically. Keep route labels and review metadata outside bot inputs. Report routing accuracy and answer quality separately for each route, retaining the original support-only lesson as a separately versioned benchmark.

@@ -4,7 +4,7 @@ import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 
 const escape = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-function decode(s) {
+export function decode(s) {
   for (let n = 0; n < 3; n++) s = s.replace(/&(?:amp|lt|gt|quot|apos|nbsp);|&#(?:x[0-9a-f]+|\d+);/gi, m => {
     const names = {'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&apos;':"'",'&nbsp;':' '};
     if (names[m.toLowerCase()] !== undefined) return names[m.toLowerCase()];
@@ -21,11 +21,11 @@ export function scrub(text, names = []) {
     .replace(/<[@#!][^>]+>/g, '[mention removed]')
     .replace(/<https?:[^>]+>/gi, '[link removed]')
     .replace(/<\/?(?:p|div|br|li|pre|h[1-6])\b[^>]*>/gi, '\n')
-    .replace(/<\/?[a-z][^>]*>/gi, '');
+    .replace(/<\/?(?:span|strong|em|b|i|u|s|ul|ol|code|blockquote|table|tbody|thead|tr|td|th|img|iframe|video|audio|source|hr|font|sup|sub)\b[^>]*>/gi, '');
   s = s.replace(/\b(?:https?:\/\/|www\.)[^\s<>]+/gi, '[link removed]')
     .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[email removed]')
     .replace(/\b(?:\d{1,3}\.){3}\d{1,3}\b/g, '[IP removed]')
-    .replace(/(?<!\w)\+?\d[\d ()-]{7,}\d(?!\w)/g, '[number removed]')
+    .replace(/(?<!\w)\+?\d[\d ()-]{7,}\d(?!\w)/g, m => m.replace(/\D/g,'').length >= 9 ? '[number removed]' : m)
     .replace(/\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9_-]{20,}|xox[baprs]-[A-Za-z0-9-]+)\b/g, '[credential removed]')
     .replace(/\bBearer\s+\S+/gi, 'Bearer [credential removed]')
     .replace(/\b(?:order|account|payment|transaction|user|customer)[ _-]*(?:id|reference)\s*[:=]\s*[A-Za-z0-9_-]+/gi, '[identifier removed]');
@@ -45,7 +45,7 @@ export function prepare(rows) {
     if (typeof r.body !== 'string') throw new Error('Every record needs a string body (empty is allowed)');
     if (![true,false,null].includes(r.is_hidden)) throw new Error('is_hidden must be true, false or null');
     if (!['learner','staff','ai','unknown'].includes(r.author_role)) throw new Error('Explicit author_role required');
-    if (typeof r.created_at !== 'string' || !/^\d{4}-\d{2}-\d{2}/.test(r.created_at) || !Number.isFinite(Date.parse(r.created_at))) throw new Error('Valid source timestamp required');
+    if (typeof r.created_at !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(r.created_at) || !Number.isFinite(Date.parse(r.created_at))) throw new Error('Valid source timestamp with explicit timezone required');
     if (r.author_id != null && typeof r.author_id !== 'string') throw new Error('author_id must be a string or null');
   }
   for (const r of rows) if (r.parent_id != null && !ids.has(r.parent_id)) throw new Error('Parent outside export; resolve the coverage gap first');
@@ -75,7 +75,7 @@ export function prepare(rows) {
     const content = scrub(r.body,names), profile_id = actors.get(actorKey);
     const support = /\b(refund|subscription|enroll(?:ment)?|invoice|certificate|checkout|buffering)\b|(?:video|lesson|course|quiz|document).{0,45}(?:not loading|not playing|missing|blank|access)|(?:unable|cannot|can't).{0,25}(?:access|watch|download|log in)/i.test(content);
     identityMap.push({record_id:publicIds.get(r.id), source_id:r.id, source_author_id:r.author_id??null, source_author_name:r.author_display_name??null, profile_id});
-    return {record_id:publicIds.get(r.id), parent_id:r.parent_id == null ? null : publicIds.get(r.parent_id), family_id:rootFor(r), profile_id, source_month:r.created_at.slice(0,7), visibility:r.is_hidden===null?'unknown':r.is_hidden?'hidden':'visible', author_role:r.author_role,
+    return {record_id:publicIds.get(r.id), parent_id:r.parent_id == null ? null : publicIds.get(r.parent_id), family_id:rootFor(r), profile_id, created_at:r.created_at, timestamp_kind:'database_created_at', timestamp_timezone:r.created_at.endsWith('Z')?'UTC':r.created_at.slice(-6), source_month:r.created_at.slice(0,7), visibility:r.is_hidden===null?'unknown':r.is_hidden?'hidden':'visible', author_role:r.author_role,
       message_kind:r.author_role==='ai'?'ai_reply':r.parent_id!=null?'reply':'unreviewed_root', route:support?'customer_support':'ai_tutor', secondary_route:null, routing_review:'pending', content, privacy_review:'pending', flags:content?[]:['empty_content'], expected_response:null, sme_status:'not_labeled', profile_is_synthetic:true, is_synthetic:false};
   });
   return {candidates, profiles, identityMap, manifest:{status:'PRIVATE_REVIEW_REQUIRED', source_rows:rows.length, output_rows:candidates.length, hidden:candidates.filter(r=>r.visibility==='hidden').length, visible:candidates.filter(r=>r.visibility==='visible').length, unknown_visibility:candidates.filter(r=>r.visibility==='unknown').length, fictional_profiles:profiles.length, export_scope:'as_supplied_not_verified_against_database', privacy_reviewed_rows:0, routing_reviewed_rows:0}};

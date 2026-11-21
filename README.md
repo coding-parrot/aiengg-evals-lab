@@ -4,7 +4,7 @@
 
 A hands-on cohort lab run through your favorite coding assistant: Codex, Claude, or an assistant in your IDE. You give the prompts; your assistant builds and runs the code. At each checkpoint, you inspect real queries, answers, judge decisions and experiment results.
 
-**Real discussion data is included:** [40 original learner queries with fictional profiles](datasets/real-world/README.md), split into 20 customer-support and 20 AI-tutor queries. Open the [CSV](datasets/real-world/discussions.sample.csv) to inspect them. These supplement the original support lesson below.
+**All 2,946 collected Slack discussion records are included**, with identifying details scrubbed, 1,044 fictional profiles and exact UTC timestamps. Open the [full CSV](datasets/real-world/slack/discussions.all.csv), [customer-support CSV (439 records)](datasets/real-world/slack/customer-support.csv), or [AI-tutor CSV (2,507 records)](datasets/real-world/slack/ai-tutor.csv). JSON and JSONL are also available. These counts include replies and feedback: 779 AI replies are explicitly flagged, and expected answers remain unlabeled. Read the [dataset guide](datasets/real-world/README.md) before selecting your golden set. The earlier 40-query file remains as an optional preview.
 
 **Full database import is ready to configure:** add your connection file locally as `config/database.connection.local.json`, following [the setup](references/discussion-import.md), then trigger [import-discussions](skills/import-discussions/SKILL.md). It includes hidden discussions without changing their production visibility. The database connection and full import are pending; Slack does not expose current hidden status.
 
@@ -114,6 +114,7 @@ Ask your assistant to run:
 ```sh
 node --test tools/checks.test.mjs
 node --test tools/prepare-discussions.test.mjs
+node --test tools/build-slack-dataset.test.mjs
 ```
 
 For real execution examples, open [the tool contract](references/tool-contract.md). Use the explicit draft mode only for a labeled preliminary classroom run. Keep credentials, raw production traces and private source exports out of Git.

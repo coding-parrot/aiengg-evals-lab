@@ -10,6 +10,11 @@ test('all visibility states and parent/family relationships survive preparation'
   assert.equal(result.candidates[1].family_id,result.candidates[0].family_id);
   assert.equal(result.candidates[1].message_kind,'ai_reply');
   assert.ok(result.candidates.every(r=>r.privacy_review==='pending'&&r.expected_response===null));
+  const precise=prepare([{...row,created_at:'2026-11-01T10:30:00.123456+05:30'}]).candidates[0];
+  assert.equal(precise.created_at,'2026-11-01T10:30:00.123456+05:30');
+  assert.equal(precise.timestamp_kind,'database_created_at');
+  assert.equal(precise.timestamp_timezone,'+05:30');
+  assert.throws(()=>prepare([{...row,created_at:'2026-11-01T10:30:00'}]),/timezone/);
 });
 test('PII patterns and HTML mentions are removed; fictional identity is consistent',()=>{
   const body='Real Test Person &lt;a data-userid="9"&gt;Another Person&lt;/a&gt; test@example.com +1 (212) 555-0199 https://example.com/private/42 account_id=secret123 192.168.1.2';

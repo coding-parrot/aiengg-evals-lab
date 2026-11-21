@@ -1,0 +1,2 @@
+# Dataset manifests hash exact file bytes. Keep exports identical across platforms.
+datasets/real-world/** -text whitespace=-blank-at-eol,cr-at-eol

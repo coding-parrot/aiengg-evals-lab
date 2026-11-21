@@ -14,7 +14,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-11-15T13:55:16.333449Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02929"
   },
   {
     "record_id": "DISC-002",
@@ -31,7 +35,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-11-14T02:57:04.626979Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02928"
   },
   {
     "record_id": "DISC-003",
@@ -48,7 +56,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-11-10T19:19:03.262009Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02925"
   },
   {
     "record_id": "DISC-004",
@@ -65,7 +77,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-10-25T13:58:58.700069Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02912"
   },
   {
     "record_id": "DISC-005",
@@ -82,7 +98,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-10-19T10:52:22.364309Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02907"
   },
   {
     "record_id": "DISC-006",
@@ -99,7 +119,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-10-18T22:26:24.671939Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02906"
   },
   {
     "record_id": "DISC-007",
@@ -116,7 +140,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-10-08T15:02:25.459109Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02895"
   },
   {
     "record_id": "DISC-008",
@@ -133,7 +161,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-10-04T11:48:37.270149Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02893"
   },
   {
     "record_id": "DISC-009",
@@ -150,7 +182,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-09-27T22:21:22.672349Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02885"
   },
   {
     "record_id": "DISC-010",
@@ -167,7 +203,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-08-15T08:47:48.346999Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02880"
   },
   {
     "record_id": "DISC-011",
@@ -184,7 +224,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-07-19T09:40:34.745369Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02851"
   },
   {
     "record_id": "DISC-012",
@@ -201,7 +245,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-07-16T05:36:22.219539Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02843"
   },
   {
     "record_id": "DISC-013",
@@ -218,7 +266,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-05-18T09:41:48.492299Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02751"
   },
   {
     "record_id": "DISC-014",
@@ -235,7 +287,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-05-02T14:28:15.001629Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02713"
   },
   {
     "record_id": "DISC-015",
@@ -252,7 +308,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-03-24T12:14:42.650319Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02647"
   },
   {
     "record_id": "DISC-016",
@@ -269,7 +329,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-03-10T03:23:25.468029Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02624"
   },
   {
     "record_id": "DISC-017",
@@ -286,7 +350,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-02-28T06:52:13.333929Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02582"
   },
   {
     "record_id": "DISC-018",
@@ -303,7 +371,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-02-23T14:05:32.097129Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02576"
   },
   {
     "record_id": "DISC-019",
@@ -320,7 +392,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2025-07-28T09:06:39.999089Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-01677"
   },
   {
     "record_id": "DISC-020",
@@ -337,7 +413,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2025-07-05T19:09:32.102209Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-01503"
   },
   {
     "record_id": "DISC-021",
@@ -354,7 +434,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-11-11T07:14:22.924649Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02926"
   },
   {
     "record_id": "DISC-022",
@@ -371,7 +455,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-10-26T16:46:25.863899Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02913"
   },
   {
     "record_id": "DISC-023",
@@ -388,7 +476,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-10-15T11:31:28.824709Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02899"
   },
   {
     "record_id": "DISC-024",
@@ -405,7 +497,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-10-11T20:28:00.546619Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02898"
   },
   {
     "record_id": "DISC-025",
@@ -422,7 +518,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-09-29T16:48:54.481879Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02888"
   },
   {
     "record_id": "DISC-026",
@@ -439,7 +539,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-09-21T07:47:11.838429Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02883"
   },
   {
     "record_id": "DISC-027",
@@ -456,7 +560,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-08-02T04:00:32.358279Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02870"
   },
   {
     "record_id": "DISC-028",
@@ -473,7 +581,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-07-30T09:39:29.492719Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02865"
   },
   {
     "record_id": "DISC-029",
@@ -490,7 +602,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-07-30T09:38:12.020989Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02863"
   },
   {
     "record_id": "DISC-030",
@@ -507,7 +623,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-07-27T23:44:53.915149Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02859"
   },
   {
     "record_id": "DISC-031",
@@ -524,7 +644,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-07-23T08:24:58.186689Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02855"
   },
   {
     "record_id": "DISC-032",
@@ -541,7 +665,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-07-18T14:09:20.782339Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02848"
   },
   {
     "record_id": "DISC-033",
@@ -558,7 +686,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-07-18T14:08:21.335079Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02846"
   },
   {
     "record_id": "DISC-034",
@@ -575,7 +707,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-06-23T22:59:12.683319Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02812"
   },
   {
     "record_id": "DISC-035",
@@ -592,7 +728,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-06-17T10:17:15.314929Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02793"
   },
   {
     "record_id": "DISC-036",
@@ -609,7 +749,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-06-13T21:52:46.092749Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02789"
   },
   {
     "record_id": "DISC-037",
@@ -626,7 +770,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-05-30T08:21:24.931619Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02768"
   },
   {
     "record_id": "DISC-038",
@@ -643,7 +791,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-05-20T12:57:00.573409Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02756"
   },
   {
     "record_id": "DISC-039",
@@ -660,7 +812,11 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-05-17T21:07:06.095239Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02748"
   },
   {
     "record_id": "DISC-040",
@@ -677,6 +833,10 @@
     "expected_response": null,
     "sme_status": "not_labeled",
     "is_synthetic": false,
-    "profile_is_synthetic": true
+    "profile_is_synthetic": true,
+    "created_at": "2026-03-26T14:08:29.810289Z",
+    "timestamp_kind": "slack_notification_time",
+    "timestamp_timezone": "UTC",
+    "corpus_record_id": "SLK-02653"
   }
 ]

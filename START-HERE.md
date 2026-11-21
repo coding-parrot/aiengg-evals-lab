@@ -24,7 +24,7 @@ Do not run every stage at once. The pauses are the lesson: the instructor opens 
 
 ## Files already prepared
 
-- `datasets/real-world/`: 40 original discussion queries, split into customer support and AI tutor, with fictional profiles. These supplement the original support-only lesson.
+- `datasets/real-world/slack/`: all 2,946 collected discussion records, split into 439 customer-support and 2,507 AI-tutor records, with exact UTC timestamps and 1,044 fictional profiles. AI replies and feedback are flagged separately. Read `datasets/real-world/README.md` before selecting queries. The earlier 40-row file remains an optional preview.
 - `skills/import-discussions/SKILL.md`: read-only import of all database discussions, including hidden rows, once the private connection file is supplied. See `references/discussion-import.md` for setup.
 - `intake.html`: local SME intake form; profiles, goals, 20-seed default, eval choices, custom queries. Exports JSON for the assistant.
 - `prompts/support-starting-system.txt`: the exact default prompt for the starting bot. Preserve it until the baseline is measured.
