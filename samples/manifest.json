@@ -1,18 +1,15 @@
 {
-  "status": "DRAFT_NOT_EVALUATED",
+  "scope": "tutor_only",
+  "status": "DRAFT_NOT_SME_APPROVED",
   "seed_rows": 20,
   "synthetic_rows": 200,
   "total": 220,
-  "independent_incident_families": 18,
-  "window_start": "2024-11-22",
+  "topic_families": 18,
+  "selection": "Curated real tutor questions, recent-priority with topic coverage; not probability sampling",
   "as_of": "2026-11-22",
-  "evidence_min_date": "2025-08-16",
-  "evidence_max_date": "2026-11-02",
-  "selection": "Curated recent-priority teaching sample; not probability sampled",
   "recency_half_life_days": 180,
-  "semantic_change_rows": 120,
-  "source_citation_scope": "classroom_only",
+  "source_link_checks": "Primary resources opened 2026-11-22; snapshots are assistant paraphrases, not full papers or lesson transcripts",
   "sme_approved_rows": 0,
-  "actual_judge_runs": 0,
-  "dataset_sha256": "e5a2c8bda79d73deca85052273d84c0ab119b020571a6d601186c3f9bb0c6571"
+  "synthetic_method": "deterministic_parameterization; not independent customer evidence",
+  "dataset_sha256": "b18a3ba05c8b0cbc589729170b51f64764c780129e9baf25e4759d086170a562"
 }

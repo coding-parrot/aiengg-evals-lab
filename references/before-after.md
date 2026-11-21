@@ -1,6 +1,6 @@
 # Show an actual before/after change
 
-**Starting bot (`v0`)** is the initial application, using `prompts/support-starting-system.txt`. **Improved bot (`v1`)** is a separately saved application version after acting on evaluation findings. These labels are application versions, not different model generations.
+**Starting bot (`v0`)** is the initial application, using `prompts/tutor-starting-system.txt`. **Improved bot (`v1`)** is a separately saved application version after acting on evaluation findings. These labels are application versions, not different model generations.
 
 Evals measure behavior. Changes to the prompt, retrieval or tools change behavior. The demonstration should show the complete connection: observed failure → targeted change → repeated measurement.
 
@@ -12,7 +12,7 @@ At checkpoint 0, load the starting prompt exactly. Save its hash, model ID, gene
 
 ## Tutor-only guardrail exercise
 
-Keep v0 unchanged: it has no source-link enforcement. During eval creation, specify that only tutor queries need source material and direct, well-formed resource citations. Support cases need no source. Score unchanged v0 using those route-specific criteria. Later, implement the tutor-only source/citation guardrail in v1, verify direct resource links, and repeat the same measurements. If this changes retrieval or runtime control flow, label it a whole-agent experiment rather than a prompt-only improvement.
+Keep v0 unchanged: it has no source-link enforcement. During eval creation, specify that only tutor queries need source material and direct, well-formed resource citations. This lab includes only tutor queries and no profile/persona step. Score unchanged v0 using those route-specific criteria. Later, implement the tutor-only source/citation guardrail in v1, verify direct resource links, and repeat the same measurements. If this changes retrieval or runtime control flow, label it a whole-agent experiment rather than a prompt-only improvement.
 
 ## 2. Inspect the failure pattern
 
@@ -24,7 +24,7 @@ Choose one or two failure clusters with meaningful severity and coverage. Record
 
 ## 3. Make the first comparison easy to interpret
 
-Create `prompts/support-improved-system.txt` from the observed prompt-related failures. Keep the same LLM, model version, temperature, token limit, tools and retrieved evidence fixtures. Replay the same retrieved context for each paired query so the first experiment isolates the prompt change.
+Create `prompts/tutor-improved-system.txt` from the observed prompt-related failures. Keep the same LLM, model version, temperature, token limit, tools and retrieved evidence fixtures. Replay the same retrieved context for each paired query so the first experiment isolates the prompt change.
 
 Example only: if the starting bot repeatedly omits sources, the improved prompt may require a visible citation tied to provided evidence. If it interprets an old incident fix as a current guarantee, add rules about evidence dates and verifying current status. Do not teach invented remedies for failures the experiment did not observe.
 

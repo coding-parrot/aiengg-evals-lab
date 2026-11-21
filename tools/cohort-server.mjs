@@ -90,7 +90,7 @@ export function createGateway({config,ledger,fetchImpl=fetch,cards,prompt,html})
       const token=req.headers.authorization?.match(/^Bearer ([A-Za-z0-9_-]+)$/)?.[1];
       if(config.studentKey&&(!token||hash(token)!==hash(config.studentKey)))throw fail(401,'Enter the shared student API key');
       const student=ledger.student(token);
-      if(req.method==='GET'&&route==='/api/info'){send(res,200,{access_mode:config.studentKey?'shared_student_key':'individual_invite',student:student.id,expires_at:config.studentKey?null:student.expiresAt,calls:config.studentKey?ledger.state.total:student.calls,max_calls:Math.min(student.maxCalls,quotaConfig.studentCalls),openai_model:config.openaiModel,judge_provider:config.judgeProvider,judge_model:config.judgeModel});return;}
+      if(req.method==='GET'&&route==='/api/info'){send(res,200,{lab_scope:'tutor_only',baseline_id:'aiengg-tutor-v0-2026-11-22',access_mode:config.studentKey?'shared_student_key':'individual_invite',student:student.id,expires_at:config.studentKey?null:student.expiresAt,calls:config.studentKey?ledger.state.total:student.calls,max_calls:Math.min(student.maxCalls,quotaConfig.studentCalls),openai_model:config.openaiModel,judge_provider:config.judgeProvider,judge_model:config.judgeModel});return;}
       if(req.method!=='POST'||route==='/api/info')throw fail(405,'Method not allowed');
       const chunks=[];let bytes=0;
       for await(const chunk of req){bytes+=chunk.length;if(bytes>config.maxInputBytes+16000)throw fail(413,'Request too large');chunks.push(chunk);}
@@ -114,10 +114,10 @@ export function createGateway({config,ledger,fetchImpl=fetch,cards,prompt,html})
       else throw fail(400,'Invalid classroom context mode');
       const instructions=body.system_prompt===undefined?prompt:asText(body.system_prompt,'system_prompt',8000);
       const result=await generate(token,JSON.stringify({query,brand:body.brand??'AIEngg',retrieved_context:context}),instructions);
-      const citations=context.filter(c=>result.text.includes(`[${c.id}]`)).map(c=>({source_id:c.id,url:c.url}));
+      const citations=context.filter(c=>(result.text.includes(`[${c.id}]`) || (c.url && result.text.includes(c.url)))).map(c=>({source_id:c.id,url:c.url}));
       const a=Number(config.inputPrice),b=Number(config.outputPrice);
       const cost=config.inputPrice!==undefined&&config.outputPrice!==undefined&&Number.isFinite(a)&&Number.isFinite(b)&&a>=0&&b>=0&&Number.isFinite(result.usage?.input_tokens)&&Number.isFinite(result.usage?.output_tokens)?(result.usage.input_tokens*a+result.usage.output_tokens*b)/1e6:null;
-      send(res,200,{query,answer:result.text,retrieved_context:context,citations,tool_results:[],claims:[],faithfulness_status:'claim_extraction_required',storyflow_applicable:false,image_artifact:null,ttft_ms:null,total_latency_ms:performance.now()-start,cost_usd:cost,usage:result.usage,model:result.model,agent_version:body.system_prompt===undefined?'v0':'v1_candidate',run_id:randomBytes(12).toString('hex'),run_started_at:startedAt,prompt_hash:hash(instructions),source_snapshot_hash:hash(JSON.stringify(context))});
+      send(res,200,{query,route:'ai_tutor',answer:result.text,retrieved_context:context,citations,tool_results:[],claims:[],faithfulness_status:'claim_extraction_required',storyflow_applicable:false,image_artifact:null,ttft_ms:null,total_latency_ms:performance.now()-start,cost_usd:cost,usage:result.usage,model:result.model,agent_version:body.system_prompt===undefined?'v0':'v1_candidate',run_id:randomBytes(12).toString('hex'),run_started_at:startedAt,prompt_hash:hash(instructions),source_snapshot_hash:hash(JSON.stringify(context))});
     }catch(e){send(res,e.status??500,{error:e.status?e.message:'Classroom service error'});}
   });
 }
@@ -130,7 +130,7 @@ export function start(){
   // A second process could race the file ledger. Refuse it; deploy one replica.
   const lock=path.join(dir,'server.lock');const fd=fs.openSync(lock,'wx');fs.writeFileSync(fd,String(process.pid));fs.closeSync(fd);
   const cleanup=()=>{try{fs.unlinkSync(lock);}catch{}};process.on('exit',cleanup);
-  const server=createGateway({config,ledger:new Ledger(dir),cards:JSON.parse(fs.readFileSync(path.join(root,'samples/sanitized-source-cards.json'),'utf8')),prompt:fs.readFileSync(path.join(root,'prompts/support-starting-system.txt'),'utf8').replace(/\r\n/g,'\n'),html:fs.readFileSync(path.join(root,'cohort.html'),'utf8')});
+  const server=createGateway({config,ledger:new Ledger(dir),cards:JSON.parse(fs.readFileSync(path.join(root,'samples/sanitized-source-cards.json'),'utf8')),prompt:fs.readFileSync(path.join(root,'prompts/tutor-starting-system.txt'),'utf8').replace(/\r\n/g,'\n'),html:fs.readFileSync(path.join(root,'cohort.html'),'utf8')});
   server.requestTimeout=120000;server.headersTimeout=15000;
   server.on('error',()=>{console.error('Unable to start cohort server');process.exitCode=1;cleanup();});
   server.listen(Number(process.env.PORT??8787),process.env.HOST??'127.0.0.1',()=>console.log('Cohort server ready; provider keys remain server-side.'));

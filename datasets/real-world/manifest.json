@@ -1,34 +1,29 @@
 {
-  "status": "CURATED_REAL_DATA_SAMPLE_NOT_FULL_DATABASE_EXPORT",
+  "scope": "TUTOR_QUERY_CANDIDATES_ONLY",
   "as_of": "2026-11-22",
-  "discussion_rows": 40,
-  "customer_support": 20,
-  "ai_tutor": 20,
-  "fictional_profiles": 38,
-  "staff_evidence_records": 20,
-  "source": "InterviewReady discussion notifications and staff support threads",
-  "slack_window_start": "2024-11-22",
-  "slack_window_end": "2026-11-22",
-  "slack_events_enumerated": 2949,
-  "slack_discussion_notifications": 2946,
-  "slack_ai_reply_notifications": 779,
-  "slack_non_discussion_events": 3,
-  "webhook_rate_limit_notice_observed": true,
-  "database_import_status": "PENDING_CONNECTION_FILE",
-  "database_export_scope_when_connected": "ALL_HISTORY_INCLUDING_HIDDEN",
-  "sample_visibility": "unknown",
-  "privacy_review": "assistant_reviewed_selected_text_and_source_identifier_scan",
-  "routing_review": "assistant_reviewed_not_SME",
-  "sme_approved_rows": 0,
+  "original_collected_discussion_records": 2946,
+  "published_query_candidates": 1153,
+  "excluded_from_active_lab": 1793,
+  "route": "ai_tutor",
+  "selection": "tools/tutor-scope.mjs: tutor primary route, no secondary route, query candidate kind, no known AI author, operational-request exclusion",
+  "label_status": "candidate heuristics plus existing per-record reviews; not SME-approved",
   "expected_answers_supplied": 0,
-  "hashes": {
-    "discussions.sample.json": "452f22a694aab0601732528eda19286c51a45b8788e7503bec54c58322ebc027",
-    "discussions.sample.jsonl": "5ff16e838b4011be2978a2ec7216bc0160979dd206a2070bd4b730ddf45df045",
-    "discussions.sample.csv": "e5b24daacf4879338fe712e8c905e33d1244202e13be52996c0b1380cc0aa347",
-    "fictional-profiles.json": "c6c2c154440153183c6fe423209afd6193203596ddadd08e6e1fe489f9a0fe01",
-    "evidence.json": "30849b595e404d5b926e95a99ebbcd5e6107b39efdd752804adada1578c1bfe3"
+  "source_window": {
+    "start": "2024-11-22",
+    "end_exclusive": "2026-11-22"
   },
-  "full_corpus": "slack/manifest.json",
+  "first_notification_at": "2024-11-22T08:10:42.130369Z",
+  "last_notification_at": "2026-11-11T07:14:22.924649Z",
   "timestamp_kind": "slack_notification_time",
-  "timestamp_precision": "microseconds_UTC"
+  "timestamp_precision": "exact UTC strings with six fractional digits",
+  "hidden_status": "unknown",
+  "database_import": "pending_private_connection",
+  "coverage_limitations": [
+    "This is the tutor subset of the collected Slack feed, not proof of complete database coverage.",
+    "A webhook rate-limit notice existed in the original collection.",
+    "Question/reply and intent classification remain heuristic; review candidates before seed approval.",
+    "Original source URLs were redacted; educational source links are independently curated, not recovered lecture links."
+  ],
+  "dataset_sha256": "42c8ef530eff44f6f2214d46c24446c0e6c397f875840beb976a2284984a422b",
+  "teaching_unit": "query"
 }

@@ -1,6 +1,6 @@
 # Shared cohort backend: one instructor OpenAI key
 
-The default uses OpenAI Responses for the support bot and **OpenAI Decisions** for the typed judge. Both use the instructor's existing `OPENAI_API_KEY`. No TypeSafe/Jev key is required. Everyone uses one shared student API key. No individual invitation, login or student OpenAI key is required. This is instructor-funded access, operator-funded inference with a separate shared lab access key.
+The default uses OpenAI Responses for the AI tutor and **OpenAI Decisions** for the typed judge. Both use the instructor's existing `OPENAI_API_KEY`. No TypeSafe/Jev key is required. Everyone uses one shared student API key. No individual invitation, login or student OpenAI key is required. This is instructor-funded access, operator-funded inference with a separate shared lab access key.
 
 The [Decisions API](https://developers.openai.com/api/docs/guides/decisions) returns typed predicates, choices and scores; the classroom adapter implements predicates and categorical choices, including the existing 0–4 storyflow choices. The documented supported model is `gpt-6-luna`. OpenAI does not identify it as an encoder-only model in that guide: teach it as a **typed decision judge**, not as a verified encoder architecture. Keep SME calibration and holdout testing.
 

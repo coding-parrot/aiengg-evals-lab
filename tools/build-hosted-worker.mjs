@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const target=process.argv[2];if(!target)throw new Error('Pass the Sites checkout directory');
 const read=p=>fs.readFile(path.join(root,p),'utf8');
-const html=await read('cohort.html'),prompt=(await read('prompts/support-starting-system.txt')).replace(/\r\n/g,'\n'),cards=JSON.parse(await read('samples/sanitized-source-cards.json'));
+const html=await read('cohort.html'),prompt=(await read('prompts/tutor-starting-system.txt')).replace(/\r\n/g,'\n'),cards=JSON.parse(await read('samples/sanitized-source-cards.json'));
 const decisions=(await read('tools/decisions.mjs')).replaceAll('export function','function');
 const handler=(await read('hosting/worker.mjs')).replace(/^import .*;\r?\n/gm,'');
 const bundle=`const HTML=${JSON.stringify(html)};\nconst PROMPT=${JSON.stringify(prompt)};\nconst CARDS=${JSON.stringify(cards)};\n${decisions}\n${handler}`;

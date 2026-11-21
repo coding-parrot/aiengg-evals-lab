@@ -5,14 +5,43 @@
   "seed_count": 20,
   "synthetic_count": 200,
   "recency_half_life_days": 180,
-  "profiles": ["enrolled learner", "working engineer", "interview candidate"],
-  "goals": ["recover access", "resolve billing", "join class", "find recordings", "get certificate", "technical support", "human support"],
-  "source_types": ["sanitized classroom snapshots"],
-  "live_source_options": ["slack", "github", "custom read-only source"],
+  "goals": [
+    "understand a concept",
+    "compare designs",
+    "reason about code",
+    "work through an example",
+    "correct a misconception",
+    "interpret a diagram"
+  ],
+  "source_types": [
+    "sanitized tutor queries",
+    "checked educational resources"
+  ],
+  "live_source_options": [
+    "slack",
+    "github",
+    "custom read-only source"
+  ],
   "slack_channels": [],
   "github_repositories": [],
-  "business_metrics_production_only": ["D7 retention", "D30 retention"],
-  "eval_metrics": ["answer_relevance", "context_relevance", "faithfulness", "citation_validity", "citation_support", "polite_tone", "sentence_limit", "ttft_ms", "total_latency_ms", "serving_cost", "storyflow", "image_quality"],
+  "business_metrics_production_only": [
+    "D7 retention",
+    "D30 retention"
+  ],
+  "eval_metrics": [
+    "answer_relevance",
+    "context_relevance",
+    "faithfulness",
+    "citation_validity",
+    "citation_support",
+    "polite_tone",
+    "sentence_limit",
+    "ttft_ms",
+    "total_latency_ms",
+    "serving_cost",
+    "storyflow",
+    "image_quality"
+  ],
   "judge": "openai_decisions",
   "judge_model": "gpt-6-luna",
   "local_judge_alternative": "convaiinnovations/laya",
@@ -21,5 +50,6 @@
   "total_latency_budget_ms": 8000,
   "text_serving_cost_budget_usd": 0.02,
   "budget_status": "illustrative_teaching_targets",
-  "custom_queries": []
+  "custom_queries": [],
+  "lab_scope": "tutor_only"
 }

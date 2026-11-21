@@ -1,13 +1,13 @@
 ---
 name: monitor-production
-description: Prepare and operate the support-agent evaluation loop in LangSmith with trace feedback, quality and operational alerts, SME review and separate retention monitoring.
+description: Prepare and operate the tutor-agent evaluation loop in LangSmith with trace feedback, quality and operational alerts, SME review and separate retention monitoring.
 ---
 
 # Deploy and monitor
 
 Read `../../references/langsmith-runbook.md`, `../../references/eval-spec.md` and the latest release decision. Reuse the project's deployment target; if none is available, build and test the deployment artifact and ask for the target. Do not claim a production deployment from a local server or sample trace.
 
-Instrument root and child spans with versioned retrieval, tool use, answer, citation, latency, usage and error data. Use pseudonymous user and conversation IDs and customer-safe source references. Production knowledge must be approved and current; instructor-only Slack evidence cannot be published to customers.
+Instrument root and child spans with versioned retrieval, tool use, answer, citation, latency, usage and error data. Use pseudonymous user and conversation IDs and learner-accessible source references. Production knowledge must be approved and current; private discussion records cannot be exposed as public teaching evidence.
 
 Configure the validated text judges and deterministic checks as online evaluators. Keep judge computation outside the response critical path unless explicitly designing an inline guardrail. Offline expected answers are normally unavailable in production: use evidence-grounded rubrics and tool results. Validate this reference-free online setup with SME labels; offline judge alignment does not automatically transfer.
 

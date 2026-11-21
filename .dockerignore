@@ -6,3 +6,4 @@ artifacts
 live-results
 **/*.private.json
 config/database.connection.local.json
+config/student.connection.local.json

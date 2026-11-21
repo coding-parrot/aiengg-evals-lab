@@ -14,7 +14,7 @@ if(!shared&&provider==='jev'&&(!process.env.TYPESAFE_API_KEY||!process.env.JEV_M
 if(!shared&&provider==='openai_decisions'&&!process.env.OPENAI_API_KEY)throw new Error('Set OPENAI_API_KEY or use the shared student API key');
 const cohortInfo=shared?await cohortCall('/api/info'):null;
 const customPrompt=shared&&process.env.COHORT_PROMPT_FILE?await fs.readFile(process.env.COHORT_PROMPT_FILE,'utf8'):null;
-const all=await readJson(datasetPath);const rows=flags.includes('--smoke')?all.slice(0,3):all;
+const all=await readJson(datasetPath);if(all.some(r=>r.route!=='ai_tutor'))throw new Error('This lab accepts tutor cases only');const rows=flags.includes('--smoke')?all.slice(0,3):all;
 if(!flags.includes('--draft')&&rows.some(r=>r.sme_status!=='approved'))throw new Error('Approve dataset first or explicitly use --draft for an unvalidated classroom run');
 const definitions=await readJson(new URL('../config/judge-questions.json',import.meta.url));
 const thresholds=process.env.JUDGE_CONFIG?await readJson(process.env.JUDGE_CONFIG):null;
@@ -38,7 +38,8 @@ for(const row of rows){
     }
     run.query=row.query;run.total_latency_ms=performance.now()-started;
     // Trusted dataset route controls evaluator applicability, never bot generation.
-    run.route=row.route??'customer_support';
+    run.route='ai_tutor';
+    run.storyflow_applicable=row.storyflow_applicable===true;
     const code=checkResponse(run);
     run.reference_criteria={expected_response:row.expected_response,required_behaviors:row.required_behaviors};
     const judged=await scoreRun(run,definitions);

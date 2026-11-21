@@ -29,7 +29,7 @@ export default {async fetch(request,env){
     if(!env.STUDENT_API_KEY||!token||await hash(token)!==await hash(env.STUDENT_API_KEY))throw fail(401,'Use the shared student API key');
     if(route==='/api/info'&&request.method==='GET'){
       const info=await relay(env);
-      return json({access_mode:'shared_student_key',student:'shared-student-access',expires_at:null,calls:null,max_calls:20000,quota_scope:'class-wide durable relay quota',openai_model:info.agent_model,judge_provider:'openai_decisions',judge_model:info.judge_model});
+      return json({lab_scope:'tutor_only',baseline_id:'aiengg-tutor-v0-2026-11-22',access_mode:'shared_student_key',student:'shared-student-access',expires_at:null,calls:null,max_calls:20000,quota_scope:'class-wide durable relay quota',openai_model:info.agent_model,judge_provider:'openai_decisions',judge_model:info.judge_model});
     }
     if(request.method!=='POST'||!['/api/bot','/api/generate','/api/judge'].includes(route))throw fail(404,'Not found');
     const reader=request.body?.getReader();if(!reader)throw fail(400,'Missing body');const decoder=new TextDecoder();let raw='',bytes=0;
@@ -52,6 +52,6 @@ export default {async fetch(request,env){
     }else throw fail(400,'Invalid classroom context mode');
     const prompt=body.system_prompt===undefined?PROMPT:text(body.system_prompt,8000);
     const result=await generate(env,JSON.stringify({query,brand:body.brand??'AIEngg',retrieved_context:context}),prompt);
-    return json({query,answer:result.text,retrieved_context:context,citations:context.filter(c=>result.text.includes(`[${c.id}]`)).map(c=>({source_id:c.id,url:c.url})),tool_results:[],claims:[],faithfulness_status:'claim_extraction_required',storyflow_applicable:false,image_artifact:null,ttft_ms:null,total_latency_ms:performance.now()-started,cost_usd:null,usage:result.usage,model:result.model,agent_version:body.system_prompt===undefined?'v0':'v1_candidate',run_id:crypto.randomUUID(),run_started_at:runStartedAt,prompt_hash:await hash(prompt),source_snapshot_hash:await hash(JSON.stringify(context))});
+    return json({query,route:'ai_tutor',answer:result.text,retrieved_context:context,citations:context.filter(c=>(result.text.includes(`[${c.id}]`) || (c.url && result.text.includes(c.url)))).map(c=>({source_id:c.id,url:c.url})),tool_results:[],claims:[],faithfulness_status:'claim_extraction_required',storyflow_applicable:false,image_artifact:null,ttft_ms:null,total_latency_ms:performance.now()-started,cost_usd:null,usage:result.usage,model:result.model,agent_version:body.system_prompt===undefined?'v0':'v1_candidate',run_id:crypto.randomUUID(),run_started_at:runStartedAt,prompt_hash:await hash(prompt),source_snapshot_hash:await hash(JSON.stringify(context))});
   }catch(error){return json({error:error.status?error.message:'Lab service unavailable',kind:error.name},error.status??502);}
 }};

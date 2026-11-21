@@ -1,56 +1,68 @@
 [
   {
-    "case_id": "G01",
-    "family_id": "G01",
+    "case_id": "T01",
+    "family_id": "F-rag",
     "run": {
-      "query": "My old purchase invoice now shows a different currency and a recent date. Was I charged again?",
-      "answer": "A changed currency or invoice date **doesn’t by itself mean you were charged again**. In a past InterviewReady case, an old purchase displayed a different currency and a later date, but the invoice display alone didn’t establish a new charge. I can’t verify your account or payment history from here.\n\nCheck your bank or payment-provider statement for a separate transaction. If you see one—or the invoice still looks wrong—contact InterviewReady support with the invoice or order ID and a screenshot with personal and payment details hidden. Don’t send your full card number or security code.",
+      "query": "what is rag",
+      "route": "ai_tutor",
+      "answer": "**RAG** stands for **Retrieval-Augmented Generation**. It’s a way to give a language model relevant information at answer time: the system retrieves passages from a knowledge source, then provides them as context for the model to use in its response. [Lewis et al., *Retrieval-Augmented Generation*](https://arxiv.org/abs/2005.11401)\n\nFor example, a company’s support bot might find the relevant section of its help documents before answering a question about refunds.\n\nA basic RAG flow is:\n\n1. Find information relevant to the user’s question.\n2. Add that information to the model’s prompt.\n3. Generate an answer using the question and retrieved context.\n\nRAG can help answers stay grounded in a specific or updated knowledge base, but retrieval alone doesn’t guarantee the answer is correct—the retrieved evidence still needs to support what the model says.",
       "retrieved_context": [
         {
           "id": "S01",
-          "source_type": "sanitized_support_report",
-          "observed_at": "2026-11-02",
-          "brand": "InterviewReady",
-          "text": "A customer reported that an old USD purchase appeared with an INR amount and a later invoice date. Staff treated it as a possible invoice defect and investigated; the invoice display alone did not establish a new charge.",
+          "title": "RAG paper",
+          "url": "https://arxiv.org/abs/2005.11401",
+          "text": "RAG combines a parametric language model with retrieved non-parametric information. Retrieval supplies context for generation; a fluent response alone does not establish that the retrieved evidence supports it.",
+          "source_type": "research_paper",
           "citation_allowed": true,
-          "visibility": "classroom_only",
-          "url": "source://S01",
-          "authority": "historical_incident_evidence_not_current_policy"
+          "visibility": "public",
+          "source_checked_at": "2026-11-22",
+          "access_check": "opened_public_resource",
+          "snapshot_status": "assistant_paraphrase_for_classroom_SME_review",
+          "source_publication_date": null
         },
         {
-          "id": "S05",
-          "source_type": "sanitized_support_report",
-          "observed_at": "2026-09-19",
-          "brand": "InterviewReady",
-          "text": "Staff reported a Shopify/YouTube purchase without course access and an administrative login problem. A receipt was mentioned; no completed fix was established in the retrieved message.",
+          "id": "S06",
+          "title": "BERT model configuration",
+          "url": "https://huggingface.co/docs/transformers/main/en/model_doc/bert",
+          "text": "BERT exposes hidden_size as a model configuration dimension. Token IDs are mapped through model embeddings; hidden states are vectors. A vector store stores/indexes these outputs; it does not choose what semantic features an already-trained encoder learns.",
+          "source_type": "official_documentation",
           "citation_allowed": true,
-          "visibility": "classroom_only",
-          "url": "source://S05",
-          "authority": "historical_incident_evidence_not_current_policy"
+          "visibility": "public",
+          "source_checked_at": "2026-11-22",
+          "access_check": "opened_public_resource",
+          "snapshot_status": "assistant_paraphrase_for_classroom_SME_review",
+          "source_publication_date": null
         },
         {
-          "id": "S14",
-          "source_type": "sanitized_support_report",
-          "observed_at": "2026-06-19",
-          "brand": "AIEngg",
-          "text": "Support requested a way for learners to access certificates with corrected names and mentioned backend name updates. The report was a request, not proof of a completed update for a new user.",
+          "id": "S17",
+          "title": "Amazon S3 object storage",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+          "text": "S3 stores objects in buckets and exposes object retrieval APIs. An image-search feature also needs searchable representations and an index; choosing object storage for image bytes does not itself implement semantic image similarity search.",
+          "source_type": "official_documentation",
           "citation_allowed": true,
-          "visibility": "classroom_only",
-          "url": "source://S14",
-          "authority": "historical_incident_evidence_not_current_policy"
+          "visibility": "public",
+          "source_checked_at": "2026-11-22",
+          "access_check": "opened_public_resource",
+          "snapshot_status": "assistant_paraphrase_for_classroom_SME_review",
+          "source_publication_date": null
         }
       ],
-      "citations": [],
+      "citations": [
+        {
+          "source_id": "S01",
+          "url": "https://arxiv.org/abs/2005.11401"
+        }
+      ],
       "tool_results": [],
       "claims": [],
       "faithfulness_status": "claim_extraction_required",
-      "storyflow_applicable": false,
+      "storyflow_applicable": true,
       "image_artifact": null,
       "ttft_ms": null,
-      "total_latency_ms": 3864.7087,
+      "total_latency_ms": 4280.071,
       "cost_usd": null,
       "usage": {
-        "input_tokens": 431,
+        "input_tokens": 473,
         "input_tokens_details": {
           "cache_write_tokens": 0,
           "cache_write_tokens_details": {
@@ -59,21 +71,21 @@
           },
           "cached_tokens": 0
         },
-        "output_tokens": 231,
+        "output_tokens": 266,
         "output_tokens_details": {
-          "reasoning_tokens": 109
+          "reasoning_tokens": 79
         },
-        "total_tokens": 662
+        "total_tokens": 739
       },
       "model": "gpt-6-luna",
       "agent_version": "v0",
-      "run_id": "ddfb8e21-2eb2-4eb2-9b68-1f233bdb1e1b",
-      "run_started_at": "2026-11-21T21:49:12.951Z",
-      "prompt_hash": "f7202407710e6d4db0253d1712caeecb2e5b192cce258b40269082377d421a5a",
-      "source_snapshot_hash": "677cfb5c2e46d4f5fc770b43925f130ea41437b006283a2acbf4c4c6724925c4",
+      "run_id": "874a1f9c-7906-41d5-ad03-48b3af4dc60a",
+      "run_started_at": "2026-11-21T22:29:38.931Z",
+      "prompt_hash": "6b0fe04f63c61e16b3d79f7e2c59a5f50467249d0f0616da6085039563f95fc9",
+      "source_snapshot_hash": "fb3e6f97a70ff0545c92fb4d6a7e13361617927b61ba55cc6e4341bfac5f36ca",
       "reference_criteria": {
-        "expected_response": "An invoice display mismatch does not by itself show that you were charged again. Please check your payment history and share the order reference securely with billing so the invoice and transaction can be reconciled. I cannot confirm a new charge from this display alone. [S01]",
-        "required_behaviors": "Separate invoice display from payment settlement; request verification; do not invent a new charge or refund."
+        "expected_response": "RAG retrieves relevant external information and supplies it to a generator. For example, retrieve a lesson passage before explaining it. Retrieval can still miss evidence or return irrelevant text, so check the answer against the source. [RAG paper](https://arxiv.org/abs/2005.11401)",
+        "required_behaviors": "Address the actual concept; distinguish assumptions from facts; explain uncertainty; cite the relevant public resource directly."
       }
     },
     "judged": {
@@ -83,15 +95,41 @@
           "result": {
             "answers": {
               "answer_relevance": {
-                "noul": 0.9
+                "noul": 1
               },
               "polite_tone": {
-                "noul": 0.99
+                "noul": 1
+              },
+              "storyflow": {
+                "choice": "4",
+                "probabilities": [
+                  {
+                    "value": "0",
+                    "probability": 0.02
+                  },
+                  {
+                    "value": "1",
+                    "probability": 0.01
+                  },
+                  {
+                    "value": "2",
+                    "probability": 0.02
+                  },
+                  {
+                    "value": "3",
+                    "probability": 0.25
+                  },
+                  {
+                    "value": "4",
+                    "probability": 0.7
+                  }
+                ],
+                "confidence": 0.62
               }
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 871,
+              "input_tokens": 1207,
               "input_tokens_details": {
                 "cached_tokens": 0,
                 "cache_write_tokens": 0
@@ -100,19 +138,47 @@
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 871
+              "total_tokens": 1207
             },
             "provider": "openai_decisions",
             "raw_answers": [
               {
                 "type": "predicate",
                 "name": "answer_relevance",
-                "probability": 0.9
+                "probability": 1
               },
               {
                 "type": "predicate",
                 "name": "polite_tone",
-                "probability": 0.99
+                "probability": 1
+              },
+              {
+                "type": "choice",
+                "name": "storyflow",
+                "choice": "4",
+                "probabilities": [
+                  {
+                    "value": "0",
+                    "probability": 0.02
+                  },
+                  {
+                    "value": "1",
+                    "probability": 0.01
+                  },
+                  {
+                    "value": "2",
+                    "probability": 0.02
+                  },
+                  {
+                    "value": "3",
+                    "probability": 0.25
+                  },
+                  {
+                    "value": "4",
+                    "probability": 0.7
+                  }
+                ],
+                "confidence": 0.62
               }
             ]
           }
@@ -128,7 +194,7 @@
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 302,
+              "input_tokens": 303,
               "input_tokens_details": {
                 "cached_tokens": 0,
                 "cache_write_tokens": 0
@@ -137,7 +203,7 @@
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 302
+              "total_tokens": 303
             },
             "provider": "openai_decisions",
             "raw_answers": [
@@ -151,39 +217,7 @@
         },
         {
           "scope": "context",
-          "source_id": "S05",
-          "result": {
-            "answers": {
-              "context_relevance": {
-                "noul": 0.01
-              }
-            },
-            "model": "gpt-6-luna",
-            "usage": {
-              "input_tokens": 293,
-              "input_tokens_details": {
-                "cached_tokens": 0,
-                "cache_write_tokens": 0
-              },
-              "output_tokens": 0,
-              "output_tokens_details": {
-                "reasoning_tokens": 0
-              },
-              "total_tokens": 293
-            },
-            "provider": "openai_decisions",
-            "raw_answers": [
-              {
-                "type": "predicate",
-                "name": "context_relevance",
-                "probability": 0.01
-              }
-            ]
-          }
-        },
-        {
-          "scope": "context",
-          "source_id": "S14",
+          "source_id": "S06",
           "result": {
             "answers": {
               "context_relevance": {
@@ -192,7 +226,7 @@
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 297,
+              "input_tokens": 318,
               "input_tokens_details": {
                 "cached_tokens": 0,
                 "cache_write_tokens": 0
@@ -201,7 +235,39 @@
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 297
+              "total_tokens": 318
+            },
+            "provider": "openai_decisions",
+            "raw_answers": [
+              {
+                "type": "predicate",
+                "name": "context_relevance",
+                "probability": 0
+              }
+            ]
+          }
+        },
+        {
+          "scope": "context",
+          "source_id": "S17",
+          "result": {
+            "answers": {
+              "context_relevance": {
+                "noul": 0
+              }
+            },
+            "model": "gpt-6-luna",
+            "usage": {
+              "input_tokens": 312,
+              "input_tokens_details": {
+                "cached_tokens": 0,
+                "cache_write_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "total_tokens": 312
             },
             "provider": "openai_decisions",
             "raw_answers": [
@@ -222,57 +288,64 @@
     }
   },
   {
-    "case_id": "G02",
-    "family_id": "G02",
+    "case_id": "T02",
+    "family_id": "F-token_embeddings",
     "run": {
-      "query": "My InterviewReady certificate will not download. What should I do?",
-      "answer": "Try these steps:\n\n1. Sign out of InterviewReady, then sign back in and open the certificate page again.\n2. Try a different browser or a private/incognito window.\n3. Allow downloads and pop-ups for the site, and temporarily disable browser extensions that might block them.\n4. If the file downloads but won’t open, try a PDF reader or another device.\n\nIf the certificate is missing or still won’t download, contact InterviewReady support. Tell them which course it’s for, what happens when you try, and which browser/device you’re using. Don’t send your password or payment details.",
+      "query": "In the vector/embedding sections you never spoke about tokenIDs.\nOne question: which thing the embedding models convert to vectors. Token or TokenID.\n\nbased on your explaination in this video, seems it converts tokenids to vectors.\nIf yes, I have the following questions:\n1. How it obtains the semantic/contextual meaning\n2. will the tokenid for a term will be same. For eg. term \"bank\" will be used at different places with different meaning. How and what basis it will get the token ids?",
+      "route": "ai_tutor",
+      "answer": "Yes—**the model receives token IDs and uses them to look up vectors**. But the ID itself does not contain meaning; it is just an index in the model’s vocabulary.\n\nThe usual flow is:\n\n**Text → tokenizer → token IDs → embedding vectors → model layers → contextual representations**\n\nFor an embedding model, the final step often combines the contextual representations into one vector for the whole text.\n\n### 1. How does a token get semantic or contextual meaning?\n\nThe token ID first selects a learned vector from an embedding table. During training, the model adjusts its vectors and other parameters so it can perform its training task.\n\nThen, in a Transformer, attention layers use the surrounding tokens to update each token’s representation. For example:\n\n- “She sat by the **bank** of the river.”\n- “She deposited money at the **bank**.”\n\nIf *bank* is represented by the same token ID in both sentences, its **initial embedding** is the same. But the surrounding words differ, so the Transformer produces different **contextual representations** for *bank*. An embedding model may then use those contextual representations to create different vectors for the two sentences.\n\n### 2. Will “bank” always have the same token ID?\n\n**Usually, if the same tokenizer processes it in the same way.** Token IDs are assigned by a particular tokenizer’s vocabulary, so they can differ between models or tokenizers. Also, tokenization can depend on details such as capitalization, punctuation, and spaces. A tokenizer might represent `bank`, `Bank`, or ` bank` differently—or split a word into multiple subword tokens.\n\nThe key distinction is:\n\n- **Token ID:** a vocabulary lookup key; not a semantic coordinate.\n- **Initial token embedding:** the learned vector looked up using that ID.\n- **Contextual representation:** a vector that can change depending on the surrounding text.\n\nSo, the *same* “bank” token can have the same ID and initial embedding in two sentences, while later model layers give it different contextual representations.",
       "retrieved_context": [
         {
           "id": "S02",
-          "source_type": "sanitized_support_report",
-          "observed_at": "2026-10-29",
-          "brand": "InterviewReady",
-          "text": "Staff reported customers unable to download certificates. The retrieved report does not establish a cause or resolution.",
+          "title": "Attention Is All You Need",
+          "url": "https://arxiv.org/html/1706.03762v7",
+          "text": "Transformer encoder outputs feed decoder cross-attention as keys and values; decoder representations supply queries. Masked decoder self-attention prevents access to subsequent positions. Training can process shifted target tokens in parallel, whereas autoregressive inference generates new tokens sequentially. Learned embedding tables convert token IDs to vectors.",
+          "source_type": "research_paper",
           "citation_allowed": true,
-          "visibility": "classroom_only",
-          "url": "source://S02",
-          "authority": "historical_incident_evidence_not_current_policy"
+          "visibility": "public",
+          "source_checked_at": "2026-11-22",
+          "access_check": "opened_public_resource",
+          "snapshot_status": "assistant_paraphrase_for_classroom_SME_review",
+          "source_publication_date": null
         },
         {
-          "id": "S03",
-          "source_type": "sanitized_support_report",
-          "observed_at": "2026-10-22",
-          "brand": "AIEngg",
-          "text": "Staff reported that some users with customized certificates could not see their certificates on the website.",
+          "id": "S06",
+          "title": "BERT model configuration",
+          "url": "https://huggingface.co/docs/transformers/main/en/model_doc/bert",
+          "text": "BERT exposes hidden_size as a model configuration dimension. Token IDs are mapped through model embeddings; hidden states are vectors. A vector store stores/indexes these outputs; it does not choose what semantic features an already-trained encoder learns.",
+          "source_type": "official_documentation",
           "citation_allowed": true,
-          "visibility": "classroom_only",
-          "url": "source://S03",
-          "authority": "historical_incident_evidence_not_current_policy"
+          "visibility": "public",
+          "source_checked_at": "2026-11-22",
+          "access_check": "opened_public_resource",
+          "snapshot_status": "assistant_paraphrase_for_classroom_SME_review",
+          "source_publication_date": null
         },
         {
-          "id": "S14",
-          "source_type": "sanitized_support_report",
-          "observed_at": "2026-06-19",
-          "brand": "AIEngg",
-          "text": "Support requested a way for learners to access certificates with corrected names and mentioned backend name updates. The report was a request, not proof of a completed update for a new user.",
+          "id": "S05",
+          "title": "Tokenization algorithms",
+          "url": "https://huggingface.co/docs/transformers/main/en/tokenizer_summary",
+          "text": "Tokenizers split text into tokens and map tokens to vocabulary IDs. IDs are identifiers, not semantic coordinates. Tokenization depends on the tokenizer and text boundaries. Model layers transform token embeddings into context-sensitive representations.",
+          "source_type": "official_documentation",
           "citation_allowed": true,
-          "visibility": "classroom_only",
-          "url": "source://S14",
-          "authority": "historical_incident_evidence_not_current_policy"
+          "visibility": "public",
+          "source_checked_at": "2026-11-22",
+          "access_check": "opened_public_resource",
+          "snapshot_status": "assistant_paraphrase_for_classroom_SME_review",
+          "source_publication_date": null
         }
       ],
       "citations": [],
       "tool_results": [],
       "claims": [],
       "faithfulness_status": "claim_extraction_required",
-      "storyflow_applicable": false,
+      "storyflow_applicable": true,
       "image_artifact": null,
       "ttft_ms": null,
-      "total_latency_ms": 4330.176200000001,
+      "total_latency_ms": 8686.2101,
       "cost_usd": null,
       "usage": {
-        "input_tokens": 389,
+        "input_tokens": 608,
         "input_tokens_details": {
           "cache_write_tokens": 0,
           "cache_write_tokens_details": {
@@ -281,21 +354,21 @@
           },
           "cached_tokens": 0
         },
-        "output_tokens": 244,
+        "output_tokens": 708,
         "output_tokens_details": {
-          "reasoning_tokens": 115
+          "reasoning_tokens": 291
         },
-        "total_tokens": 633
+        "total_tokens": 1316
       },
       "model": "gpt-6-luna",
       "agent_version": "v0",
-      "run_id": "45206752-1bb2-429f-b4bf-8a176a5147b4",
-      "run_started_at": "2026-11-21T21:49:19.560Z",
-      "prompt_hash": "f7202407710e6d4db0253d1712caeecb2e5b192cce258b40269082377d421a5a",
-      "source_snapshot_hash": "78e0b56397fdc754879f5b4eef3f26e40f0cbfd566d00074b902cd420e275f75",
+      "run_id": "6fc712a2-1d22-4f60-9ccf-ba26a7a60b81",
+      "run_started_at": "2026-11-21T22:29:46.169Z",
+      "prompt_hash": "6b0fe04f63c61e16b3d79f7e2c59a5f50467249d0f0616da6085039563f95fc9",
+      "source_snapshot_hash": "f8b154d2725973864cf925a1aa06e8f8442ac884ecfbf66ccb40d807e578e427",
       "reference_criteria": {
-        "expected_response": "Please share the course name and download error through support so the certificate issue can be checked. A download problem was reported, but I do not have a verified cause or fix for your account. [S02]",
-        "required_behaviors": "Acknowledge download issue; collect useful diagnostics; avoid claiming certificate issued or problem fixed."
+        "expected_response": "The tokenizer maps tokens to vocabulary IDs; the embedding layer maps those IDs to vectors. Contextual layers then incorporate surrounding tokens. The word bank can share token IDs across contexts while its contextual representation differs. Ask which tokenizer/model the lesson uses. [Tokenization algorithms](https://huggingface.co/docs/transformers/main/en/tokenizer_summary) [Attention Is All You Need](https://arxiv.org/html/1706.03762v7)",
+        "required_behaviors": "Address the actual concept; distinguish assumptions from facts; explain uncertainty; cite the relevant public resource directly."
       }
     },
     "judged": {
@@ -305,36 +378,94 @@
           "result": {
             "answers": {
               "answer_relevance": {
-                "noul": 0.38
+                "noul": 0.94
               },
               "polite_tone": {
-                "noul": 0.96
+                "noul": 0.99
+              },
+              "storyflow": {
+                "choice": "4",
+                "probabilities": [
+                  {
+                    "value": "0",
+                    "probability": 0
+                  },
+                  {
+                    "value": "1",
+                    "probability": 0
+                  },
+                  {
+                    "value": "2",
+                    "probability": 0
+                  },
+                  {
+                    "value": "3",
+                    "probability": 0.13
+                  },
+                  {
+                    "value": "4",
+                    "probability": 0.87
+                  }
+                ],
+                "confidence": 0.84
               }
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 829,
+              "input_tokens": 1624,
               "input_tokens_details": {
                 "cached_tokens": 0,
-                "cache_write_tokens": 0
+                "cache_write_tokens": 1103,
+                "cache_write_tokens_details": {
+                  "ttl_30m_tokens": 1103,
+                  "ttl_12h_tokens": 0
+                }
               },
               "output_tokens": 0,
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 829
+              "total_tokens": 1624
             },
             "provider": "openai_decisions",
             "raw_answers": [
               {
                 "type": "predicate",
                 "name": "answer_relevance",
-                "probability": 0.38
+                "probability": 0.94
               },
               {
                 "type": "predicate",
                 "name": "polite_tone",
-                "probability": 0.96
+                "probability": 0.99
+              },
+              {
+                "type": "choice",
+                "name": "storyflow",
+                "choice": "4",
+                "probabilities": [
+                  {
+                    "value": "0",
+                    "probability": 0
+                  },
+                  {
+                    "value": "1",
+                    "probability": 0
+                  },
+                  {
+                    "value": "2",
+                    "probability": 0
+                  },
+                  {
+                    "value": "3",
+                    "probability": 0.13
+                  },
+                  {
+                    "value": "4",
+                    "probability": 0.87
+                  }
+                ],
+                "confidence": 0.84
               }
             ]
           }
@@ -345,12 +476,12 @@
           "result": {
             "answers": {
               "context_relevance": {
-                "noul": 0.57
+                "noul": 0.58
               }
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 274,
+              "input_tokens": 439,
               "input_tokens_details": {
                 "cached_tokens": 0,
                 "cache_write_tokens": 0
@@ -359,30 +490,30 @@
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 274
+              "total_tokens": 439
             },
             "provider": "openai_decisions",
             "raw_answers": [
               {
                 "type": "predicate",
                 "name": "context_relevance",
-                "probability": 0.57
+                "probability": 0.58
               }
             ]
           }
         },
         {
           "scope": "context",
-          "source_id": "S03",
+          "source_id": "S06",
           "result": {
             "answers": {
               "context_relevance": {
-                "noul": 0.66
+                "noul": 0.83
               }
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 273,
+              "input_tokens": 428,
               "input_tokens_details": {
                 "cached_tokens": 0,
                 "cache_write_tokens": 0
@@ -391,30 +522,30 @@
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 273
+              "total_tokens": 428
             },
             "provider": "openai_decisions",
             "raw_answers": [
               {
                 "type": "predicate",
                 "name": "context_relevance",
-                "probability": 0.66
+                "probability": 0.83
               }
             ]
           }
         },
         {
           "scope": "context",
-          "source_id": "S14",
+          "source_id": "S05",
           "result": {
             "answers": {
               "context_relevance": {
-                "noul": 0.01
+                "noul": 0.99
               }
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 291,
+              "input_tokens": 421,
               "input_tokens_details": {
                 "cached_tokens": 0,
                 "cache_write_tokens": 0
@@ -423,14 +554,14 @@
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 291
+              "total_tokens": 421
             },
             "provider": "openai_decisions",
             "raw_answers": [
               {
                 "type": "predicate",
                 "name": "context_relevance",
-                "probability": 0.01
+                "probability": 0.99
               }
             ]
           }
@@ -444,57 +575,77 @@
     }
   },
   {
-    "case_id": "G03",
-    "family_id": "G03",
+    "case_id": "T03",
+    "family_id": "F-semantic_search",
     "run": {
-      "query": "My certificate name was customized, but I cannot see the certificate on the website.",
-      "answer": "Sorry you’re having trouble finding your certificate. Please sign in with the account you used for the course, check that your course shows as complete, and look for the certificate in the course dashboard.\n\nIf it still isn’t visible, contact AIEngg support so they can check the customized name and certificate access. Include the course name and the email on your account, and tell them the name you expected on the certificate. **Please don’t share personal details here.**",
+      "query": "Hey, you didn't explain how the queries are converted into vectors and then matched with these documents?",
+      "route": "ai_tutor",
+      "answer": "You’re right—I skipped the key step. **The query and each document chunk are converted into vectors by an embedding model, then the query vector is compared with the stored document vectors.**\n\n### How it works\n\n1. **Split documents into chunks.**  \n   Long documents are usually divided into smaller passages so retrieval can return the relevant section rather than an entire document.\n\n2. **Embed each chunk.**  \n   The embedding model turns a chunk of text into a list of numbers, such as `[0.12, -0.08, ...]`. These numbers represent the text’s meaning in a vector space. The vectors are usually calculated and stored ahead of time.\n\n3. **Embed the query.**  \n   When someone asks a question, the system sends it through a compatible embedding model to produce a query vector.\n\n   Internally, a tokenizer first converts text into token IDs. **Those IDs are not the semantic vectors**; the model’s layers transform them into representations, which are then combined into a vector for the text. [Tokenizer overview](https://huggingface.co/docs/transformers/main/en/tokenizer_summary)\n\n4. **Find nearby document vectors.**  \n   The system compares the query vector with stored chunk vectors using a measure such as cosine similarity or dot product. It returns the nearest chunks—often the top *k*. An index such as Faiss can speed up this search, especially for large collections. [Semantic search](https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html) · [Faiss indexes](https://github.com/facebookresearch/faiss/wiki/Faiss-indexes)\n\n**Example:** If the query is “How do I reset my password?”, a chunk saying “To regain access, choose ‘Forgot password’ on the sign-in page” may rank highly—even though it doesn’t use the exact words “reset my password.”\n\nThe query and document embeddings must be compatible: they’re typically produced by the same model or by encoders designed to map queries and documents into the same space. Similarity finds *related* passages; it doesn’t guarantee that a passage actually answers the question.",
       "retrieved_context": [
         {
           "id": "S03",
-          "source_type": "sanitized_support_report",
-          "observed_at": "2026-10-22",
-          "brand": "AIEngg",
-          "text": "Staff reported that some users with customized certificates could not see their certificates on the website.",
+          "title": "Semantic search",
+          "url": "https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html",
+          "text": "Semantic search embeds documents and queries into a compatible vector space and retrieves nearby document vectors. The query/document encoders and similarity measure must be compatible. Similarity is not proof that a passage answers the question.",
+          "source_type": "official_documentation",
           "citation_allowed": true,
-          "visibility": "classroom_only",
-          "url": "source://S03",
-          "authority": "historical_incident_evidence_not_current_policy"
+          "visibility": "public",
+          "source_checked_at": "2026-11-22",
+          "access_check": "opened_public_resource",
+          "snapshot_status": "assistant_paraphrase_for_classroom_SME_review",
+          "source_publication_date": null
         },
         {
-          "id": "S12",
-          "source_type": "sanitized_support_report",
-          "observed_at": "2026-08-24",
-          "brand": "InterviewReady",
-          "text": "A user was reported as having 100% completion in the AI course but unable to view the certificate. The available thread also discussed certificate visibility on LinkedIn.",
+          "id": "S04",
+          "title": "Faiss indexes",
+          "url": "https://github.com/facebookresearch/faiss/wiki/Faiss-indexes",
+          "text": "Faiss provides exact and approximate vector indexes. Inverted-file indexes group vectors; product quantization compresses vectors into codes. Clustering and quantization can share techniques but serve different retrieval and compression objectives. Index choices trade accuracy, memory and speed.",
+          "source_type": "official_documentation",
           "citation_allowed": true,
-          "visibility": "classroom_only",
-          "url": "source://S12",
-          "authority": "historical_incident_evidence_not_current_policy"
+          "visibility": "public",
+          "source_checked_at": "2026-11-22",
+          "access_check": "opened_public_resource",
+          "snapshot_status": "assistant_paraphrase_for_classroom_SME_review",
+          "source_publication_date": null
         },
         {
-          "id": "S14",
-          "source_type": "sanitized_support_report",
-          "observed_at": "2026-06-19",
-          "brand": "AIEngg",
-          "text": "Support requested a way for learners to access certificates with corrected names and mentioned backend name updates. The report was a request, not proof of a completed update for a new user.",
+          "id": "S05",
+          "title": "Tokenization algorithms",
+          "url": "https://huggingface.co/docs/transformers/main/en/tokenizer_summary",
+          "text": "Tokenizers split text into tokens and map tokens to vocabulary IDs. IDs are identifiers, not semantic coordinates. Tokenization depends on the tokenizer and text boundaries. Model layers transform token embeddings into context-sensitive representations.",
+          "source_type": "official_documentation",
           "citation_allowed": true,
-          "visibility": "classroom_only",
-          "url": "source://S14",
-          "authority": "historical_incident_evidence_not_current_policy"
+          "visibility": "public",
+          "source_checked_at": "2026-11-22",
+          "access_check": "opened_public_resource",
+          "snapshot_status": "assistant_paraphrase_for_classroom_SME_review",
+          "source_publication_date": null
         }
       ],
-      "citations": [],
+      "citations": [
+        {
+          "source_id": "S03",
+          "url": "https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html"
+        },
+        {
+          "source_id": "S04",
+          "url": "https://github.com/facebookresearch/faiss/wiki/Faiss-indexes"
+        },
+        {
+          "source_id": "S05",
+          "url": "https://huggingface.co/docs/transformers/main/en/tokenizer_summary"
+        }
+      ],
       "tool_results": [],
       "claims": [],
       "faithfulness_status": "claim_extraction_required",
-      "storyflow_applicable": false,
+      "storyflow_applicable": true,
       "image_artifact": null,
       "ttft_ms": null,
-      "total_latency_ms": 3564.2574999999997,
+      "total_latency_ms": 6626.993299999998,
       "cost_usd": null,
       "usage": {
-        "input_tokens": 405,
+        "input_tokens": 500,
         "input_tokens_details": {
           "cache_write_tokens": 0,
           "cache_write_tokens_details": {
@@ -503,21 +654,21 @@
           },
           "cached_tokens": 0
         },
-        "output_tokens": 161,
+        "output_tokens": 541,
         "output_tokens_details": {
-          "reasoning_tokens": 61
+          "reasoning_tokens": 95
         },
-        "total_tokens": 566
+        "total_tokens": 1041
       },
       "model": "gpt-6-luna",
       "agent_version": "v0",
-      "run_id": "f34005dd-1793-49e5-b70e-9218f265add5",
-      "run_started_at": "2026-11-21T21:49:26.637Z",
-      "prompt_hash": "f7202407710e6d4db0253d1712caeecb2e5b192cce258b40269082377d421a5a",
-      "source_snapshot_hash": "2420767cd9d5df7a231689a15c867cc52ca1c8a8dda65b9bdaeca43c591cd860",
+      "run_id": "f3b53399-a6b1-40f9-a147-564c3060619e",
+      "run_started_at": "2026-11-21T22:29:57.915Z",
+      "prompt_hash": "6b0fe04f63c61e16b3d79f7e2c59a5f50467249d0f0616da6085039563f95fc9",
+      "source_snapshot_hash": "766816afae4620e0aeda2e20fdc6f88d38a3dab7c02b3b20f61895416414431a",
       "reference_criteria": {
-        "expected_response": "Please ask support to check the customized certificate record and its website visibility. Include the course and correction request reference securely; I cannot confirm that the updated certificate is published yet. [S03]",
-        "required_behaviors": "Distinguish record customization from publication; verify actual account state."
+        "expected_response": "Encode the query and documents with compatible embedding models, then search for nearby document vectors with the index’s similarity metric. Inspect the retrieved passages before generating an answer; a high vector similarity alone does not establish correctness. [Semantic search](https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html)",
+        "required_behaviors": "Address the actual concept; distinguish assumptions from facts; explain uncertainty; cite the relevant public resource directly."
       }
     },
     "judged": {
@@ -527,15 +678,41 @@
           "result": {
             "answers": {
               "answer_relevance": {
-                "noul": 0.44
+                "noul": 0.96
               },
               "polite_tone": {
-                "noul": 0.95
+                "noul": 1
+              },
+              "storyflow": {
+                "choice": "4",
+                "probabilities": [
+                  {
+                    "value": "0",
+                    "probability": 0
+                  },
+                  {
+                    "value": "1",
+                    "probability": 0
+                  },
+                  {
+                    "value": "2",
+                    "probability": 0.01
+                  },
+                  {
+                    "value": "3",
+                    "probability": 0.09
+                  },
+                  {
+                    "value": "4",
+                    "probability": 0.9
+                  }
+                ],
+                "confidence": 0.87
               }
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 802,
+              "input_tokens": 1513,
               "input_tokens_details": {
                 "cached_tokens": 0,
                 "cache_write_tokens": 0
@@ -544,19 +721,47 @@
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 802
+              "total_tokens": 1513
             },
             "provider": "openai_decisions",
             "raw_answers": [
               {
                 "type": "predicate",
                 "name": "answer_relevance",
-                "probability": 0.44
+                "probability": 0.96
               },
               {
                 "type": "predicate",
                 "name": "polite_tone",
-                "probability": 0.95
+                "probability": 1
+              },
+              {
+                "type": "choice",
+                "name": "storyflow",
+                "choice": "4",
+                "probabilities": [
+                  {
+                    "value": "0",
+                    "probability": 0
+                  },
+                  {
+                    "value": "1",
+                    "probability": 0
+                  },
+                  {
+                    "value": "2",
+                    "probability": 0.01
+                  },
+                  {
+                    "value": "3",
+                    "probability": 0.09
+                  },
+                  {
+                    "value": "4",
+                    "probability": 0.9
+                  }
+                ],
+                "confidence": 0.87
               }
             ]
           }
@@ -567,12 +772,12 @@
           "result": {
             "answers": {
               "context_relevance": {
-                "noul": 0.99
+                "noul": 0.97
               }
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 275,
+              "input_tokens": 330,
               "input_tokens_details": {
                 "cached_tokens": 0,
                 "cache_write_tokens": 0
@@ -581,30 +786,30 @@
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 275
+              "total_tokens": 330
             },
             "provider": "openai_decisions",
             "raw_answers": [
               {
                 "type": "predicate",
                 "name": "context_relevance",
-                "probability": 0.99
+                "probability": 0.97
               }
             ]
           }
         },
         {
           "scope": "context",
-          "source_id": "S12",
+          "source_id": "S04",
           "result": {
             "answers": {
               "context_relevance": {
-                "noul": 0.74
+                "noul": 0.17
               }
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 289,
+              "input_tokens": 335,
               "input_tokens_details": {
                 "cached_tokens": 0,
                 "cache_write_tokens": 0
@@ -613,30 +818,30 @@
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 289
+              "total_tokens": 335
             },
             "provider": "openai_decisions",
             "raw_answers": [
               {
                 "type": "predicate",
                 "name": "context_relevance",
-                "probability": 0.74
+                "probability": 0.17
               }
             ]
           }
         },
         {
           "scope": "context",
-          "source_id": "S14",
+          "source_id": "S05",
           "result": {
             "answers": {
               "context_relevance": {
-                "noul": 0.77
+                "noul": 0.54
               }
             },
             "model": "gpt-6-luna",
             "usage": {
-              "input_tokens": 293,
+              "input_tokens": 327,
               "input_tokens_details": {
                 "cached_tokens": 0,
                 "cache_write_tokens": 0
@@ -645,14 +850,14 @@
               "output_tokens_details": {
                 "reasoning_tokens": 0
               },
-              "total_tokens": 293
+              "total_tokens": 327
             },
             "provider": "openai_decisions",
             "raw_answers": [
               {
                 "type": "predicate",
                 "name": "context_relevance",
-                "probability": 0.77
+                "probability": 0.54
               }
             ]
           }

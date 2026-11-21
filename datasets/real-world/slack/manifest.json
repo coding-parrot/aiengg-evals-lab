@@ -1,78 +1,29 @@
 {
-  "status": "ALL_COLLECTED_SLACK_DISCUSSION_NOTIFICATIONS",
+  "scope": "TUTOR_QUERY_CANDIDATES_ONLY",
   "as_of": "2026-11-22",
-  "source": "InterviewReady discussion notifications relayed to Slack",
-  "window": {
-    "start_inclusive": "2024-11-22",
+  "original_collected_discussion_records": 2946,
+  "published_query_candidates": 1153,
+  "excluded_from_active_lab": 1793,
+  "route": "ai_tutor",
+  "selection": "tools/tutor-scope.mjs: tutor primary route, no secondary route, query candidate kind, no known AI author, operational-request exclusion",
+  "label_status": "candidate heuristics plus existing per-record reviews; not SME-approved",
+  "expected_answers_supplied": 0,
+  "source_window": {
+    "start": "2024-11-22",
     "end_exclusive": "2026-11-22"
   },
-  "slack_pages_collected": 31,
-  "slack_events_collected": 2949,
-  "discussion_records": 2946,
-  "excluded_non_discussion_events": {
-    "channel_membership": 2,
-    "webhook_rate_limit_notice": 1
-  },
-  "discussion_records_excluded": 0,
-  "fictional_profiles": 1044,
-  "routes": {
-    "ai_tutor": 2507,
-    "customer_support": 439
-  },
-  "message_kinds": {
-    "query_or_request": 1508,
-    "reply_or_feedback": 648,
-    "acknowledgment": 10,
-    "ai_reply": 779,
-    "adversarial_instruction": 1
-  },
-  "route_review": {
-    "rule_assigned": 2390,
-    "assistant_reviewed": 556
-  },
-  "message_kind_review": {
-    "heuristic": 2135,
-    "assistant_reviewed": 32,
-    "source_ai_label": 779
-  },
   "first_notification_at": "2024-11-22T08:10:42.130369Z",
-  "last_notification_at": "2026-11-21T07:06:58.564969Z",
-  "timestamps": {
-    "kind": "slack_notification_time",
-    "timezone": "UTC",
-    "fractional_digits": 6,
-    "source_value_preserved": true,
-    "database_creation_time_verified": false
-  },
-  "visibility": "unknown_for_all_records",
-  "thread_linkage": "not_available_in_collected_feed",
-  "duplicate_groups": 2787,
-  "duplicate_group_definition": "same_normalized_redacted_text_not_confirmed_thread",
-  "profile_grouping": "source_display_label_not_verified_account",
-  "privacy_processing": [
-    "source_author_and_mention_redaction",
-    "contact_url_identifier_credential_pattern_scan",
-    "targeted_review_for_signatures_and_identifying_context",
-    "fictional_profile_replacement"
-  ],
-  "routing_status": "assistant_reviewed_and_rule_assigned_per_record_not_SME",
-  "sme_approved_rows": 0,
-  "expected_answers_supplied": 0,
+  "last_notification_at": "2026-11-11T07:14:22.924649Z",
+  "timestamp_kind": "slack_notification_time",
+  "timestamp_precision": "exact UTC strings with six fractional digits",
+  "hidden_status": "unknown",
+  "database_import": "pending_private_connection",
   "coverage_limitations": [
-    "All collected discussion notifications are included; this is not proof of database completeness.",
-    "A webhook rate-limit notice was observed.",
-    "Current hidden state and database parent relationships await the database import.",
-    "Human query/reply/feedback distinctions are heuristic unless marked assistant_reviewed."
+    "This is the tutor subset of the collected Slack feed, not proof of complete database coverage.",
+    "A webhook rate-limit notice existed in the original collection.",
+    "Question/reply and intent classification remain heuristic; review candidates before seed approval.",
+    "Original source URLs were redacted; educational source links are independently curated, not recovered lecture links."
   ],
-  "database_import_status": "PENDING_CONNECTION_FILE",
-  "hashes": {
-    "discussions.all.json": "9af77d84566d8a99011a3312a0ba4edab8d65193291bd733636abf83264e57d8",
-    "discussions.all.jsonl": "36f51d53aa536c023c103a7e71c216046672db9ca9b9fd339f865834193c1aae",
-    "discussions.all.csv": "c4ab4c53138f15ce4bb089af16b972e2076fb09d4602e36589faeaa3a5595c25",
-    "customer-support.jsonl": "953cb82d73910880b9d0abcb0df14da29c7176d41bfc7a5629bc4844e318ee46",
-    "customer-support.csv": "f4fdaa6ca6ef6853f466c2f6bae2ab463bd168c9ea4a88a91bbc2dbcf67f34b7",
-    "ai-tutor.jsonl": "1b7c3e336a223e2df4b3fdd39edc0385fa0344b1fbf77fbf48e5c19eb7bb2914",
-    "ai-tutor.csv": "f2d58bc670929416e6c3b953a998585c905c7a2ac609f8ae5d56a0d7cbd9dd73",
-    "fictional-profiles.all.json": "17bb8b964dc63008281cbc6231a4163fb4fe89bd651aa6e7ca7dcfc8cc96b65a"
-  }
+  "dataset_sha256": "42c8ef530eff44f6f2214d46c24446c0e6c397f875840beb976a2284984a422b",
+  "teaching_unit": "query"
 }

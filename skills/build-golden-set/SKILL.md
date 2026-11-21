@@ -1,47 +1,42 @@
 ---
 name: build-golden-set
-description: Create an SME-reviewed customer-support golden set from SME-written queries or optional Slack, GitHub and custom data sources, with reviewable expected responses.
+description: Guide an SME through creating a query-first tutor golden set with checked educational resources and reviewed expected answers.
 ---
 
-# Build the golden set
+# SME creates tutor evals
 
-Read `../../references/lab-contract.md` and `../../references/eval-spec.md`. This skill finishes checkpoint 1 and shows its artifacts. It does not proceed to calibration or synthesize customer history.
+Read ../../references/lab-contract.md and ../../references/eval-spec.md. Complete checkpoint 1 only. The tutor v0 already exists; do not change it or add runtime guardrails.
 
 ## Intake
 
-Use an existing `intake.json` or `../../config/defaults.json`. Ask only unanswered items; explicit selections persist.
+Use intake.json or ../../config/defaults.json. Ask only unanswered choices:
+1. How many seed queries? Default 20.
+2. Which query topics/goals matter? Concept explanation, design comparison, code reasoning, worked example, misconception correction, diagram interpretation. Defaults are saved.
+3. Query inputs: bundled sanitized tutor questions by default; selected Slack/GitHub or read-only database exports are optional.
+4. Educational evidence: papers, official documentation or lesson transcripts with direct resource links.
+5. Per-query evals: relevance, context relevance, faithfulness, direct citations, tone, sentence limit, latency/cost, applicable storyflow/image quality. Retention stays production-only.
+6. Custom tutor query, expected behavior, resource URL and optional severity.
 
-1. How many seed queries? Default **20**.
-2. Typical user profiles (multi-select): prospective learner, enrolled learner, working engineer, interview candidate, returning/lapsed learner, team administrator, custom. Default enrolled learner + working engineer + interview candidate.
-3. Typical goals (multi-select): recover course access, solve payment/invoice problems, join classes, find recordings, obtain/correct certificates, choose a course, understand a concept, plan learning, resolve a technical issue, reach a human, custom. Default the first five + technical issue + human support.
-4. Sources: Slack channels, GitHub repos/issues/discussions, custom read-only query/export. Default connected AIEngg/InterviewReady Slack support reports and selected GitHub support repos. Discover scopes before asking for what is already connected.
-5. Business outcomes to monitor in production: retention (selected for this lab); suggest repeat contact, CSAT and verified resolution as optional additions. Keep these outside per-query evals. Use the already selected quality/latency/cost metrics in the eval spec.
-6. Custom cases: accept query, profile, goal, expected behavior and severity. A source is optional for support queries. Label SME-created cases separately from real customer history; do not block intake or approval because a support query has no source.
+Do not ask for user profiles, personas or demographics. No profile-based coverage or synthetic variants. Collect fields in chat; intake.html is optional.
 
-Provide the local intake form or equivalent fields. Do not force defaults that the SME changed.
+## Select queries
 
-## Source collection and selection
+Read ../../datasets/real-world/README.md and use ../../datasets/real-world/slack/ai-tutor.json. Select query candidates, preserving sanitized wording, stable record ID and exact original timestamp. Review heuristic labels, missing context and duplicates. Exclude operational requests and non-learning feedback. This lab has one tutor route.
 
-Support queries may be written directly by the SME without a Slack message, GitHub issue, document, URL or source record. The SME can build the entire support golden set this way. Source collection is optional for this route; use connected or packaged customer history when selected. For unsourced SME-created queries, use `query_provenance=SME_created`, `source_type=none`, blank/null `source_ref` and `source_observed_at`, and blank/null `recency_weight`. Keep any answer-evidence IDs separately in `source_ids`, or leave that list empty when none are supplied. Do not invent provenance, customer timestamps or recency weights. Source absence alone is not a reason to reject a support seed or demand a connector. Only tutor queries require a source. For tutor cases, curate a well-formed HTTP(S) link that opens the cited paper, lesson/transcript or other resource directly; verify its content and learner access. Do not substitute a `source://` ID, search-result URL or placeholder. See the tutor-link contract in `../../references/eval-spec.md`. Define this as an evaluation requirement during the lesson; do not add the guardrail to packaged v0.
+The supplied ../../samples/golden-set.draft.json contains 20 real tutor questions with draft references. It is an example to curate, not an approved answer key. Never promote previous AI or peer replies to SME ground truth.
 
-For the expanded support + tutor lab, read `../../datasets/real-world/README.md` and use `../../datasets/real-world/slack/discussions.all.json` or the reviewed output of `../import-discussions/SKILL.md`. The 40-row sample is only an optional preview. Preserve original discussion wording, exact timestamps, timestamp meaning, fictional-profile status and unknown visibility. Select 20 seeds across the requested routes from the full corpus, rather than limiting ingestion to 20. Start with `query_or_request` candidates; inspect the heuristic message-kind and route labels before accepting them. Exclude known AI replies from learner queries and never use them as SME references. Add lesson transcripts/papers as evidence for tutor questions and obtain SME-written references; null expected answers are not labels. Keep known threads and repost groups together in splits; Slack parent relationships are unavailable, so inspect suspected related cases before claiming family independence. Report support and tutor coverage separately, and retain the original support-only lesson as a separately versioned benchmark.
+Recent historical questions get priority: w=2^(-age_days/180), with an explicit as-of date. Balance topic, query intent, ambiguity, evidence conditions and important misconceptions. Record curated selection rationale; do not claim random selection probabilities. SME-created questions have an authored date, not an invented customer timestamp.
 
-For the shared classroom source choice, use `../../samples/golden-set.draft.json` and `../../samples/sanitized-source-cards.json`; preserve their draft status, curate against the intake and produce the review artifacts without requiring company access. For selected live sources, use available MCP tools first. Search the last two calendar years relative to an explicit as-of date. Query Slack support content, read useful threads, and distinguish actual customer messages, staff reports, policy discussions and internal tests. Search GitHub issues/discussions within the relevant connected repositories; a feature request or code snippet is not a customer conversation. Preserve pagination and search/filter metadata. Do not equate no results from one repo with no issues anywhere.
+## Source material and SME answers
 
-For custom sources, discover schema or require a mapped redacted export. Do not assume a database table exists. Normalize to ID, thread/family, timestamp, product, query, source URL and evidence. Remove names, emails, phones, account IDs, payment references and private attachment links from student-facing text. Preserve sensitive source locators in the instructor register.
+Keep query provenance separate from educational evidence. Each approved seed needs a relevant source and direct well-formed HTTP(S) resource URL. Open the exact resource to check relevance and access; record date and sign-in requirements. Search-results pages, generic homepages, source:// placeholders and fabricated URLs are not valid citations.
 
-Deduplicate messages and related incidents before selection. Recent cases get priority using a default 180-day half-life, `w=2^(-age_days/180)`. Reserve coverage for important goals, both products, ambiguous requests, missing/conflicting sources and high-impact failures. Sample without replacement within the chosen strata using a recorded seed; keep the rationale for curated inclusions. If mandatory cells exceed 20, show the coverage tradeoff. Never claim selection probabilities for a hand-curated set.
+Original lesson links may have been removed for privacy. A relevant public resource may be independently curated; do not claim it is the original lecture. If a question depends on an unseen diagram, obtain it or make clarification part of the reference.
 
-Prefer customer wording when available. If the available evidence is a staff report, reconstruct a user question and mark `query_provenance=reconstructed_from_staff_report`. Keep an evidence summary, original timestamp and source reference. Do not backdate synthetic text or claim that a reconstructed sentence was sent by a customer.
+Prepare golden-set.draft.csv with query, timestamp, source links, expected_response, required/forbidden behavior, review fields and notes. Assistant-written responses remain draft_unreviewed. The SME writes or approves references against the actual evidence and records reviewer/date. Keep pending and rejected cases separately.
 
-## Reference answers
+Define the citation requirement here as an eval criterion. Do not enforce it in v0. Measure the saved starting tutor later; add enforcement in v1.
 
-Create `golden-set.draft.csv`. The assistant may draft expected answers and required/forbidden behavior, but those are not SME-authored or SME-approved. Provide editable `sme_status`, `sme_reviewer`, `sme_reviewed_at` and notes fields. The SME can replace the draft answer with their own response.
+## Artifacts
 
-Version approved knowledge separately from support logs. Historical fixes and proposed policies require current-source confirmation. Preserve historical policy only for a clearly time-scoped scenario. Never copy operational gossip, passwords or internal URLs into the intended customer response.
-
-The instructor reviews the file, writes/approves the expected responses and names relevant sources when available. Support queries without a source can be approved. Promote reviewed rows into `golden-set.csv`; preserve all declined or pending rows separately. For teaching before approval, display a conspicuous draft label and do not claim to have obtained SME judgment.
-
-## Artifacts and completion
-
-Write source register JSON for sources actually used (an empty register is valid for an entirely SME-created support set); golden-set CSV; coverage CSV by product, intent, profile, date bucket and provenance; and a manifest with window, selection method, recency rule, hashes and gaps. Assign family splits before later stages. Preserve lineage for sourced rows; support rows without sources need honest authorship and review status, not invented lineage. Report undated SME-created cases separately from historical recency buckets. Show three diverse rows and the coverage result. Stop at checkpoint 1.
+Write golden-set CSV, source-register JSON, coverage CSV by topic/query intent/date/evidence condition, and a manifest with selection rules, recency, hashes and review state. Assign related families before calibration/validation splits. Set route=ai_tutor. Show three diverse query/source/answer examples and coverage, then stop.

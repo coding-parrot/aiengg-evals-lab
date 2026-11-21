@@ -18,15 +18,15 @@ Natural-language trigger:
 
 POST JSON: `query`, `brand`, `scenario.context_mode` and optional `scenario.documents` for classroom evidence fixtures. `snapshot` uses the packaged lexical retriever over `samples/sanitized-source-cards.json`; `empty` supplies no retrieved evidence; `conflicting_fixture` uses the deliberately contradictory classroom documents. The shipped v0 retriever never reads golden answer files. Change retrieval only in a separately versioned whole-agent experiment. Fixture overrides are available only in classroom/staging mode, not public production input.
 
-The evaluator also needs the trusted dataset `route` (`ai_tutor` or `customer_support`); keep it outside the bot input. Citation presence is required only for tutor responses, with well-formed direct resource links. Packaged v0 has no runtime guardrail; add it later in v1.
+The evaluator also needs the trusted dataset `route` (`ai_tutor` only); keep it outside the bot input. Citation presence is required for tutor responses, with well-formed direct resource links. Packaged v0 has no runtime guardrail; add it later in v1.
 
 Return JSON:
 
 ```json
 {
-  "answer": "The response with a visible source marker. [S01]",
-  "citations": [{"source_id": "S01", "url": "source://S01"}],
-  "retrieved_context": [{"id": "S01", "text": "Retrieved evidence", "url": "source://S01", "citation_allowed": true}],
+  "answer": "RAG uses retrieved information during generation. [RAG paper](https://arxiv.org/abs/2005.11401)",
+  "citations": [{"source_id": "S01", "url": "https://arxiv.org/abs/2005.11401"}],
+  "retrieved_context": [{"id": "S01", "text": "Retrieved evidence", "url": "https://arxiv.org/abs/2005.11401", "citation_allowed": true}],
   "tool_results": [],
   "claims": [{"id": "claim-1", "text": "A single factual claim actually present in the answer", "source_ids": ["S01"]}],
   "storyflow_applicable": false,

@@ -8,14 +8,17 @@
   "entrypoint": "tools/cohort-server.mjs",
   "ui": "cohort.html",
   "frozen_inputs": {
-    "prompts/support-starting-system.txt": "f7202407710e6d4db0253d1712caeecb2e5b192cce258b40269082377d421a5a",
-    "samples/sanitized-source-cards.json": "173927a5cbac31ccdd36ef27908789128dab7637718238db4415e880c9dd058a"
+    "prompts/tutor-starting-system.txt": "6b0fe04f63c61e16b3d79f7e2c59a5f50467249d0f0616da6085039563f95fc9",
+    "samples/sanitized-source-cards.json": "0a86880f5ae5f8cc1f32aa9cc0315cff73c319aee1f40c96efa2f5ba86f1d7df"
   },
-  "implementation_sha256": "62d36e0f48ec1b4a19e8563bfe56c71b4baec7adb31ca6e90395d692cdfc973c",
+  "implementation_sha256": "1aec9bef12de187e9baede84beddfc9907edac15acf920b5c93b641da17b76de",
   "model_version_note": "Record returned model IDs for each run; configured aliases alone do not prove snapshot pinning.",
-  "live_execution_status": "LIVE_THREE_CASE_DRAFT_SMOKE_VERIFIED",
+  "live_execution_status": "LIVE_TUTOR_THREE_CASE_DRAFT_SMOKE_VERIFIED",
   "initial_eval_status": "UNMEASURED",
   "hash_normalization": "UTF-8 text with CRLF normalized to LF",
   "live_service": "https://aiengg-evals-lab.gkcs.chatgpt.site",
-  "live_smoke": "samples/deployment-smoke/manifest.json"
+  "live_smoke": "samples/deployment-smoke/manifest.json",
+  "lab_scope": "tutor_only",
+  "baseline_id": "aiengg-tutor-v0-2026-11-22",
+  "scope_change_note": "New tutor baseline; previous domain results are not comparable."
 }

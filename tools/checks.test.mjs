@@ -10,9 +10,9 @@ test('valid rendered citation; missing, forged and hidden citations fail',()=>{
  for(const change of [{answer:'No source.'},{citations:[]},{citations:[{source_id:'S99'}]},{retrieved_context:[{id:'S01',citation_allowed:false}]}])assert.equal(checkResponse({...response,...change}).citation_validity.pass,false);
 });
 
-test('only tutor requires citations; direct resource links must match approved evidence',()=>{
- assert.equal(checkResponse({answer:'Please describe the error.',route:'customer_support'}).citation_validity.status,'not_applicable');
- assert.equal(checkResponse({answer:'Hello'}).citation_validity.status,'route_required');
+test('tutor citations require direct resource links matching approved evidence',()=>{
+ assert.equal(checkResponse({answer:'Explain vectors.',route:'unrecognized'}).citation_validity.status,'route_required');
+ assert.equal(checkResponse({answer:'Hello'}).citation_validity.pass,false);
  for(const url of ['source://S01','javascript:alert(1)','https://example.invalid/paper','https://user:password@arxiv.org/paper','https://arxiv.org/bad link','https://arxiv.org/%ZZ']){
   assert.equal(checkResponse({...response,answer:`Read [paper](${url}).`,citations:[{source_id:'S01',url}],retrieved_context:[{id:'S01',url,citation_allowed:true}]}).citation_validity.pass,false);
  }

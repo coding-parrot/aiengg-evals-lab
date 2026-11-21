@@ -1,16 +1,16 @@
-# Database import and the two agent routes
+# Read-only tutor-query import
 
-All 2,946 collected Slack discussion notifications are already published in `datasets/real-world/slack/`, with fictional profiles, exact UTC notification timestamps and support/tutor partitions. See the [dataset guide](../datasets/real-world/README.md). The database step below adds hidden-state coverage and source relationships later; it is not needed to use the shared Slack dataset.
+The active tutor dataset contains 1,153 query candidates with exact UTC timestamps. It has no profile/persona columns. Hidden database discussions can be added after the private connection is supplied.
 
 The database connection is **pending**. Copy `config/database.connection.example.json` to `config/database.connection.local.json` locally, or give your coding assistant the location of an existing connection file. Keep its password in the named environment variable or your existing secret provider. The local file and `private-data/` are gitignored. Do not paste secrets into chat or commit them.
 
 Trigger:
 
-> Read skills/import-discussions/SKILL.md. Use my local database connection file. Discover the schema and export all discussions and replies, including hidden records, through a read-only connection. Keep raw data private. Prepare fictional profiles and scrub all PII. Review routing into customer support and AI tutor, then show coverage and the sanitized release candidate. Do not modify production discussions or run model evaluations yet.
+> Read skills/import-discussions/SKILL.md. Use my local database connection file. Discover the schema and export all discussions and replies, including hidden records, through a read-only connection. Keep raw data private. Scrub PII, exclude operational requests and non-query replies, strip author/profile fields, and show tutor-query coverage and the sanitized release candidate. Do not modify production discussions or run model evaluations yet.
 
 ## What is implemented
 
-`tools/prepare-discussions.mjs` is an executable normalizer, initial scrubber, fictional-profile generator and review-candidate builder. It consumes a canonical JSON export and writes only inside `private-data/`. It preserves every input row and rejects duplicate IDs, missing parents and invalid visibility rather than silently dropping them. Routing is a preliminary suggestion, not a semantic judge.
+`tools/prepare-discussions.mjs` is an executable normalizer, initial scrubber, private identity scrubber and review-candidate builder. It consumes a canonical JSON export and writes only inside `private-data/`. It preserves every input row and rejects duplicate IDs, missing parents and invalid visibility rather than silently dropping them. Routing is a preliminary suggestion, not a semantic judge.
 
 The coding assistant connects using the selected database's existing client/driver, discovers the schema, and builds the read-only export query after the connection file arrives. The repository does not guess your database type, credentials or tables. Database connection, database source-count reconciliation, review and release of database-only records remain pending. Reconcile the export against the existing Slack corpus privately before appending records; do not count both the database row and its Slack notification as separate incidents.
 
@@ -43,17 +43,9 @@ For previously collected Slack notifications, `tools/build-slack-dataset.mjs` bu
 
 The helper produces `private-data/discussion-import/candidates.json`, `profiles.json`, `identity-map.private.json` and `manifest.json`. Review all content, routes and thread/group relationships before copying any candidate into `datasets/`. Pattern-based redaction alone does not establish anonymity. Do not turn `privacy_review=pending` into approval without inspecting the text. Keep quarantined content private and report its count.
 
-Use fictional names and `example.invalid` contact addresses; do not invent plausible real phone numbers. Profile attributes are fictional teaching aids, never recovered demographics. Preserve technical meaning while removing contact details, private URLs, payment/account identifiers, authorship clues and identifying contextual details.
+Remove author/profile/persona fields from public output. Internal identity mapping is for privacy review only. Preserve technical meaning while removing contact details, private URLs, payment/account identifiers, authorship clues and identifying contextual details.
 
-## Support and tutor behavior
 
-Use `prompts/discussion-router.txt` to route new learner queries, and score routing separately against reviewed route labels. Route intent without access to the expected route, hidden flag, expected answer, or reviewer notes. Retain mixed cases with an explicit secondary route.
+## Tutor-only release
 
-- Customer support uses `prompts/support-starting-system.txt` and verified support evidence/tools.
-- AI tutor uses `prompts/tutor-starting-system.txt` and approved lesson transcripts, research papers and retrieval results. Existing discussion replies and AI answers are not ground truth.
-- A complaint about a missing video belongs to support; a question about video-streaming architecture belongs to the tutor.
-- A factual course error can require a tutor explanation plus a support/content-correction handoff.
-
-Both routes use the existing citation, faithfulness, relevance, polite-tone, sentence-limit, latency and cost metrics. Tutor references and rubrics must be written or approved by an SME. Context-dependent questions need their lesson context; without it, the expected behavior can be asking a useful clarification. Storyflow/image scoring remains conditional. Monitor retention only in production.
-
-Keep the original support-only v0/v1 comparison unchanged. Establish a separate frozen baseline for the expanded router + tutor application; compare each route and routing accuracy, not just one blended number.
+The private importer retains all rows for reconciliation; only reviewed tutor questions enter the public dataset. Use tools/tutor-scope.mjs to select candidates, then inspect actual learning intent and remove identifying context. Exclude operational and mixed-intent problems. Source links belong to educational evidence and must be checked before approving seed references. Do not build a router or a second agent for this lab.

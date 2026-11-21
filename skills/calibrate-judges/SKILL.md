@@ -1,17 +1,17 @@
 ---
 name: calibrate-judges
-description: Align focused OpenAI Decisions text judges (or selected Jev/Laya alternatives) and optional vision judges with SME ratings of actual support-bot outputs, using family-separated calibration and validation.
+description: Align focused OpenAI Decisions text judges (or selected Jev/Laya alternatives) and optional vision judges with SME ratings of actual tutor outputs, using family-separated calibration and validation.
 ---
 
 # Calibrate the judges
 
 Read `../../references/lab-contract.md`, `../../references/eval-spec.md` and `../../references/langsmith-runbook.md`. Finish checkpoint 2 only.
 
-Reference answers alone do not calibrate a judge. Run v0 on the approved seed queries and collect actual answers and retrieved context. Create plausible poor and borderline answers as calibration probes, labeled as generated probes. Include fluent unsupported promises, irrelevant but faithful answers, relevant answers with irrelevant retrieved chunks, bad citations, subtle rudeness, long answers and well-structured wrong answers. Include good paraphrases that differ from the reference wording.
+Reference answers alone do not calibrate a judge. Run v0 on the approved seed queries and collect actual answers and retrieved context. Create plausible poor and borderline answers as calibration probes, labeled as generated probes. Include fluent unsupported technical claims, irrelevant but faithful answers, relevant answers with irrelevant retrieved chunks, bad citations, subtle rudeness, long answers and well-structured wrong answers. Include good paraphrases that differ from the reference wording.
 
 Create a blind SME rating sheet in long form: one candidate × metric per row. Hide the bot/model identity and current judge score from the rater. Label provenance separately. Ask the SME to rate each binary dimension and applicable storyflow/image dimension using the anchored rubric. Do not fill human label cells with AI scores. Use a second rater/adjudication on ambiguous cases where available.
 
-Split by original conversation/incident family, about 60/40 for this small lab. Keep candidates and paraphrases for the same family together. The golden set has only 20 queries; 60 candidate answers do not become 60 independent customer situations.
+Split by original conversation/incident family, about 60/40 for this small lab. Keep candidates and paraphrases for the same family together. The golden set has only 20 queries; 60 candidate answers do not become 60 independent query families.
 
 Default to OpenAI Decisions through the shared cohort gateway or tools/judge.mjs, using the instructor OpenAI key. Read ../../references/cohort-hosting.md. Treat it as a typed decision judge; do not claim encoder-only architecture. Jev is an optional provider switch, not required. Record configured and returned model IDs; if an alias cannot be pinned, disclose this reproducibility limit and do not silently mix changed resolved versions. Laya alternative: use an explicitly specified encoder checkpoint and pinned revision, not an unqualified package default. Record selected model, version/revision, runtime and context limit. Long evidence must be split into atomic claim/chunk evaluations; record truncation and fail the evaluation if necessary evidence was lost. Never treat truncated evidence as complete.
 

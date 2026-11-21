@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AIEngg cohort lab</title>
 <style>body{font:17px/1.55 system-ui,sans-serif;max-width:900px;margin:40px auto;padding:0 20px;background:#f5f7fa;color:#172335}h1{line-height:1.2}textarea{box-sizing:border-box;width:100%;padding:14px;border:1px solid #a6b3c4;border-radius:8px;font:inherit}button{padding:10px 16px;margin:10px 8px 10px 0;border:0;border-radius:7px;background:#164cba;color:white;font:inherit;cursor:pointer}button:disabled{opacity:.5;cursor:default}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;padding:20px;border-radius:8px}small{color:#485972}.status{padding:12px;background:#e5edf9;border-radius:8px}a{color:#164cba}</style>
-<h1>AIEngg evaluation lab</h1><p>Try the starting support bot, inspect its sources, then grade an actual answer. Provider credentials stay with your instructor.</p>
+<h1>AIEngg evaluation lab</h1><p>Try the starting AI tutor, inspect its sources, then grade an actual answer. Provider credentials stay with your instructor.</p>
 <p id="status" class="status" role="status">Checking classroom access…</p>
 <form id="access"><label for="student-key">Shared student API key</label><input id="student-key" type="password" autocomplete="off" required style="width:100%;box-sizing:border-box;padding:12px;font:inherit"><button type="submit">Open the lab</button><small>Use the same lab key shared with everyone. No OpenAI key, account or individual invite is needed.</small></form>
-<label for="query">Customer question</label><textarea id="query" rows="3">I paid for the course but still cannot access the lessons. Can you help?</textarea>
+<label for="query">Learner question</label><textarea id="query" rows="3">What is RAG, and how does retrieval help an LLM answer?</textarea>
 <button id="ask" disabled>Get starting bot answer</button><button id="judge" disabled>Judge this answer</button><button id="trace" disabled>Save trace</button><button id="connect" disabled>Connect my IDE</button>
-<p><small>The starting system prompt is fixed. Sources are historical classroom evidence. Judge results are uncalibrated until the SME/calibration checkpoint. No benchmark improvement is assumed.</small></p>
+<p><small>The starting system prompt is fixed. Sources are checked educational resources with short classroom snapshots. Judge results are uncalibrated until the SME/calibration checkpoint. No benchmark improvement is assumed.</small></p>
 <h2>Answer</h2><pre id="answer">No model calls yet.</pre><details><summary>Retrieved context and measurements</summary><pre id="context">No results yet.</pre></details>
 <h2>Judge output</h2><pre id="scores">Run an answer, then trigger judging.</pre>
 <script>

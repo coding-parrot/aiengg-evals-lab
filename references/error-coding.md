@@ -10,7 +10,7 @@ Use the same trigger later with selected LangSmith traces, through available int
 
 | Code | Definition / boundary |
 |---|---|
-| `routing.wrong_route` | Support request sent to tutor or vice versa; mixed requests need explicit handling |
+| `answer.wrong_concept` | Tutor explains a different concept from the query |
 | `retrieval.irrelevant_context` | Retrieved context does not address the request |
 | `retrieval.missing_evidence` | Necessary evidence absent; distinguish unavailable source from retrieval failure |
 | `answer.irrelevant_or_incomplete` | Answer misses the actual request or a required part |
@@ -18,7 +18,7 @@ Use the same trigger later with selected LangSmith traces, through available int
 | `citation.missing` | Required visible citation absent |
 | `citation.invalid_or_unsupported` | Citation invalid or does not support the associated claim |
 | `tool.incorrect_or_unconfirmed_action` | Wrong tool/arguments/order, or action claimed without success evidence |
-| `policy.privacy_or_escalation` | Privacy exposure, policy violation or required escalation missed |
+| `privacy.exposure` | Private data exposed in a learning answer |
 | `style.impolite` | Tone violates the polite-response rubric |
 | `style.over_20_sentences` | Deterministic sentence check exceeds the limit |
 | `storyflow.poor_structure` | Applicable storyflow rubric fails its agreed threshold |

@@ -6,8 +6,8 @@ Students already know how to build agents and RAG systems. Today's question is: 
 
 | Time | Instructor action | What students should notice |
 |---|---|---|
-| 0–10 min | Open the packaged v0 bot using the public URL and shared student API key. Try three easy questions. Ask the class to vote whether it is ready. | Fluency and three successful examples are weak evidence. |
-| 10–25 min | Trigger golden-set creation; open the intake form and source-linked CSV. SME edits two references live. | The test set encodes user goals and business-specific expectations, not generic chatbot quality. |
+| 0–10 min | Run the packaged tutor v0 from the IDE using the shared student key. Try three easy questions. Ask the class to vote whether it is ready. | Fluency and three successful examples are weak evidence. |
+| 10–25 min | Trigger golden-set creation; collect query topics in chat and inspect the source-linked CSV. SME edits two references live. | The test set encodes user goals and business-specific expectations, not generic chatbot quality. |
 | 25–45 min | Run seed queries; rate good, bad and borderline answers; trigger judge calibration. Open disagreements. | Judges need evaluation too. Faithful-but-irrelevant, polite-but-wrong and long-but-impressive are different failures. |
 | 45–60 min | Trigger 200 synthetic variants. Filter by parent and transformation; inspect a changed-evidence case. | More rows improve coverage only when transformations are meaningful. Changed scenarios may change correct behavior. |
 | 60–75 min | Trigger the frozen 220-case baseline. Show quality vectors, cost, latency and failed traces. | A score becomes useful when it identifies a controllable failure. |
@@ -17,11 +17,11 @@ Students already know how to build agents and RAG systems. Today's question is: 
 
 ## Concrete reveal sequence using the sourced draft
 
-1. **Invoice mismatch:** old purchase, unexpected currency/date. A confident bot says the user was charged again. The reference asks for verified payment history and avoids inferring a new charge from an invoice display defect.
-2. **Course redirect:** a system-design learner lands in LLD. A historic Slack promise said 24 hours; the eventual fix was reported later. A bot must not recycle that incident ETA as today's SLA.
-3. **Playback on Wi-Fi versus hotspot:** the diagnostic path depends on OS and network. Generic Windows steps are irrelevant for a Mac user; faithful quotation of an old fix can still be the wrong answer.
-4. **Citations:** insert a plausible-looking citation to an unrelated retrieved source. The code check may accept the known ID; the semantic support judge must reject the claim-source relationship.
-5. **Length and style:** compare a polite 21-sentence answer with a useful 5-sentence answer. Tone and verbosity are separate checks; storyflow cannot erase the length failure.
+1. **RAG:** an answer is fluent but does not distinguish retrieval from generation.
+2. **Token IDs and embeddings:** a confident explanation treats vocabulary IDs as semantic coordinates.
+3. **O(1) lookup and RAM:** a fast operation is confused with unlimited storage capacity.
+4. **Citations:** a correct-looking source marker is not a clickable direct resource; a valid link can still fail semantic support.
+5. **Style:** contrast a polite 21-sentence explanation with a clear, grounded short explanation.
 
 Do not script a fabricated score improvement. If v0 does well, introduce a labeled controlled regression: remove a relevant retrieval source, substitute a stale version, drop rendered citations, or suppress a tool error. Run it as `v0-regression-demo`, not as an unnoticed change to the baseline. This shows why evals detect a real change even when the initial bot is strong.
 
@@ -33,7 +33,7 @@ Before class, approve the 20 seeds and inspect changed-scenario variants. Pre-ru
 
 ## Optional 10-minute storyflow/image exercise
 
-Use a separate extension query: “Explain how retrieval, generation and evaluation fit together, and create a labeled diagram.” Supply an instructor-approved source card. Score the explanation using the 0–4 storyflow anchors. Compare a correct diagram with one containing a reversed edge and tiny labels. Have the SME and a vision judge score actual images. These cases demonstrate applicability and stay outside the frozen 220 support cases.
+Use a separate extension query: “Explain how retrieval, generation and evaluation fit together, and create a labeled diagram.” Supply an instructor-approved source card. Score the explanation using the 0–4 storyflow anchors. Compare a correct diagram with one containing a reversed edge and tiny labels. Have the SME and a vision judge score actual images. These cases demonstrate applicability and stay outside the frozen 220 tutor cases.
 
 ## Questions for the class
 

@@ -6,6 +6,8 @@ Read `START-HERE.md` and follow the user's current stage. The v0 bot is already 
 
 Use the skills by reading their `SKILL.md` files directly. Do not assume they are installed globally or that an IDE supports a particular slash command. Explicit file mentions are the portable entry point.
 
-Keep the learner-facing checkpoint boundaries. Preserve data provenance and draft/SME status. Never present sample rows as exact customer quotes, assistant-drafted references as SME labels, raw judge probabilities as validated scores, or prepared monitoring configuration as an installed alert.
+Keep the learner-facing checkpoint boundaries. Preserve data provenance and draft/SME status. Never present sample rows as exact learner quotes, assistant-drafted references as SME labels, raw judge probabilities as validated scores, or prepared monitoring configuration as an installed alert.
 
 Use `references/tool-contract.md` for the included runnable helpers. If a required model connection is missing, finish the current stage's local artifacts and identify the exact connection still needed. Do not fabricate an execution result.
+
+This lab is tutor-only and query-first. Do not request profiles, personas or demographics, route operational problems, or resurrect earlier domain datasets. Select questions, preserve timestamps, check educational source links, collect SME expected answers and run the requested eval stage. The current v0 is a new tutor baseline; old domain scores are not comparable.
