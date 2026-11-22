@@ -4,7 +4,7 @@
 
 Packaged AI tutor v0; one tutor route; no profile/persona workflow. The unit is query → evidence → expected answer → actual answer → evaluation.
 
-20 seed questions plus 200 additional variants. Prioritize recent real questions using a configurable 180-day half-life. Query topics include AI engineering, system design and programming. Sources include checked papers, official documentation and lesson transcripts with direct resource links.
+Default: 20 seed questions plus 200 additional variants. Ask the user for generation settings and wait for their answers; their confirmed counts and scope govern the run. Save golden-set and synthetic intake separately. Configuration files are suggested defaults, not user answers. Prioritize recent real questions using a configurable 180-day half-life. Query topics include AI engineering, system design and programming. Sources include checked papers, official documentation and lesson transcripts with direct resource links.
 
 Use typed OpenAI Decisions by default with the shared instructor backend. Do not claim a verified encoder-only architecture. Evaluate relevance, context relevance, faithfulness, citations, tone, at most 20 sentences, latency/cost and applicable storyflow/image outputs. Retention is production-only.
 

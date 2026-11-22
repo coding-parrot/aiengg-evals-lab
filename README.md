@@ -26,6 +26,8 @@ Paste into your assistant:
 
 No profile/persona setup. Each case centers on **query → source material → expected answer → actual answer → eval results**. Preserve original query timestamps and provenance.
 
+**Both generation skills ask questions first and wait for your answers.** Golden-set creation asks about count, topics, sources, eval criteria and expected answers. Synthetic expansion separately asks about seeds, count, variation mix, boundaries and changed expectations. Defaults are suggestions; explicitly reply “use all proposed defaults” to accept them. Neither skill silently generates from configuration alone.
+
 | Stage | Trigger file | Inspect |
 |---|---|---|
 | 0 · Try v0 | [START-HERE.md](START-HERE.md) | Three real answers and traces |

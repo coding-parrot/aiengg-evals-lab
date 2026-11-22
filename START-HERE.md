@@ -10,7 +10,7 @@ Try “What is RAG?”, “How does a query become a search vector?” and “Wh
 
 ## 1 · SME creates the evals
 
-> Read skills/build-golden-set/SKILL.md. Use the saved defaults and tutor corpus. Select 20 tutor queries with original timestamps and provenance. Prepare checked direct resource links and editable expected answers for the SME. Do not ask for profiles/personas. Label assistant drafts honestly. Pause for reference review.
+> Read skills/build-golden-set/SKILL.md. First ask me its intake questions about query count, topics, query sources, educational resources, eval criteria, custom cases and expected-answer authoring. Offer the saved defaults, including 20 queries, and wait for my answers before selecting or generating anything. Then create the golden set using my choices, preserving timestamps and provenance. No profiles/personas. Label drafts honestly and pause for SME reference review.
 
 ## 2 · Calibrate the judges
 
@@ -18,7 +18,7 @@ Try “What is RAG?”, “How does a query become a search vector?” and “Wh
 
 ## 3 · Generate 200 additional queries
 
-> Read skills/expand-eval-data/SKILL.md. Generate ten variants per approved seed using query transformations and evidence conditions. Preserve parent families, timestamps and splits. Show the product matrix, variant CSV and changed expectations.
+> Read skills/expand-eval-data/SKILL.md. First ask me which seed version, how many additional queries, which variations/failures, what generation mix, what boundaries and how to handle changed expected answers. Offer 200 additional queries as the default for 20 seeds, and wait for my answers. Then generate using my choices and show the product matrix, variant CSV and changed expectations. Preserve parent families, timestamps and splits.
 
 ## 4 · Measure unchanged v0
 

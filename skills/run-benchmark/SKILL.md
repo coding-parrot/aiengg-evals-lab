@@ -5,7 +5,7 @@ description: Run and compare versioned tutor-agent experiments on the frozen ori
 
 # Establish the baseline
 
-Read `../../references/lab-contract.md`, `../../references/eval-spec.md` and the current `judge-config.json`. Confirm the dataset contains 20 originals and 200 synthetic cases, all with review/provenance state. Check family separation and that reference answers cannot reach the bot.
+Read `../../references/lab-contract.md`, `../../references/eval-spec.md`, the confirmed golden-set/synthetic intake files and the current `judge-config.json`. Confirm the dataset matches the user's chosen counts (classroom default: 20 originals and 200 synthetic cases), all with review/provenance state. Later references to 220 cases mean the default; use the confirmed frozen dataset size if the user changed it. Check family separation and that reference answers cannot reach the bot.
 
 For before/after teaching, also read `../../references/before-after.md`. The Starting bot (`v0`) must use the saved `../../prompts/tutor-starting-system.txt`; do not change it while adding evaluators. Measure this saved bot once the suite is ready. “No evals yet” is unmeasured, not zero performance. The Improved bot (`v1`) is a separate version created from observed failures. First isolate a prompt change with identical retrieved evidence, model/settings and judges; keep later retrieval/tool changes in separate experiments.
 

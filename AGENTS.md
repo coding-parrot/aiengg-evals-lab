@@ -6,6 +6,8 @@ Read `START-HERE.md` and follow the user's current stage. The v0 bot is already 
 
 Use the skills by reading their `SKILL.md` files directly. Do not assume they are installed globally or that an IDE supports a particular slash command. Explicit file mentions are the portable entry point.
 
+Golden-set creation and synthetic expansion are interactive. Follow each skill's question phase and wait for the user's answers before selecting/generating cases. Defaults and saved files are proposals, not user answers. Offer “use all proposed defaults” as an explicit reply; never infer acceptance from silence. Ask in chat or the IDE question tool, without requiring a browser. Synthetic expansion has its own intake even after golden-set intake. Do not ask profile/persona questions.
+
 Keep the learner-facing checkpoint boundaries. Preserve data provenance and draft/SME status. Never present sample rows as exact learner quotes, assistant-drafted references as SME labels, raw judge probabilities as validated scores, or prepared monitoring configuration as an installed alert.
 
 Use `references/tool-contract.md` for the included runnable helpers. If a required model connection is missing, finish the current stage's local artifacts and identify the exact connection still needed. Do not fabricate an execution result.
