@@ -12,7 +12,7 @@ test('fresh student checkout connects, persists only lab access, and saves a rea
  await new Promise(r=>server.listen(0,'127.0.0.1',r));
  t.after(async()=>{server.closeAllConnections();await new Promise(r=>server.close(r));assert.ok(path.resolve(root).startsWith(path.resolve(os.tmpdir())+path.sep+'aiengg-cli-'));await fs.rm(root,{recursive:true});});
  await fs.mkdir(path.join(root,'tools'));await fs.mkdir(path.join(root,'config'));
- for(const file of ['lab.mjs','env.mjs'])await fs.copyFile(new URL(file,import.meta.url),path.join(root,'tools',file));
+ for(const file of ['lab.mjs','env.mjs','cohort-http.mjs'])await fs.copyFile(new URL(file,import.meta.url),path.join(root,'tools',file));
  await fs.writeFile(path.join(root,'config/classroom.json'),JSON.stringify({url:'http://127.0.0.1:'+server.address().port}));
  await fs.writeFile(path.join(root,'key.private.txt'),key);
  const env={...process.env};for(const name of ['COHORT_URL','COHORT_ACCESS_TOKEN','STUDENT_API_KEY','OPENAI_API_KEY','BOT_ENDPOINT'])delete env[name];

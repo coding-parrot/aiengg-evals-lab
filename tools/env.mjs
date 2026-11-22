@@ -1,5 +1,6 @@
 // Native Node env loading: no provider secrets in source or browser bundles.
 import fs from 'node:fs';
+import {cohortJson} from './cohort-http.mjs';
 if(fs.existsSync('.env')){
   if(typeof process.loadEnvFile!=='function')throw new Error('Use Node 22+ for automatic .env loading');
   process.loadEnvFile('.env');
@@ -18,7 +19,5 @@ export function cohortUrl(route){
 }
 export async function cohortCall(route,payload){
   if(!process.env.COHORT_ACCESS_TOKEN)throw new Error('Run node tools/lab.mjs connect and enter the shared student API key. No browser or OpenAI key is needed.');
-  const response=await fetch(cohortUrl(route),{method:payload===undefined?'GET':'POST',headers:{Authorization:`Bearer ${process.env.COHORT_ACCESS_TOKEN}`,'Content-Type':'application/json'},...(payload===undefined?{}:{body:JSON.stringify(payload)}),redirect:'error',signal:AbortSignal.timeout(120000)});
-  if(!response.ok)throw new Error(`Cohort HTTP ${response.status}; check access, quota and instructor service status`);
-  return response.json();
+  return cohortJson(cohortUrl(route),{method:payload===undefined?'GET':'POST',headers:{Authorization:`Bearer ${process.env.COHORT_ACCESS_TOKEN}`,'Content-Type':'application/json'},...(payload===undefined?{}:{body:JSON.stringify(payload)}),redirect:'error'},{onRetry:({attempt,waitMs})=>console.error(`Shared service busy; retry ${attempt}/3 in ${Math.ceil(waitMs/1000)}s.`)});
 }

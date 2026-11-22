@@ -2,7 +2,7 @@
 // Build embeds assets and Decisions mappings; runtime secrets never enter source.
 import {HTML,PROMPT,CARDS} from './assets.mjs';
 import {decisionRequest,decisionResult} from '../tools/decisions.mjs';
-const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
+const json=(data,status=200,headers={})=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
 const hash=async value=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value)))).map(x=>x.toString(16).padStart(2,'0')).join('');
 const fail=(status,message)=>Object.assign(new Error(message),{status});
 function text(value,max){if(typeof value!=='string'||!value.trim()||new TextEncoder().encode(value).length>max)throw fail(400,'Invalid or oversized input');return value;}
@@ -10,7 +10,7 @@ async function relay(env,body){
   if(!env?.RELAY_URL||!env?.RELAY_PLATFORM_TOKEN||!env?.RELAY_SECRET)throw fail(503,'Relay configuration missing');
   const response=await fetch(env.RELAY_URL,{method:body?'POST':'GET',headers:{'OAI-Sites-Authorization':'Bearer '+env.RELAY_PLATFORM_TOKEN,'x-eval-relay-secret':env.RELAY_SECRET,'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{}),redirect:'manual',signal:AbortSignal.timeout(110000)});
   let data;try{data=await response.json();}catch{throw fail(502,'Model service unavailable');}
-  if(!response.ok)throw fail(response.status===429?429:502,data.provider_code?'Provider error: '+data.provider_code:data.error??'Model service unavailable');
+  if(!response.ok)throw Object.assign(fail(response.status===429?429:502,data.provider_code?'Provider error: '+data.provider_code:data.error??'Model service unavailable'),{code:data.code,retryable:data.retryable,retryAfter:response.headers.get('Retry-After')});
   return data;
 }
 async function generate(env,input,instructions){
@@ -29,7 +29,7 @@ export default {async fetch(request,env){
     if(!env.STUDENT_API_KEY||!token||await hash(token)!==await hash(env.STUDENT_API_KEY))throw fail(401,'Use the shared student API key');
     if(route==='/api/info'&&request.method==='GET'){
       const info=await relay(env);
-      return json({lab_scope:'tutor_only',baseline_id:'aiengg-tutor-v0-2026-11-22',access_mode:'shared_student_key',student:'shared-student-access',expires_at:null,calls:null,max_calls:20000,quota_scope:'class-wide durable relay quota',openai_model:info.agent_model,judge_provider:'openai_decisions',judge_model:info.judge_model});
+      return json({lab_scope:'tutor_only',baseline_id:'aiengg-tutor-v0-2026-11-22',access_mode:'shared_student_key',student:'shared-student-access',expires_at:null,calls:null,max_calls:20000,calls_per_minute:info.calls_per_minute,quota_scope:'class-wide durable relay quota',openai_model:info.agent_model,judge_provider:'openai_decisions',judge_model:info.judge_model});
     }
     if(request.method!=='POST'||!['/api/bot','/api/generate','/api/judge'].includes(route))throw fail(404,'Not found');
     const reader=request.body?.getReader();if(!reader)throw fail(400,'Missing body');const decoder=new TextDecoder();let raw='',bytes=0;
@@ -53,5 +53,5 @@ export default {async fetch(request,env){
     const prompt=body.system_prompt===undefined?PROMPT:text(body.system_prompt,8000);
     const result=await generate(env,JSON.stringify({query,brand:body.brand??'AIEngg',retrieved_context:context}),prompt);
     return json({query,route:'ai_tutor',answer:result.text,retrieved_context:context,citations:context.filter(c=>(result.text.includes(`[${c.id}]`) || (c.url && result.text.includes(c.url)))).map(c=>({source_id:c.id,url:c.url})),tool_results:[],claims:[],faithfulness_status:'claim_extraction_required',storyflow_applicable:false,image_artifact:null,ttft_ms:null,total_latency_ms:performance.now()-started,cost_usd:null,usage:result.usage,model:result.model,agent_version:body.system_prompt===undefined?'v0':'v1_candidate',run_id:crypto.randomUUID(),run_started_at:runStartedAt,prompt_hash:await hash(prompt),source_snapshot_hash:await hash(JSON.stringify(context))});
-  }catch(error){return json({error:error.status?error.message:'Lab service unavailable',kind:error.name},error.status??502);}
+  }catch(error){return json({error:error.status?error.message:'Lab service unavailable',kind:error.name,code:error.code,retryable:error.retryable},error.status??502,error.retryAfter?{'Retry-After':error.retryAfter}:{});}
 }};

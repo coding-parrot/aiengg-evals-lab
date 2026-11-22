@@ -17,4 +17,4 @@ Packaged v0 has no runtime source/citation enforcement and does not run evals au
 
 Serving latency and token usage are recorded. TTFT and unpriced dollar cost remain unavailable. Faithfulness needs complete claim extraction; image scores need actual images. LangSmith remains the later monitoring checkpoint.
 
-The protected relay reuses the instructor's existing OpenAI key. Durable class-wide limits remain 20,000 provider calls total and 120/minute, including judge and failed requests. These are call limits, not a dollar budget. See [hosting](../hosting/README.md) for operator controls.
+The protected relay reuses the instructor's existing OpenAI key. Durable class-wide limits are 20,000 provider calls total and 1,200/minute, including judge and failed requests. The minute limit was increased from 120 after shared-cohort bursts caused HTTP 429 responses. The CLI now honors temporary throttle retry timing, with at most three retries; exhausted total quota is reported separately. These are call limits, not a dollar budget. See [hosting](../hosting/README.md) for operator controls.

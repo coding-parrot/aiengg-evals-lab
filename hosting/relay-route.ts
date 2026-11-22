@@ -1,6 +1,7 @@
 // Isolated lab relay: reuses the existing server key without exporting it.
 import { database, setting } from '@/lib/runtime-env';
 const json=(data:unknown,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
+function callsPerMinute(){const value=Number(setting('AIENGG_EVAL_CALLS_PER_MINUTE')||1200);return Number.isInteger(value)&&value>0?Math.min(value,10000):1200;}
 async function digest(value:string){return new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value)));}
 async function authorized(request:Request){
   const expected=setting('AIENGG_EVAL_RELAY_SECRET');
@@ -10,7 +11,7 @@ async function authorized(request:Request){
 }
 export async function GET(request:Request){
   if(!await authorized(request))return json({error:'Unauthorized'},401);
-  return json({openai_configured:!!setting('OPENAI_API_KEY'),database_configured:!!database(),agent_model:setting('AIENGG_EVAL_AGENT_MODEL')||'gpt-6-luna',judge_model:setting('AIENGG_EVAL_JUDGE_MODEL')||'gpt-6-luna'});
+  return json({openai_configured:!!setting('OPENAI_API_KEY'),database_configured:!!database(),calls_per_minute:callsPerMinute(),agent_model:setting('AIENGG_EVAL_AGENT_MODEL')||'gpt-6-luna',judge_model:setting('AIENGG_EVAL_JUDGE_MODEL')||'gpt-6-luna'});
 }
 export async function POST(request:Request){
   if(!await authorized(request))return json({error:'Unauthorized'},401);
@@ -33,8 +34,13 @@ export async function POST(request:Request){
   try{
     await db.prepare("INSERT OR IGNORE INTO aiengg_eval_usage (id,calls,minute,minute_calls) VALUES ('class',0,0,0)").run();
     const max=Math.max(1,Math.min(100000,Number(setting('AIENGG_EVAL_MAX_CALLS')||20000))),minute=Math.floor(Date.now()/60000);
-    const reserved=await db.prepare("UPDATE aiengg_eval_usage SET calls=calls+1,minute_calls=CASE WHEN minute=? THEN minute_calls+1 ELSE 1 END,minute=? WHERE id='class' AND calls<? AND (minute<>? OR minute_calls<120) RETURNING calls").bind(minute,minute,max,minute).first();
-    if(!reserved)return json({error:'Lab quota or rate limit reached'},429);
+    const reserved=await db.prepare("UPDATE aiengg_eval_usage SET calls=calls+1,minute_calls=CASE WHEN minute=? THEN minute_calls+1 ELSE 1 END,minute=? WHERE id='class' AND calls<? AND (minute<>? OR minute_calls<?) RETURNING calls").bind(minute,minute,max,minute,callsPerMinute()).first();
+    if(!reserved){
+      const usage=await db.prepare("SELECT calls FROM aiengg_eval_usage WHERE id='class'").first<{calls:number}>();
+      if(usage&&usage.calls>=max)return json({error:'Class usage cap reached; contact the instructor',code:'cohort_quota_exhausted',retryable:false},429);
+      const retryAfter=60-Math.floor(Date.now()/1000)%60;
+      return Response.json({error:'Shared minute limit reached; retry shortly',code:'cohort_rate_limited',retryable:true,retry_after_seconds:retryAfter},{status:429,headers:{'Cache-Control':'no-store','Retry-After':String(retryAfter)}});
+    }
     stage='provider';
     const response=await fetch('https://api.openai.com/v1/'+operation,{method:operation==='models'?'GET':'POST',headers:{Authorization:'Bearer '+key,'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{}),redirect:'manual',signal:AbortSignal.timeout(90000)});
     if(!response.ok){let code=null;try{code=(await response.json() as {error?:{code?:string}}).error?.code??null;}catch{}return json({error:'OpenAI request failed',provider_status:response.status,provider_code:code},502);}
